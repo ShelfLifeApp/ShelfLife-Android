@@ -1,0 +1,163 @@
+!SESSION 2013-05-09 15:55:20.121 -----------------------------------------------
+eclipse.buildId=M20110210-1200
+java.version=1.6.0_24
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-05-09 15:56:31.292
+!MESSAGE New Project Wizard failed
+!STACK 0
+java.lang.reflect.InvocationTargetException
+	at com.android.ide.eclipse.adt.internal.wizards.newproject.NewProjectCreator.createProjectAsync(NewProjectCreator.java:642)
+	at com.android.ide.eclipse.adt.internal.wizards.newproject.NewProjectCreator.access$0(NewProjectCreator.java:559)
+	at com.android.ide.eclipse.adt.internal.wizards.newproject.NewProjectCreator$2.execute(NewProjectCreator.java:371)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(WorkspaceModifyOperation.java:106)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(WorkspaceModifyOperation.java:118)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Caused by: org.eclipse.core.internal.resources.ResourceException: Invalid project description.
+	at org.eclipse.core.internal.resources.Project.checkDescription(Project.java:162)
+	at org.eclipse.core.internal.resources.Project.assertCreateRequirements(Project.java:52)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:274)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:256)
+	at com.android.ide.eclipse.adt.internal.wizards.newproject.NewProjectCreator.createEclipseProject(NewProjectCreator.java:689)
+	at com.android.ide.eclipse.adt.internal.wizards.newproject.NewProjectCreator.createProjectAsync(NewProjectCreator.java:626)
+	... 6 more
+Root exception:
+org.eclipse.core.internal.resources.ResourceException: Invalid project description.
+	at org.eclipse.core.internal.resources.Project.checkDescription(Project.java:162)
+	at org.eclipse.core.internal.resources.Project.assertCreateRequirements(Project.java:52)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:274)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:256)
+	at com.android.ide.eclipse.adt.internal.wizards.newproject.NewProjectCreator.createEclipseProject(NewProjectCreator.java:689)
+	at com.android.ide.eclipse.adt.internal.wizards.newproject.NewProjectCreator.createProjectAsync(NewProjectCreator.java:626)
+	at com.android.ide.eclipse.adt.internal.wizards.newproject.NewProjectCreator.access$0(NewProjectCreator.java:559)
+	at com.android.ide.eclipse.adt.internal.wizards.newproject.NewProjectCreator$2.execute(NewProjectCreator.java:371)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(WorkspaceModifyOperation.java:106)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(WorkspaceModifyOperation.java:118)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Contains: OK
+Contains: C:\Users\Spencer Lewson\CPE409\ShelfLife-Android\actionbarsherlock overlaps the location of another project: 'actionbarsherlock'
+
+!ENTRY com.vectrace.MercurialEclipse 1 0 2013-05-09 15:58:24.008
+!MESSAGE checking encoding (cp1252)...
+checking Python lib (C:\Users\Spencer Lewson\My Programs\Android Development\eclipse-java-helios-SR1-win32-x86_64\eclipse\plugins\com.intland.hgbinary.win32_2.3.2\os\win32\library.zip)...
+checking installed modules (C:\Users\Spencer Lewson\My Programs\Android Development\eclipse-java-helios-SR1-win32-x86_64\eclipse\plugins\com.intland.hgbinary.win32_2.3.2\os\win32\library.zip\mercurial)...
+checking templates (C:\Users\Spencer Lewson\My Programs\Android Development\eclipse-java-helios-SR1-win32-x86_64\eclipse\plugins\com.intland.hgbinary.win32_2.3.2\os\win32\templates)...
+checking commit editor...
+checking username...
+no username found, using 'Spencer Lewson@SpencerLewson' instead
+no problems detected
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-05-09 15:58:24.161
+!MESSAGE 
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Marker id 1 not found.
+	at org.eclipse.core.internal.resources.Marker.checkInfo(Marker.java:56)
+	at org.eclipse.core.internal.resources.Marker.setAttribute(Marker.java:236)
+	at com.android.ide.eclipse.adt.internal.project.BaseProjectHelper.markProject(BaseProjectHelper.java:210)
+	at com.android.ide.eclipse.adt.internal.project.BaseClasspathContainerInitializer$1.run(BaseClasspathContainerInitializer.java:65)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.core.resources 4 376 2013-05-09 15:58:24.161
+!MESSAGE Marker id 1 not found.
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-05-09 15:59:59.991
+!MESSAGE Failed to load properties file for project 'ShelfLifeAndroid'
+!SESSION 2013-05-09 16:01:29.976 -----------------------------------------------
+eclipse.buildId=M20110210-1200
+java.version=1.6.0_24
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.core.resources 4 4 2013-05-09 16:01:58.714
+!MESSAGE Exception occurred while saving project preferences: /actionbarsherlock/.settings/org.eclipse.jdt.core.prefs.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: A resource already exists on disk 'C:\Users\Spencer Lewson\CPE409\ShelfLife-Android\Implementation\actionbarsherlock\.settings'.
+	at org.eclipse.core.internal.resources.Folder.assertCreateRequirements(Folder.java:47)
+	at org.eclipse.core.internal.resources.Folder.create(Folder.java:95)
+	at org.eclipse.core.internal.resources.ProjectPreferences$3.run(ProjectPreferences.java:633)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+	at org.eclipse.core.internal.resources.ProjectPreferences.save(ProjectPreferences.java:648)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.flush(EclipsePreferences.java:352)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:399)
+	at org.eclipse.jdt.internal.core.JavaProject.setOption(JavaProject.java:2885)
+	at com.android.ide.eclipse.adt.internal.project.ProjectHelper.checkAndFixCompilerCompliance(ProjectHelper.java:441)
+	at com.android.ide.eclipse.adt.internal.project.ProjectHelper.fixProjectClasspathEntries(ProjectHelper.java:350)
+	at com.android.ide.eclipse.adt.internal.project.ProjectHelper.fixProject(ProjectHelper.java:268)
+	at com.android.ide.eclipse.adt.internal.wizards.newproject.NewProjectCreator.createEclipseProject(NewProjectCreator.java:790)
+	at com.android.ide.eclipse.adt.internal.wizards.newproject.NewProjectCreator.createProjectAsync(NewProjectCreator.java:626)
+	at com.android.ide.eclipse.adt.internal.wizards.newproject.NewProjectCreator.access$0(NewProjectCreator.java:559)
+	at com.android.ide.eclipse.adt.internal.wizards.newproject.NewProjectCreator$2.execute(NewProjectCreator.java:371)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(WorkspaceModifyOperation.java:106)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(WorkspaceModifyOperation.java:118)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 1 org.eclipse.core.resources 4 272 2013-05-09 16:01:58.715
+!MESSAGE A resource already exists on disk 'C:\Users\Spencer Lewson\CPE409\ShelfLife-Android\Implementation\actionbarsherlock\.settings'.
+
+!ENTRY org.eclipse.core.resources 4 4 2013-05-09 16:01:58.726
+!MESSAGE Exception occurred while saving project preferences: /actionbarsherlock/.settings/org.eclipse.jdt.core.prefs.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: A resource already exists on disk 'C:\Users\Spencer Lewson\CPE409\ShelfLife-Android\Implementation\actionbarsherlock\.settings'.
+	at org.eclipse.core.internal.resources.Folder.assertCreateRequirements(Folder.java:47)
+	at org.eclipse.core.internal.resources.Folder.create(Folder.java:95)
+	at org.eclipse.core.internal.resources.ProjectPreferences$3.run(ProjectPreferences.java:633)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+	at org.eclipse.core.internal.resources.ProjectPreferences.save(ProjectPreferences.java:648)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.flush(EclipsePreferences.java:352)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:399)
+	at org.eclipse.jdt.internal.core.JavaProject.setOption(JavaProject.java:2885)
+	at com.android.ide.eclipse.adt.internal.project.ProjectHelper.checkAndFixCompilerCompliance(ProjectHelper.java:443)
+	at com.android.ide.eclipse.adt.internal.project.ProjectHelper.fixProjectClasspathEntries(ProjectHelper.java:350)
+	at com.android.ide.eclipse.adt.internal.project.ProjectHelper.fixProject(ProjectHelper.java:268)
+	at com.android.ide.eclipse.adt.internal.wizards.newproject.NewProjectCreator.createEclipseProject(NewProjectCreator.java:790)
+	at com.android.ide.eclipse.adt.internal.wizards.newproject.NewProjectCreator.createProjectAsync(NewProjectCreator.java:626)
+	at com.android.ide.eclipse.adt.internal.wizards.newproject.NewProjectCreator.access$0(NewProjectCreator.java:559)
+	at com.android.ide.eclipse.adt.internal.wizards.newproject.NewProjectCreator$2.execute(NewProjectCreator.java:371)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(WorkspaceModifyOperation.java:106)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(WorkspaceModifyOperation.java:118)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 1 org.eclipse.core.resources 4 272 2013-05-09 16:01:58.727
+!MESSAGE A resource already exists on disk 'C:\Users\Spencer Lewson\CPE409\ShelfLife-Android\Implementation\actionbarsherlock\.settings'.
+
+!ENTRY org.eclipse.core.resources 4 4 2013-05-09 16:01:58.732
+!MESSAGE Exception occurred while saving project preferences: /actionbarsherlock/.settings/org.eclipse.jdt.core.prefs.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: A resource already exists on disk 'C:\Users\Spencer Lewson\CPE409\ShelfLife-Android\Implementation\actionbarsherlock\.settings'.
+	at org.eclipse.core.internal.resources.Folder.assertCreateRequirements(Folder.java:47)
+	at org.eclipse.core.internal.resources.Folder.create(Folder.java:95)
+	at org.eclipse.core.internal.resources.ProjectPreferences$3.run(ProjectPreferences.java:633)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+	at org.eclipse.core.internal.resources.ProjectPreferences.save(ProjectPreferences.java:648)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.flush(EclipsePreferences.java:352)
+	at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:399)
+	at org.eclipse.jdt.internal.core.JavaProject.setOption(JavaProject.java:2885)
+	at com.android.ide.eclipse.adt.internal.project.ProjectHelper.checkAndFixCompilerCompliance(ProjectHelper.java:445)
+	at com.android.ide.eclipse.adt.internal.project.ProjectHelper.fixProjectClasspathEntries(ProjectHelper.java:350)
+	at com.android.ide.eclipse.adt.internal.project.ProjectHelper.fixProject(ProjectHelper.java:268)
+	at com.android.ide.eclipse.adt.internal.wizards.newproject.NewProjectCreator.createEclipseProject(NewProjectCreator.java:790)
+	at com.android.ide.eclipse.adt.internal.wizards.newproject.NewProjectCreator.createProjectAsync(NewProjectCreator.java:626)
+	at com.android.ide.eclipse.adt.internal.wizards.newproject.NewProjectCreator.access$0(NewProjectCreator.java:559)
+	at com.android.ide.eclipse.adt.internal.wizards.newproject.NewProjectCreator$2.execute(NewProjectCreator.java:371)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(WorkspaceModifyOperation.java:106)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(WorkspaceModifyOperation.java:118)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 1 org.eclipse.core.resources 4 272 2013-05-09 16:01:58.733
+!MESSAGE A resource already exists on disk 'C:\Users\Spencer Lewson\CPE409\ShelfLife-Android\Implementation\actionbarsherlock\.settings'.
+
+!ENTRY com.vectrace.MercurialEclipse 1 0 2013-05-09 16:02:03.127
+!MESSAGE checking encoding (cp1252)...
+checking Python lib (C:\Users\Spencer Lewson\My Programs\Android Development\eclipse-java-helios-SR1-win32-x86_64\eclipse\plugins\com.intland.hgbinary.win32_2.3.2\os\win32\library.zip)...
+checking installed modules (C:\Users\Spencer Lewson\My Programs\Android Development\eclipse-java-helios-SR1-win32-x86_64\eclipse\plugins\com.intland.hgbinary.win32_2.3.2\os\win32\library.zip\mercurial)...
+checking templates (C:\Users\Spencer Lewson\My Programs\Android Development\eclipse-java-helios-SR1-win32-x86_64\eclipse\plugins\com.intland.hgbinary.win32_2.3.2\os\win32\templates)...
+checking commit editor...
+checking username...
+no username found, using 'Spencer Lewson@SpencerLewson' instead
+no problems detected

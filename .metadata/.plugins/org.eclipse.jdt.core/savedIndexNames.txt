@@ -1,0 +1,5 @@
+INDEX VERSION 1.126+C:\Users\Spencer Lewson\CPE409\ShelfLife-Android\.metadata\.plugins\org.eclipse.jdt.core
+1659396508.index
+342782910.index
+2002087127.index
+1122178717.index
