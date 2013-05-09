@@ -74,3 +74,28 @@ java.vm.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1368140499093
 java.vm.specification.version,sysinfo,,,"1.0",1368140499093
 java.vm.vendor,sysinfo,,,"Sun Microsystems Inc.",1368140499093
 java.vm.version,sysinfo,,,"19.1-b02",1368140499093
+deactivated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368140504120
+started,bundle,org.eclipse.debug.core,3.6.0.v20100519,"org.eclipse.debug.core",1368140518682
+started,bundle,org.eclipse.jdt.launching,3.5.200.v20110105_r362,"org.eclipse.jdt.launching",1368140518698
+error,log,,,"Exception occurred while saving project preferences: /actionbarsherlock/.settings/org.eclipse.jdt.core.prefs.",1368140518724
+error,log,,,"Exception occurred while saving project preferences: /actionbarsherlock/.settings/org.eclipse.jdt.core.prefs.",1368140518731
+error,log,,,"Exception occurred while saving project preferences: /actionbarsherlock/.settings/org.eclipse.jdt.core.prefs.",1368140518736
+started,bundle,org.eclipse.jdt.apt.pluggable.core,1.0.301.R36_v20100727-0110,"org.eclipse.jdt.apt.pluggable.core",1368140518879
+started,bundle,org.eclipse.jdt.apt.core,3.3.402.R36_v20110120-1000,"org.eclipse.jdt.apt.core",1368140518893
+activated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368140518971
+executed,command,org.eclipse.ui,3.6.2.M20110203-1100,"org.eclipse.ui.file.import",1368140518990
+started,bundle,org.eclipse.wst.server.core,1.1.206.v20110110,"org.eclipse.wst.server.core",1368140519076
+started,bundle,com.vectrace.MercurialEclipse,2.0.0.v201210091230,"com.vectrace.MercurialEclipse",1368140519770
+started,bundle,org.eclipse.compare.core,3.5.101.R36x_v20100929-0800,"org.eclipse.compare.core",1368140519802
+started,bundle,org.eclipse.compare,3.5.101.R36x_v20100929-0800,"org.eclipse.compare",1368140519806
+deactivated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368140521870
+activated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368140556931
+executed,command,org.eclipse.ui,3.6.2.M20110203-1100,"org.eclipse.ui.file.import",1368140556950
+deactivated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368140559800
+activated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368140579532
+executed,command,org.eclipse.ui,3.6.2.M20110203-1100,"org.eclipse.ui.file.import",1368140579547
+deactivated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368140583654
+activated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368141003859
+started,bundle,org.eclipse.wst.sse.core,1.1.504.v201102160550,"org.eclipse.wst.sse.core",1368141016228
+started,bundle,org.eclipse.wst.xml.core,1.1.503.v201102102045,"org.eclipse.wst.xml.core",1368141021304
+deactivated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368141023741
