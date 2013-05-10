@@ -1,4 +1,5 @@
-#Thu May 09 16:01:24 PDT 2013
+#Thu May 09 16:59:30 PDT 2013
 com.android.ide.eclipse.adt.sdk=C\:\\android-sdk-windows
 eclipse.preferences.version=1
 com.android.ide.eclipse.adt.fixLegacyEditors=1
+com.android.ide.eclipse.adt.xmlEditor=true
