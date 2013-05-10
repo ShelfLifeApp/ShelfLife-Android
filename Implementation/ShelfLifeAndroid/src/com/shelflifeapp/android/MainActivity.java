@@ -1,5 +1,7 @@
 package com.shelflifeapp.android;
 
+import jim.h.common.android.lib.zxing.integrator.IntentIntegrator;
+import jim.h.common.android.lib.zxing.integrator.IntentResult;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -62,7 +64,7 @@ public class MainActivity extends SherlockFragmentActivity {
 	    // Handle item selection
 	    switch (item.getItemId()) {
 	        case R.id.menu_ab_barcode:
-	        	IntentIntegrator.initiateScan(MainActivity.this);
+	        	IntentIntegrator.initiateScan(MainActivity.this, 0, 0, 0, false);
 	            return true;
 	        case R.id.menu_ab_search:	        		           
 	        	return true;	        
