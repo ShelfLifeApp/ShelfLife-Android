@@ -16,6 +16,8 @@ Implementation/actionbarsherlock-i18n/bin/
 Implementation/actionbarsherlock-i18n/gen/
 Implementation/actionbarsherlock/bin/
 Implementation/actionbarsherlock/gen/
+Implementation/ZXingLib/bin/
+Implementation/ZXingLib/gen/
 
 # Local configuration file (sdk path, etc)
 Implementation/ShelfLifeAndroid/project.properties
