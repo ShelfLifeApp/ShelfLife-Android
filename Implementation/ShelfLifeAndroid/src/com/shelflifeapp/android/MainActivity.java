@@ -64,7 +64,9 @@ public class MainActivity extends SherlockFragmentActivity {
 	    // Handle item selection
 	    switch (item.getItemId()) {
 	        case R.id.menu_ab_barcode:
-	        	IntentIntegrator.initiateScan(MainActivity.this, 0, 0, 0, false);
+	        	Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+	        	intent.putExtra("com.google.zxing.client.android.SCAN.SCAN_MODE", "QR_CODE_MODE");
+	        	startActivityForResult(intent, 0);
 	            return true;
 	        case R.id.menu_ab_search:	        		           
 	        	return true;	        
