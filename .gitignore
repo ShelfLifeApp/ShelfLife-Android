@@ -12,6 +12,10 @@ Implementation/ShelfLifeAndroid/bin/classes/com/shelflifeapp/android/*.class
 # generated files
 Implementation/ShelfLifeAndroid/bin/
 Implementation/ShelfLifeAndroid/gen/
+Implementation/actionbarsherlock-i18n/bin/
+Implementation/actionbarsherlock-i18n/gen/
+Implementation/actionbarsherlock/bin/
+Implementation/actionbarsherlock/gen/
 
 # Local configuration file (sdk path, etc)
 local.properties
