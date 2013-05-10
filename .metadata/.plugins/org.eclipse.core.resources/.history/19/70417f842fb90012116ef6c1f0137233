@@ -1,0 +1,5 @@
+package com.shelflife.android.models;
+
+public class Food {
+
+}

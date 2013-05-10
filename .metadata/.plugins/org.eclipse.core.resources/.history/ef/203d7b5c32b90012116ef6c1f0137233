@@ -1,0 +1,5 @@
+package com.shelflifeapp.views;
+
+public class FoodListItem {
+
+}

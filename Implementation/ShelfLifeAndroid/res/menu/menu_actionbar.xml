@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 	<item android:id="@+id/menu_ab_search"
 	    android:title="menu_ab_search"
-	    android:icon="@drawable/icon_magnify"
+	    android:icon="@drawable/icon_magnifying_glass"
 	    android:showAsAction="always"
 	    />
 	<item android:id="@+id/menu_ab_barcode"

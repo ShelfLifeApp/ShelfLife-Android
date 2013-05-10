@@ -1,22 +1,49 @@
 package com.shelflifeapp.android;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.ActionBar.Tab;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
-public class MainActivity extends SherlockActivity {
+public class MainActivity extends SherlockFragmentActivity {
 
+	private final String TAG = "MAIN_ACTIVITY";
+	private Context mContext = MainActivity.this;
+	
 	private Menu m_vwMenu;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        ActionBar.Tab databaseTab = actionBar.newTab().setText("Database");
+        ActionBar.Tab databaseTab2 = actionBar.newTab().setText("Database2");
+        ActionBar.Tab myFoodTab = actionBar.newTab().setText("My Food");
+        
+        Fragment databaseFragment = new DatabaseFragment();
+        Fragment databaseFragment2 = new DatabaseFragment();
+        //Fragment myFoodFragment = new MyFoodFragment();
+        
+        databaseTab.setTabListener(new MyTabsListener(databaseFragment));
+        databaseTab2.setTabListener(new MyTabsListener(databaseFragment2));
+
+        
+        actionBar.addTab(databaseTab);
+        actionBar.addTab(databaseTab2);
+        
     }
 
     @Override
@@ -54,6 +81,7 @@ public class MainActivity extends SherlockActivity {
 					IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 					if (scanResult != null) {
 						String upc = scanResult.getContents();
+						Toast.makeText(mContext, upc, Toast.LENGTH_LONG).show();
 			 
 						//put whatever you want to do with the code here
 						TextView tv = new TextView(this);
@@ -65,4 +93,28 @@ public class MainActivity extends SherlockActivity {
 			}
 		}
 	}
+    
+    private class MyTabsListener implements ActionBar.TabListener 
+    {
+    	public Fragment fragment;
+    	 
+    	public MyTabsListener(Fragment fragment) {
+    	this.fragment = fragment;
+    	}
+    	 
+    	@Override
+    	public void onTabReselected(Tab tab, FragmentTransaction ft) {
+    	}
+    	 
+    	@Override
+    	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+    		ft.replace(R.id.fragment_container, fragment);
+    	}
+    	 
+    	@Override
+    	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+    		ft.remove(fragment);
+    	}
+    	 
+    }
 }

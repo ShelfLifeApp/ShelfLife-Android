@@ -1,0 +1,7 @@
+package com.shelflifeapp.android;
+
+import android.support.v4.app.FragmentActivity;
+
+public class DatabaseFragment extends FragmentActivity {
+
+}
