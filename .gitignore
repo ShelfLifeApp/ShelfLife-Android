@@ -1,17 +1,17 @@
 # built application files
-*.apk
+Implementation/ShelfLifeAndroid/bin/*.apk
 *.ap_
 
 # files for the dex VM
-*.dex
+Implementation/ShelfLifeAndroid/bin/*.dex
 
 # Java class files
 Implementation/ShelfLifeAndroid/bin/classes/com/actionbarsherlock/*.class
 Implementation/ShelfLifeAndroid/bin/classes/com/shelflifeapp/android/*.class
 
 # generated files
-bin/
-gen/
+Implementation/ShelfLifeAndroid/bin/
+Implementation/ShelfLifeAndroid/gen/
 
 # Local configuration file (sdk path, etc)
 local.properties
