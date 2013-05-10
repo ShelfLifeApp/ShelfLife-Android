@@ -6,7 +6,8 @@
 *.dex
 
 # Java class files
-*.class
+Implementation/ShelfLifeAndroid/bin/classes/com/actionbarsherlock/*.class
+Implementation/ShelfLifeAndroid/bin/classes/com/shelflifeapp/android/*.class
 
 # generated files
 bin/
