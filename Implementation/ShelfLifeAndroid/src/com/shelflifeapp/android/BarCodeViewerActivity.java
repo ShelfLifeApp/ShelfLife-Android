@@ -4,11 +4,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 
-public class BarCodeViewerActivity extends SherlockFragmentActivity {
+public class BarCodeViewerActivity extends SherlockActivity {
 	Bundle bundleObject;
 	String upcNum;
 	TextView upcView;
@@ -17,7 +18,7 @@ public class BarCodeViewerActivity extends SherlockFragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.barcode_view);
+		
 		bundleObject = this.getIntent().getExtras();
 		upcView = (TextView) findViewById(R.id.textView1);
 		if(bundleObject == null){
@@ -30,6 +31,7 @@ public class BarCodeViewerActivity extends SherlockFragmentActivity {
 				upcView.setText("Barcode: " + upcNum);
 			}			
 		}
+		setContentView(R.layout.barcode_view);
 	}
 
 	@Override

@@ -4,9 +4,14 @@ import jim.h.common.android.lib.zxing.integrator.IntentIntegrator;
 import jim.h.common.android.lib.zxing.integrator.IntentResult;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,13 +21,17 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.shelflifeapp.database.FoodTable;
 
-public class MainActivity extends SherlockFragmentActivity {
+public class MainActivity extends SherlockFragmentActivity implements LoaderCallbacks<Cursor> {
 
 	private final String TAG = "MAIN_ACTIVITY";
 	private Context mContext = MainActivity.this;
 	
 	private Menu m_vwMenu;
+	
+	/** The ID of the CursorLoader to be initialized in the LoaderManager and used to load a Cursor. */
+	private static final int LOADER_ID = 1;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +55,8 @@ public class MainActivity extends SherlockFragmentActivity {
         actionBar.addTab(databaseTab);
         actionBar.addTab(databaseTab2);
         
+        //Database Stuff
+        getSupportLoaderManager().initLoader(LOADER_ID, null, this);
     }
 
     @Override
@@ -78,6 +89,7 @@ public class MainActivity extends SherlockFragmentActivity {
     /**
      * Deals with the UPC code found by bar code scanner. 
      */
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		switch(requestCode) {
 			case IntentIntegrator.REQUEST_CODE: {
@@ -122,4 +134,24 @@ public class MainActivity extends SherlockFragmentActivity {
     	}
     	 
     }
+
+	@Override
+	public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
+		String[] projection = {FoodTable.FOOD_KEY_ID, 
+				FoodTable.FOOD_KEY_CAT, FoodTable.FOOD_KEY_NAME, FoodTable.FOOD_KEY_DAYS};
+		Uri uri = Uri.parse("content://edu.calpoly.android.lab4.contentprovider/joke_table/filters/" /*+ getFilterString()*/);
+		return new CursorLoader(this, uri, projection, null, null, null);
+	}
+
+	@Override
+	public void onLoadFinished(Loader<Cursor> arg0, Cursor arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onLoaderReset(Loader<Cursor> arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 }
