@@ -1,0 +1,8 @@
+package com.slewson.simpleupc;
+
+public enum HTTPVerb {
+    GET,
+    POST,
+    PUT,
+    DELETE
+}

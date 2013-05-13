@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 import com.shelflife.android.models.Food;
 import com.shelflifeapp.views.FoodListItem;
+import com.shelflifeapp.views.ShelfLifeListViewHeader;
 
 public class DatabaseFragment extends ListFragment
 {
@@ -23,8 +24,11 @@ public class DatabaseFragment extends ListFragment
 	  public void onActivityCreated(Bundle savedInstanceState) {
 	    super.onActivityCreated(savedInstanceState);
 
+	    mContext = this.getActivity();
+	    
 	    this.getListView().setDividerHeight(0);
 	    this.getListView().setVerticalScrollBarEnabled(false);
+	    this.getListView().addHeaderView(new ShelfLifeListViewHeader(mContext, "All Foods", "Browse Database"));
 	    
 	    mContext = getActivity();
 	    

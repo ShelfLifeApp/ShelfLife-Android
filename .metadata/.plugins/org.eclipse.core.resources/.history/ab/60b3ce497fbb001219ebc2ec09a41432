@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/list_header_background"
+    android:gravity="center_vertical"
+    android:paddingLeft="15dip"
+    android:paddingTop="10dip"
+    android:paddingBottom="10dip"
+    >
+    
+    <TextView
+        android:id="@+id/listview_header_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="All Food"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:textColor="@color/list_header_title_color"
+    />
+    
+    <TextView
+        android:id="@+id/listview_header_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Browse Categories"
+        android:textSize="15sp"
+        android:textColor="@color/list_header_subtitle_color"
+    />
+
+</LinearLayout>

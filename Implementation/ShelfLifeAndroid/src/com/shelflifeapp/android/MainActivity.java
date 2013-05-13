@@ -1,14 +1,10 @@
 package com.shelflifeapp.android;
 
-import jim.h.common.android.lib.zxing.integrator.IntentIntegrator;
-import jim.h.common.android.lib.zxing.integrator.IntentResult;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
@@ -80,7 +76,7 @@ public class MainActivity extends SherlockFragmentActivity {
      */
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		switch(requestCode) {
-			case IntentIntegrator.REQUEST_CODE: {
+			/*case IntentIntegrator.REQUEST_CODE: {
 				if (resultCode != RESULT_CANCELED) {
 					IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 					if (scanResult != null) {
@@ -95,7 +91,7 @@ public class MainActivity extends SherlockFragmentActivity {
 					}
 				}
 				break;
-			}	
+			}	*/
 		}
 	}
     

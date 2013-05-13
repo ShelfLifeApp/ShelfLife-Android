@@ -4,4 +4,9 @@
     <color name="listitem_background_content">#FFFFFF</color>
     <color name="listitem_background">#f1f0f2</color>    
     
+    <color name="list_header_background">#a5cb5d</color>
+    <color name="list_header_divider">#464c49</color>
+    <color name="list_header_title_color">#464c49</color>
+    <color name="list_header_subtitle_color">#ffffff</color>
+    
 </resources>
