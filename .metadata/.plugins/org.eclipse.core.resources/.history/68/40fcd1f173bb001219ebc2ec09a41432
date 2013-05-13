@@ -1,0 +1,7 @@
+package com.shelflifeapp.views;
+
+import android.widget.LinearLayout;
+
+public class ShelfLifeListViewHeader extends LinearLayout {
+
+}

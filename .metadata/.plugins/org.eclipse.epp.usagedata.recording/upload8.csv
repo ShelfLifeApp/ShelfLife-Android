@@ -1,0 +1,323 @@
+what,kind,bundleId,bundleVersion,description,time
+error,log,,,"JavaBuilder handling CoreException",1368238001691
+error,log,,,"JavaBuilder handling CoreException",1368238001703
+error,log,,,"JavaBuilder handling CoreException",1368238001709
+error,log,,,"JavaBuilder handling CoreException",1368238001714
+error,log,,,"JavaBuilder handling CoreException",1368238001720
+error,log,,,"JavaBuilder handling CoreException",1368238001726
+error,log,,,"JavaBuilder handling CoreException",1368238001732
+error,log,,,"JavaBuilder handling CoreException",1368238001737
+error,log,,,"JavaBuilder handling CoreException",1368238001742
+started,bundle,org.eclipse.wst.sse.ui,1.2.3.v201102102045,"org.eclipse.wst.sse.ui",1368238001804
+error,log,,,"JavaBuilder handling CoreException",1368238001809
+error,log,,,"JavaBuilder handling CoreException",1368238001829
+started,bundle,org.eclipse.wst.xml.ui,1.1.103.v201101122108,"org.eclipse.wst.xml.ui",1368238001872
+error,log,,,"JavaBuilder handling CoreException",1368238002011
+error,log,,,"JavaBuilder handling CoreException",1368238002925
+error,log,,,"JavaBuilder handling CoreException",1368238002931
+error,log,,,"JavaBuilder handling CoreException",1368238002948
+error,log,,,"JavaBuilder handling CoreException",1368238002987
+error,log,,,"JavaBuilder handling CoreException",1368238003912
+error,log,,,"JavaBuilder handling CoreException",1368238004006
+error,log,,,"JavaBuilder handling CoreException",1368238004257
+error,log,,,"JavaBuilder handling CoreException",1368238004278
+error,log,,,"JavaBuilder handling CoreException",1368238004291
+error,log,,,"JavaBuilder handling CoreException",1368238004296
+error,log,,,"JavaBuilder handling CoreException",1368238004342
+error,log,,,"JavaBuilder handling CoreException",1368238004357
+error,log,,,"JavaBuilder handling CoreException",1368238004363
+error,log,,,"JavaBuilder handling CoreException",1368238004369
+error,log,,,"JavaBuilder handling CoreException",1368238004393
+error,log,,,"JavaBuilder handling CoreException",1368238004531
+error,log,,,"JavaBuilder handling CoreException",1368238004615
+error,log,,,"JavaBuilder handling CoreException",1368238004730
+error,log,,,"JavaBuilder handling CoreException",1368238004744
+error,log,,,"JavaBuilder handling CoreException",1368238004753
+error,log,,,"JavaBuilder handling CoreException",1368238004762
+error,log,,,"JavaBuilder handling CoreException",1368238004790
+error,log,,,"JavaBuilder handling CoreException",1368238004796
+error,log,,,"JavaBuilder handling CoreException",1368238004801
+error,log,,,"JavaBuilder handling CoreException",1368238004807
+started,bundle,org.eclipse.wst.xml.core,1.1.503.v201102102045,"org.eclipse.wst.xml.core",1368238004871
+started,bundle,org.eclipse.debug.ui,3.6.3.v20101201_r362,"org.eclipse.debug.ui",1368238005369
+started,bundle,org.eclipse.wst.common.uriresolver,1.1.401.v201004280700,"org.eclipse.wst.common.uriresolver",1368238005460
+error,log,,,"JavaBuilder handling CoreException",1368238005825
+error,log,,,"JavaBuilder handling CoreException",1368238005940
+error,log,,,"JavaBuilder handling CoreException",1368238006486
+error,log,,,"JavaBuilder handling CoreException",1368238006494
+error,log,,,"JavaBuilder handling CoreException",1368238006505
+started,bundle,org.eclipse.wst.validation,1.2.201.v201101270100,"org.eclipse.wst.validation",1368238006533
+error,log,,,"JavaBuilder handling CoreException",1368238006562
+started,bundle,org.eclipse.wst.common.project.facet.core,1.4.102.v201008170019,"org.eclipse.wst.common.project.facet.core",1368238006630
+started,bundle,org.eclipse.wst.dtd.ui,1.0.500.v201004290328,"org.eclipse.wst.dtd.ui",1368238007149
+started,bundle,org.eclipse.emf.common,2.6.0.v20100914-1218,"org.eclipse.emf.common",1368238007239
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238008045
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238008085
+started,bundle,org.eclipse.wst.common.frameworks,1.2.0.v201003040800,"org.eclipse.wst.common.frameworks",1368238008638
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238008733
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238008738
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238008747
+opened,editor,com.android.ide.eclipse.adt,21.1.0.v201302060044-569685,"com.android.ide.eclipse.editors.CommonXmlEditor",1368238008918
+started,bundle,org.eclipse.m2e.editor.xml,1.1.0.20120530-0009,"org.eclipse.m2e.editor.xml",1368238009110
+started,bundle,org.eclipse.wst.internet.cache,1.0.400.v201004280700,"org.eclipse.wst.internet.cache",1368238009180
+activated,editor,com.android.ide.eclipse.adt,21.1.0.v201302060044-569685,"com.android.ide.eclipse.editors.CommonXmlEditor",1368238009999
+closed,editor,org.eclipse.jdt.ui,3.6.2.r362_v20110203,"org.eclipse.jdt.ui.CompilationUnitEditor",1368238009999
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238012700
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238012708
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238012712
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238012715
+opened,editor,com.android.ide.eclipse.adt,21.1.0.v201302060044-569685,"com.android.ide.eclipse.editors.CommonXmlEditor",1368238012743
+activated,editor,com.android.ide.eclipse.adt,21.1.0.v201302060044-569685,"com.android.ide.eclipse.editors.CommonXmlEditor",1368238012787
+closed,editor,com.android.ide.eclipse.adt,21.1.0.v201302060044-569685,"com.android.ide.eclipse.editors.CommonXmlEditor",1368238012787
+opened,editor,org.eclipse.jdt.ui,3.6.2.r362_v20110203,"org.eclipse.jdt.ui.CompilationUnitEditor",1368238013566
+started,bundle,org.eclipse.jdt.debug,3.6.1.v20100715_r361,"org.eclipse.jdt.debug",1368238014158
+started,bundle,org.eclipse.jdt.debug.ui,3.5.2.v20100928a_r362,"org.eclipse.jdt.debug.ui",1368238014464
+activated,editor,org.eclipse.jdt.ui,3.6.2.r362_v20110203,"org.eclipse.jdt.ui.CompilationUnitEditor",1368238014504
+closed,editor,com.android.ide.eclipse.adt,21.1.0.v201302060044-569685,"com.android.ide.eclipse.editors.CommonXmlEditor",1368238014505
+opened,editor,org.eclipse.jdt.ui,3.6.2.r362_v20110203,"org.eclipse.jdt.ui.CompilationUnitEditor",1368238016330
+activated,editor,org.eclipse.jdt.ui,3.6.2.r362_v20110203,"org.eclipse.jdt.ui.CompilationUnitEditor",1368238016473
+closed,editor,org.eclipse.jdt.ui,3.6.2.r362_v20110203,"org.eclipse.jdt.ui.CompilationUnitEditor",1368238016473
+error,log,,,"JavaBuilder handling CoreException",1368238017643
+error,log,,,"JavaBuilder handling CoreException",1368238017667
+error,log,,,"JavaBuilder handling CoreException",1368238017673
+error,log,,,"JavaBuilder handling CoreException",1368238017749
+error,log,,,"JavaBuilder handling CoreException",1368238017755
+error,log,,,"JavaBuilder handling CoreException",1368238017760
+error,log,,,"JavaBuilder handling CoreException",1368238017775
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238017780
+error,log,,,"JavaBuilder handling CoreException",1368238017784
+error,log,,,"JavaBuilder handling CoreException",1368238017808
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238017812
+error,log,,,"JavaBuilder handling CoreException",1368238017818
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238017835
+error,log,,,"JavaBuilder handling CoreException",1368238017840
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238017846
+error,log,,,"JavaBuilder handling CoreException",1368238017851
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238017857
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238017876
+opened,editor,com.android.ide.eclipse.adt,21.1.0.v201302060044-569685,"com.android.ide.eclipse.editors.CommonXmlEditor",1368238017948
+activated,editor,com.android.ide.eclipse.adt,21.1.0.v201302060044-569685,"com.android.ide.eclipse.editors.CommonXmlEditor",1368238018389
+closed,editor,org.eclipse.jdt.ui,3.6.2.r362_v20110203,"org.eclipse.jdt.ui.CompilationUnitEditor",1368238018389
+error,log,,,"JavaBuilder handling CoreException",1368238018602
+error,log,,,"JavaBuilder handling CoreException",1368238018622
+error,log,,,"JavaBuilder handling CoreException",1368238018629
+error,log,,,"JavaBuilder handling CoreException",1368238018638
+error,log,,,"JavaBuilder handling CoreException",1368238018649
+error,log,,,"JavaBuilder handling CoreException",1368238018686
+error,log,,,"JavaBuilder handling CoreException",1368238018691
+error,log,,,"JavaBuilder handling CoreException",1368238018698
+error,log,,,"JavaBuilder handling CoreException",1368238018755
+error,log,,,"JavaBuilder handling CoreException",1368238018760
+error,log,,,"JavaBuilder handling CoreException",1368238018766
+error,log,,,"JavaBuilder handling CoreException",1368238018771
+error,log,,,"JavaBuilder handling CoreException",1368238018777
+error,log,,,"JavaBuilder handling CoreException",1368238018948
+error,log,,,"JavaBuilder handling CoreException",1368238018956
+error,log,,,"JavaBuilder handling CoreException",1368238019035
+error,log,,,"JavaBuilder handling CoreException",1368238019061
+error,log,,,"JavaBuilder handling CoreException",1368238019074
+error,log,,,"JavaBuilder handling CoreException",1368238019162
+error,log,,,"JavaBuilder handling CoreException",1368238019236
+error,log,,,"JavaBuilder handling CoreException",1368238019511
+error,log,,,"JavaBuilder handling CoreException",1368238019534
+error,log,,,"JavaBuilder handling CoreException",1368238019540
+error,log,,,"JavaBuilder handling CoreException",1368238019547
+error,log,,,"JavaBuilder handling CoreException",1368238019610
+error,log,,,"JavaBuilder handling CoreException",1368238019735
+error,log,,,"JavaBuilder handling CoreException",1368238019743
+error,log,,,"JavaBuilder handling CoreException",1368238019748
+error,log,,,"JavaBuilder handling CoreException",1368238019754
+error,log,,,"JavaBuilder handling CoreException",1368238019758
+error,log,,,"JavaBuilder handling CoreException",1368238019763
+error,log,,,"JavaBuilder handling CoreException",1368238019768
+error,log,,,"JavaBuilder handling CoreException",1368238019773
+error,log,,,"JavaBuilder handling CoreException",1368238019777
+opened,editor,com.android.ide.eclipse.adt,21.1.0.v201302060044-569685,"com.android.ide.eclipse.editors.CommonXmlEditor",1368238019792
+activated,editor,com.android.ide.eclipse.adt,21.1.0.v201302060044-569685,"com.android.ide.eclipse.editors.CommonXmlEditor",1368238019852
+closed,editor,com.android.ide.eclipse.adt,21.1.0.v201302060044-569685,"com.android.ide.eclipse.editors.CommonXmlEditor",1368238019852
+error,log,,,"JavaBuilder handling CoreException",1368238019867
+error,log,,,"JavaBuilder handling CoreException",1368238019925
+error,log,,,"JavaBuilder handling CoreException",1368238019933
+error,log,,,"JavaBuilder handling CoreException",1368238019938
+error,log,,,"JavaBuilder handling CoreException",1368238019944
+error,log,,,"JavaBuilder handling CoreException",1368238019950
+error,log,,,"JavaBuilder handling CoreException",1368238019956
+error,log,,,"JavaBuilder handling CoreException",1368238019985
+error,log,,,"JavaBuilder handling CoreException",1368238019991
+error,log,,,"JavaBuilder handling CoreException",1368238019997
+error,log,,,"JavaBuilder handling CoreException",1368238020078
+error,log,,,"JavaBuilder handling CoreException",1368238020084
+error,log,,,"JavaBuilder handling CoreException",1368238020091
+error,log,,,"JavaBuilder handling CoreException",1368238020099
+error,log,,,"JavaBuilder handling CoreException",1368238020105
+error,log,,,"JavaBuilder handling CoreException",1368238020110
+error,log,,,"JavaBuilder handling CoreException",1368238020155
+error,log,,,"JavaBuilder handling CoreException",1368238020160
+error,log,,,"JavaBuilder handling CoreException",1368238020166
+error,log,,,"JavaBuilder handling CoreException",1368238020171
+error,log,,,"JavaBuilder handling CoreException",1368238020177
+error,log,,,"JavaBuilder handling CoreException",1368238020236
+error,log,,,"JavaBuilder handling CoreException",1368238020242
+error,log,,,"JavaBuilder handling CoreException",1368238020249
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238020832
+opened,editor,com.android.ide.eclipse.adt,21.1.0.v201302060044-569685,"com.android.ide.eclipse.editors.CommonXmlEditor",1368238020883
+activated,editor,com.android.ide.eclipse.adt,21.1.0.v201302060044-569685,"com.android.ide.eclipse.editors.CommonXmlEditor",1368238020933
+closed,editor,com.android.ide.eclipse.adt,21.1.0.v201302060044-569685,"com.android.ide.eclipse.editors.CommonXmlEditor",1368238020934
+error,log,,,"JavaBuilder handling CoreException",1368238021058
+error,log,,,"JavaBuilder handling CoreException",1368238021329
+error,log,,,"JavaBuilder handling CoreException",1368238021335
+error,log,,,"JavaBuilder handling CoreException",1368238021405
+error,log,,,"JavaBuilder handling CoreException",1368238021520
+error,log,,,"JavaBuilder handling CoreException",1368238021563
+error,log,,,"JavaBuilder handling CoreException",1368238021569
+error,log,,,"JavaBuilder handling CoreException",1368238021582
+error,log,,,"JavaBuilder handling CoreException",1368238021588
+error,log,,,"JavaBuilder handling CoreException",1368238021664
+error,log,,,"JavaBuilder handling CoreException",1368238021796
+error,log,,,"JavaBuilder handling CoreException",1368238021805
+error,log,,,"JavaBuilder handling CoreException",1368238021811
+error,log,,,"JavaBuilder handling CoreException",1368238021859
+error,log,,,"JavaBuilder handling CoreException",1368238021865
+error,log,,,"JavaBuilder handling CoreException",1368238021891
+activated,view,org.eclipse.jdt.ui,3.6.2.r362_v20110203,"org.eclipse.jdt.ui.PackageExplorer",1368238021948
+closed,editor,com.android.ide.eclipse.adt,21.1.0.v201302060044-569685,"com.android.ide.eclipse.editors.CommonXmlEditor",1368238021948
+error,log,,,"JavaBuilder handling CoreException",1368238022008
+error,log,,,"JavaBuilder handling CoreException",1368238022015
+error,log,,,"JavaBuilder handling CoreException",1368238022704
+error,log,,,"JavaBuilder handling CoreException",1368238022714
+error,log,,,"JavaBuilder handling CoreException",1368238022745
+error,log,,,"JavaBuilder handling CoreException",1368238022753
+error,log,,,"JavaBuilder handling CoreException",1368238022761
+error,log,,,"JavaBuilder handling CoreException",1368238022982
+error,log,,,"JavaBuilder handling CoreException",1368238022991
+error,log,,,"JavaBuilder handling CoreException",1368238023026
+error,log,,,"JavaBuilder handling CoreException",1368238023036
+error,log,,,"JavaBuilder handling CoreException",1368238023223
+error,log,,,"JavaBuilder handling CoreException",1368238023264
+error,log,,,"JavaBuilder handling CoreException",1368238023354
+error,log,,,"JavaBuilder handling CoreException",1368238023369
+error,log,,,"JavaBuilder handling CoreException",1368238023377
+error,log,,,"JavaBuilder handling CoreException",1368238023395
+error,log,,,"JavaBuilder handling CoreException",1368238023405
+error,log,,,"JavaBuilder handling CoreException",1368238023415
+error,log,,,"JavaBuilder handling CoreException",1368238023836
+error,log,,,"JavaBuilder handling CoreException",1368238023842
+error,log,,,"JavaBuilder handling CoreException",1368238023847
+error,log,,,"JavaBuilder handling CoreException",1368238023854
+deactivated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368238054765
+activated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368238056964
+executed,command,org.eclipse.ui.ide,3.6.2.M20101201-0800,"org.eclipse.ui.project.cleanAction",1368238056975
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238057276
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238057279
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238057283
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238064550
+started,bundle,com.android.ide.eclipse.ddms,21.1.0.v201302060044-569685,"com.android.ide.eclipse.ddms",1368238064865
+executed,command,,,"com.android.ide.eclipse.adt.debug.launching.LaunchShortcut.run",1368238064914
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238065320
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238065357
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238065389
+error,log,,,"Failed to call IFileListener.fileChanged",1368238065393
+deactivated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368238065422
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238065555
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238065561
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238065568
+activated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368238067275
+opened,view,org.eclipse.ui.ide,3.6.2.M20101201-0800,"org.eclipse.ui.views.ProblemView",1368238068165
+activated,view,org.eclipse.ui.ide,3.6.2.M20101201-0800,"org.eclipse.ui.views.ProblemView",1368238068199
+activated,view,org.eclipse.jdt.ui,3.6.2.r362_v20110203,"org.eclipse.jdt.ui.PackageExplorer",1368238069634
+activated,view,org.eclipse.ui.ide,3.6.2.M20101201-0800,"org.eclipse.ui.views.ProblemView",1368238071000
+activated,view,org.eclipse.jdt.ui,3.6.2.r362_v20110203,"org.eclipse.jdt.ui.PackageExplorer",1368238079267
+deactivated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368238080828
+activated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368238085241
+executed,command,org.eclipse.ui,3.6.2.M20110203-1100,"org.eclipse.ui.file.properties",1368238085256
+activated,view,org.eclipse.ui.ide,3.6.2.M20101201-0800,"org.eclipse.ui.views.ProblemView",1368238087752
+activated,view,org.eclipse.jdt.ui,3.6.2.r362_v20110203,"org.eclipse.jdt.ui.PackageExplorer",1368238096965
+deactivated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368238099643
+activated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368238100711
+executed,command,org.eclipse.ui.ide,3.6.2.M20101201-0800,"org.eclipse.ui.project.cleanAction",1368238100721
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238100867
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238100870
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238100875
+deactivated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368238103420
+activated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368238128112
+activated,view,org.eclipse.ui.ide,3.6.2.M20101201-0800,"org.eclipse.ui.views.ProblemView",1368238147535
+activated,view,org.eclipse.jdt.ui,3.6.2.r362_v20110203,"org.eclipse.jdt.ui.PackageExplorer",1368238158235
+deactivated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368238163422
+activated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368238186995
+executed,command,org.eclipse.ui.ide,3.6.2.M20101201-0800,"org.eclipse.ui.project.closeProject",1368238188587
+executed,command,org.eclipse.ui.ide,3.6.2.M20101201-0800,"org.eclipse.ui.project.openProject",1368238192436
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238192454
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238192461
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238192478
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238192482
+error,log,,,"Failed to load properties file for project 'ShelfLifeAndroid'",1368238192577
+deactivated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368238205296
+activated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368238233096
+deactivated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368238242457
+activated,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368238243582
+closed,workbench,org.eclipse.ui.workbench,3.6.2.M20110210-1200,"",1368238243910
+stopped,bundle,org.eclipse.mylyn.ide.ant,3.7.1.v20120425-0100,"org.eclipse.mylyn.ide.ant",1368238244715
+stopped,bundle,org.eclipse.ant.ui,3.5.0.v20100427,"org.eclipse.ant.ui",1368238244716
+stopped,bundle,org.eclipse.wst.xsd.ui,1.2.304.v201101251958,"org.eclipse.wst.xsd.ui",1368238244720
+stopped,bundle,org.eclipse.emf.edit.ui,2.6.0.v20100914-1218,"org.eclipse.emf.edit.ui",1368238244721
+stopped,bundle,org.eclipse.compare.win32,1.0.101.R36x_v20101103-0618,"org.eclipse.compare.win32",1368238244722
+stopped,bundle,org.eclipse.wst.common.snippets,1.2.2.v201101130441,"org.eclipse.wst.common.snippets",1368238244723
+stopped,bundle,org.eclipse.gef,3.6.2.v20110110-2020,"org.eclipse.gef",1368238244724
+stopped,bundle,org.eclipse.emf.common.ui,2.6.0.v20100914-1218,"org.eclipse.emf.common.ui",1368238244725
+stopped,bundle,org.eclipse.epp.mpc.ui,1.0.1.v20100826-2143,"org.eclipse.epp.mpc.ui",1368238244727
+stopped,bundle,org.eclipse.m2e.discovery,1.1.0.20120530-0009,"org.eclipse.m2e.discovery",1368238244728
+stopped,bundle,org.eclipse.equinox.p2.ui.sdk,1.0.100.v20100513,"org.eclipse.equinox.p2.ui.sdk",1368238244730
+stopped,bundle,org.eclipse.equinox.p2.ui.sdk.scheduler,1.0.0.v20100507-1815,"org.eclipse.equinox.p2.ui.sdk.scheduler",1368238244730
+stopped,bundle,org.eclipse.mylyn.bugzilla.ui,3.7.1.v20120425-0100,"org.eclipse.mylyn.bugzilla.ui",1368238244730
+stopped,bundle,org.eclipse.mylyn.context.tasks.ui,3.7.1.v20120425-0100,"org.eclipse.mylyn.context.tasks.ui",1368238244730
+stopped,bundle,org.eclipse.mylyn.help.ui,3.7.1.v20120425-0100,"org.eclipse.mylyn.help.ui",1368238244792
+activated,perspective,org.eclipse.jdt.ui,,"org.eclipse.jdt.ui.JavaPerspective",1368238257554
+started,bundle,org.eclipse.osgi,3.6.2.R36x_v20110210,"org.eclipse.osgi",1368238257556
+started,bundle,org.eclipse.equinox.simpleconfigurator,1.0.200.v20100503,"org.eclipse.equinox.simpleconfigurator",1368238257557
+started,bundle,com.ibm.icu,4.2.1.v20100412,"com.ibm.icu",1368238257558
+started,bundle,org.eclipse.core.contenttype,3.4.100.v20100505-1235,"org.eclipse.core.contenttype",1368238257559
+started,bundle,org.eclipse.core.databinding.observable,1.3.0.I20100601-0800,"org.eclipse.core.databinding.observable",1368238257560
+started,bundle,org.eclipse.core.expressions,3.4.200.v20100505,"org.eclipse.core.expressions",1368238257561
+started,bundle,org.eclipse.core.filebuffers,3.5.100.v20100520-0800,"org.eclipse.core.filebuffers",1368238257562
+started,bundle,org.eclipse.core.filesystem,1.3.1.R36x_v20100727-0745,"org.eclipse.core.filesystem",1368238257563
+started,bundle,org.eclipse.core.jobs,3.5.1.R36x_v20100824,"org.eclipse.core.jobs",1368238257564
+started,bundle,org.eclipse.core.net,1.2.100.I20100511-0800,"org.eclipse.core.net",1368238257565
+started,bundle,org.eclipse.core.runtime,3.6.0.v20100505,"org.eclipse.core.runtime",1368238257566
+started,bundle,org.eclipse.core.runtime.compatibility,3.2.100.v20100505,"org.eclipse.core.runtime.compatibility",1368238257567
+started,bundle,org.eclipse.core.runtime.compatibility.auth,3.2.200.v20100517,"org.eclipse.core.runtime.compatibility.auth",1368238257567
+started,bundle,org.eclipse.equinox.app,1.3.1.R36x_v20100803,"org.eclipse.equinox.app",1368238257568
+started,bundle,org.eclipse.equinox.common,3.6.0.v20100503,"org.eclipse.equinox.common",1368238257569
+started,bundle,org.eclipse.equinox.ds,1.2.1.R36x_v20100803,"org.eclipse.equinox.ds",1368238257571
+started,bundle,org.eclipse.equinox.event,1.2.0.v20100503,"org.eclipse.equinox.event",1368238257572
+started,bundle,org.eclipse.equinox.p2.metadata.repository,1.1.0.v20100513,"org.eclipse.equinox.p2.metadata.repository",1368238257573
+started,bundle,org.eclipse.equinox.p2.operations,2.0.0.v20100510,"org.eclipse.equinox.p2.operations",1368238257574
+started,bundle,org.eclipse.equinox.p2.ui.sdk.scheduler,1.0.0.v20100507-1815,"org.eclipse.equinox.p2.ui.sdk.scheduler",1368238257576
+started,bundle,org.eclipse.equinox.p2.updatechecker,1.1.101.R36x_v20100823,"org.eclipse.equinox.p2.updatechecker",1368238257577
+started,bundle,org.eclipse.equinox.preferences,3.3.0.v20100503,"org.eclipse.equinox.preferences",1368238257578
+started,bundle,org.eclipse.equinox.registry,3.5.0.v20100503,"org.eclipse.equinox.registry",1368238257579
+started,bundle,org.eclipse.equinox.security,1.0.200.v20100503,"org.eclipse.equinox.security",1368238257581
+started,bundle,org.eclipse.equinox.util,1.0.200.v20100503,"org.eclipse.equinox.util",1368238257582
+started,bundle,org.eclipse.help,3.5.0.v20100524,"org.eclipse.help",1368238257583
+started,bundle,org.eclipse.jdt.core.manipulation,1.3.0.v20100520-0800,"org.eclipse.jdt.core.manipulation",1368238257584
+started,bundle,org.eclipse.jsch.core,1.1.200.I20100505-1245,"org.eclipse.jsch.core",1368238257585
+started,bundle,org.eclipse.ltk.ui.refactoring,3.5.0.v20100526-0800,"org.eclipse.ltk.ui.refactoring",1368238257586
+started,bundle,org.eclipse.search,3.6.0.v20100520-0800,"org.eclipse.search",1368238257588
+started,bundle,org.eclipse.ui.console,3.5.0.v20100526,"org.eclipse.ui.console",1368238257589
+started,bundle,org.eclipse.ui.editors,3.6.1.r361_v20100825-0800,"org.eclipse.ui.editors",1368238257591
+started,bundle,org.eclipse.ui.forms,3.5.2.r36_v20100702,"org.eclipse.ui.forms",1368238257593
+started,bundle,org.eclipse.ui.net,1.2.100.I20100505-1245,"org.eclipse.ui.net",1368238257596
+started,bundle,org.eclipse.ui.workbench.texteditor,3.6.1.r361_v20100714-0800,"org.eclipse.ui.workbench.texteditor",1368238257598
+started,bundle,org.eclipse.update.configurator,3.3.100.v20100512,"org.eclipse.update.configurator",1368238257599
+started,bundle,org.eclipse.update.core,3.2.402.R36x_v20100629,"org.eclipse.update.core",1368238257602
+started,bundle,org.eclipse.update.scheduler,3.2.300.v20100512,"org.eclipse.update.scheduler",1368238257603
+started,bundle,org.eclipse.compare,3.5.101.R36x_v20100929-0800,"org.eclipse.compare",1368238257605
+started,bundle,org.eclipse.compare.core,3.5.101.R36x_v20100929-0800,"org.eclipse.compare.core",1368238257606
+started,bundle,org.eclipse.core.resources,3.6.1.R36x_v20110131-1630,"org.eclipse.core.resources",1368238257607
+started,bundle,org.eclipse.epp.usagedata.gathering,1.3.1.R201102081640,"org.eclipse.epp.usagedata.gathering",1368238257608
+started,bundle,org.eclipse.epp.usagedata.recording,1.3.1.R201102081640,"org.eclipse.epp.usagedata.recording",1368238257609
+started,bundle,org.eclipse.equinox.p2.core,2.0.3.R36x_v20110111,"org.eclipse.equinox.p2.core",1368238257610
+started,bundle,org.eclipse.equinox.p2.directorywatcher,1.0.203.R36x_v20101220,"org.eclipse.equinox.p2.directorywatcher",1368238257611
+started,bundle,org.eclipse.equinox.p2.engine,2.0.1.R36x_v20110201,"org.eclipse.equinox.p2.engine",1368238257613
+started,bundle,org.eclipse.equinox.p2.metadata,2.0.1.R36x_v20101202,"org.eclipse.equinox.p2.metadata",1368238257614
+started,bundle,org.eclipse.equinox.p2.reconciler.dropins,1.1.2.R36x_v20110114,"org.eclipse.equinox.p2.reconciler.dropins",1368238257615
+started,bundle,org.eclipse.equinox.p2.repository,2.0.2.R36x_v20110111-1500,"org.eclipse.equinox.p2.repository",1368238257617

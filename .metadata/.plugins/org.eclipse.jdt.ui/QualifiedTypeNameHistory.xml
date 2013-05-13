@@ -3,7 +3,6 @@
 <fullyQualifiedTypeName name="com.actionbarsherlock.view.Menu"/>
 <fullyQualifiedTypeName name="com.actionbarsherlock.view.MenuInflater"/>
 <fullyQualifiedTypeName name="com.actionbarsherlock.app.ActionBar"/>
-<fullyQualifiedTypeName name="android.support.v4.app.Fragment"/>
 <fullyQualifiedTypeName name="android.widget.Toast"/>
 <fullyQualifiedTypeName name="android.support.v4.app.FragmentTransaction"/>
 <fullyQualifiedTypeName name="com.actionbarsherlock.app.ActionBar.Tab"/>
@@ -12,6 +11,13 @@
 <fullyQualifiedTypeName name="android.view.LayoutInflater"/>
 <fullyQualifiedTypeName name="android.content.Context"/>
 <fullyQualifiedTypeName name="com.shelflifeapp.android.R"/>
-<fullyQualifiedTypeName name="com.shelflifeapp.android.R.id"/>
 <fullyQualifiedTypeName name="com.shelflifeapp.android.R.drawable"/>
+<fullyQualifiedTypeName name="android.support.v4.content.AsyncTaskLoader"/>
+<fullyQualifiedTypeName name="org.apache.http.client.HttpClient"/>
+<fullyQualifiedTypeName name="android.support.v4.app.LoaderManager.LoaderCallbacks"/>
+<fullyQualifiedTypeName name="com.slewson.simpleupc.SimpleUPCLoader"/>
+<fullyQualifiedTypeName name="com.slewson.simpleupc.SimpleUPCLoader.HTTPVerb"/>
+<fullyQualifiedTypeName name="android.support.v4.app.Fragment"/>
+<fullyQualifiedTypeName name="com.shelflifeapp.android.R.id"/>
+<fullyQualifiedTypeName name="com.shelflifeapp.views.ShelfLifeListViewHeader"/>
 </qualifiedTypeNameHistroy>

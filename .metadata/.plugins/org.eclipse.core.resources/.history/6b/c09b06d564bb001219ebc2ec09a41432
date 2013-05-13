@@ -1,0 +1,5 @@
+package com.slewson.simpleupc;
+
+public class RESTResponse {
+
+}

@@ -1,0 +1,115 @@
+package com.slewson.simpleupc;
+
+import java.net.URI;
+
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpRequestBase;
+
+import android.content.Context;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.v4.content.AsyncTaskLoader;
+
+import com.slewson.simpleupc.HTTPVerb;
+
+public class SimpleUPCLoader extends AsyncTaskLoader<SimpleUPCResponse>
+{
+	private static final String TAG = "SimpleUPCLoader";
+	
+    private HTTPVerb     mVerb;
+    private Uri          mAction;
+    private Bundle       mParams;
+    private SimpleUPCResponse mResponse;
+    
+    private long mLastLoad;
+
+    public enum HTTPVerb {
+        GET,
+        POST,
+        PUT,
+        DELETE
+    }
+    
+    public SimpleUPCLoader(Context context)
+    {
+    	super(context);
+    }
+    
+    public SimpleUPCLoader(Context context, HTTPVerb verb, Uri action)
+    {
+    	super(context);
+    	mVerb = verb;
+    	mAction = action;
+    }
+    
+    public SimpleUPCLoader(Context context, HTTPVerb verb, Uri action, Bundle params)
+    {
+    	super(context);
+    	
+    	mVerb = verb;
+    	mAction = action;
+    	mParams = params;
+    }
+    
+    @Override
+    public SimpleUPCResponse loadInBackground()
+    {
+    	try
+    	{
+    		if (mAction == null)
+    		{
+    			return new SimpleUPCResponse();
+    		}
+    		
+    		HttpRequestBase request = null;
+    		
+    		switch(mVerb)
+    		{
+    			case HTTPVerb.GET:
+    			{
+    				request = new HttpGet();
+    				attachUriWithQuery(request, mAction, mParams);
+    				break;
+    			}
+    			case HTTPVerb.DELETE:
+    			{
+    				request = new HttpDelete();
+                    attachUriWithQuery(request, mAction, mParams);
+                    break;
+    			}
+    			case HTTPVerb.POST:
+    			{
+    				request = new HttpPost();
+                    request.setURI(new URI(mAction.toString()));
+                    HttpPost postRequest = (HttpPost) request;
+                    
+                    if (mParams != null) {
+                        UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(paramsToList(mParams));
+                        postRequest.setEntity(formEntity);
+                    }
+                    break;
+    			}
+    			case HTTPVerb.POST:
+    			{
+    				request = new HttpPost();
+                    request.setURI(new URI(mAction.toString()));
+                    
+                    HttpPost postRequest = (HttpPost) request;
+                    
+                    if (mParams != null) {
+                        UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(paramsToList(mParams));
+                        postRequest.setEntity(formEntity);
+                    }
+                    break;
+    			}
+    		}
+    	}
+    	catch (Exception e)
+    	{
+    		
+    	}
+    }
+}

@@ -14,7 +14,7 @@ public class BarCodeViewerActivity extends SherlockActivity {
 	String upcNum;
 	TextView upcView;
 	private static final String TAG = "BarCodeViewerActivity";
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

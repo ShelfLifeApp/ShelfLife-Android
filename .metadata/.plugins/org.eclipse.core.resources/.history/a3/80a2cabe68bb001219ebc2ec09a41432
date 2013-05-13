@@ -1,0 +1,144 @@
+package com.slewson.simpleupc;
+
+import java.net.URI;
+
+import net.neilgoodman.android.restloadertutorial.loader.RESTLoader.RESTResponse;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.StatusLine;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+
+import android.content.Context;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.v4.content.AsyncTaskLoader;
+
+public class SimpleUPCLoader extends AsyncTaskLoader<SimpleUPCResponse>
+{
+	private static final String TAG = "SimpleUPCLoader";
+	
+    private HTTPVerb     mVerb;
+    private Uri          mAction;
+    private Bundle       mParams;
+    private SimpleUPCResponse mResponse;
+    
+    private long mLastLoad;
+
+    public enum HTTPVerb {
+        GET,
+        POST,
+        PUT,
+        DELETE
+    }
+    
+    public SimpleUPCLoader(Context context)
+    {
+    	super(context);
+    }
+    
+    public SimpleUPCLoader(Context context, HTTPVerb verb, Uri action)
+    {
+    	super(context);
+    	mVerb = verb;
+    	mAction = action;
+    }
+    
+    public SimpleUPCLoader(Context context, HTTPVerb verb, Uri action, Bundle params)
+    {
+    	super(context);
+    	
+    	mVerb = verb;
+    	mAction = action;
+    	mParams = params;
+    }
+    
+    private HttpRequestBase getHttpRequestBase(HTTPVerb mVerb)
+    {
+    	HttpRequestBase request = null;
+    	
+       	try
+    	{
+
+    		switch(mVerb)
+    		{
+    			case GET:
+    			{
+    				request = new HttpGet();
+    				attachUriWithQuery(request, mAction, mParams);
+    				break;
+    			}
+    			case DELETE:
+    			{
+    				request = new HttpDelete();
+                    attachUriWithQuery(request, mAction, mParams);
+                    break;
+    			}
+    			case POST:
+    			{
+    				request = new HttpPost();
+                    request.setURI(new URI(mAction.toString()));
+                    HttpPost postRequest = (HttpPost) request;
+                    
+                    if (mParams != null) {
+                        UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(paramsToList(mParams));
+                        postRequest.setEntity(formEntity);
+                    }
+                    break;
+    			}
+    			case PUT:
+    			{
+                    request = new HttpPut();
+                    request.setURI(new URI(mAction.toString()));
+                    
+                    // Attach form entity if necessary.
+                    HttpPut putRequest = (HttpPut) request;
+                    
+                    if (mParams != null) 
+                    {
+                        UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(paramsToList(mParams));
+                        putRequest.setEntity(formEntity);
+                    }
+                
+                    break;
+    			}
+    		}
+    	}
+    	catch (Exception e)
+    	{
+    		request = null;
+    	}
+    	
+    	return request;
+    }
+    
+    @Override
+    public SimpleUPCResponse loadInBackground()
+    {
+    	if (mAction == null)
+    		return new SimpleUPCResponse();
+    	
+    	HttpRequestBase request = getHttpRequestBase(mVerb);
+    	
+    	if (request != null)
+    	{
+    		HttpClient client = new DefaultHttpClient();
+    		HttpResponse response = client.execute(request);
+    		HttpEntity responseEntity = response.getEntity();
+            StatusLine responseStatus = response.getStatusLine();
+            int statusCode = responseStatus != null ? responseStatus.getStatusCode() : 0;
+            
+            // Here we create our response and send it back to the LoaderCallbacks<RESTResponse> implementation.
+            SimpleUPCResponse restResponse = new SimpleUPCResponse(responseEntity != null ? EntityUtils.toString(responseEntity) : null, statusCode);
+            return restResponse;
+    	}
+    }
+}
