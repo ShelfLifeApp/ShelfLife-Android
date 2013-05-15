@@ -31,12 +31,16 @@ import com.shelflifeapp.database.FoodTable;
 public class MainActivity extends SherlockFragmentActivity {
 
 	private final String TAG = "MAIN_ACTIVITY";
+	
 	private Context mContext = MainActivity.this;
 	
 	private Menu m_vwMenu;
-	FoodDatabaseHelper myDbHelper = new FoodDatabaseHelper(null, null, null, 1);
 	
-	/** The ID of the CursorLoader to be initialized in the LoaderManager and used to load a Cursor. */
+	private FoodDatabaseHelper myDbHelper = new FoodDatabaseHelper(null, null, 
+			null, 1);
+	
+	/** The ID of the CursorLoader to be initialized in the LoaderManager and 
+	 * used to load a Cursor. */
 	private static final int LOADER_ID = 1;
 	
     @Override
@@ -56,7 +60,6 @@ public class MainActivity extends SherlockFragmentActivity {
         
         databaseTab.setTabListener(new MyTabsListener(databaseFragment));
         databaseTab2.setTabListener(new MyTabsListener(databaseFragment2));
-
         
         actionBar.addTab(databaseTab);
         actionBar.addTab(databaseTab2);
@@ -91,7 +94,8 @@ public class MainActivity extends SherlockFragmentActivity {
 	    switch (item.getItemId()) {
 	        case R.id.menu_ab_barcode:
 	        	Intent intent = new Intent("com.google.zxing.client.android.SCAN");
-	        	intent.putExtra("com.google.zxing.client.android.SCAN.SCAN_MODE", "QR_CODE_MODE");
+	        	intent.putExtra("com.google.zxing.client.android.SCAN.SCAN_MODE", 
+	        			"QR_CODE_MODE");
 	        	startActivityForResult(intent, 0);
 	            return true;
 	        case R.id.menu_ab_search:	        		           
@@ -109,14 +113,17 @@ public class MainActivity extends SherlockFragmentActivity {
 		switch(requestCode) {
 			case IntentIntegrator.REQUEST_CODE: {
 				if (resultCode != RESULT_CANCELED) {
-					IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+					IntentResult scanResult = 
+						IntentIntegrator.parseActivityResult(requestCode, 
+								resultCode, data);
 					if (scanResult != null) {
 						String upc = scanResult.getContents();
 						Toast.makeText(mContext, upc, Toast.LENGTH_LONG).show();
 			 
 						//put whatever you want to do with the code here
 						Intent intentVar;						
-						intentVar = new Intent(this, BarCodeViewerActivity.class);
+						intentVar = new Intent(this, 
+								BarCodeViewerActivity.class);
 						intentVar.putExtra("upc", upc);
 						this.startActivity(intentVar);			 
 					}
@@ -148,8 +155,6 @@ public class MainActivity extends SherlockFragmentActivity {
     		ft.remove(fragment);
     	}  	 
     }
-
-
     
     @Override
     protected void onDestroy() {
@@ -157,6 +162,5 @@ public class MainActivity extends SherlockFragmentActivity {
         if (myDbHelper != null) {
         	myDbHelper.close();
         }
-    }
-    
+    }    
 }

@@ -14,14 +14,17 @@ public class FoodTable {
 	public static final String FOOD_KEY_NAME = "name";
 	public static final int FOOD_COL_NAME = FOOD_COL_ID + 1;
 	
-	/** SQLite database creation statement. Auto-increments IDs of inserted jokes.
-	 * Joke IDs are set after insertion into the database. */
-	public static final String DATABASE_CREATE = "create table " + DATABASE_TABLE_FOOD + " (" + 
+	/** SQLite database creation statement. Auto-increments IDs of inserted 
+	 * jokes. Joke IDs are set after insertion into the database. */
+	public static final String DATABASE_CREATE = "create table " + 
+			DATABASE_TABLE_FOOD + " (" + 
 			FOOD_KEY_ID + " integer primary key autoincrement, " + 
 			FOOD_KEY_NAME	+ " integer not null);";
 	
-	/** SQLite database table removal statement. Only used if upgrading database. */
-	public static final String DATABASE_DROP = "drop table if exists " + DATABASE_TABLE_FOOD;
+	/** SQLite database table removal statement. Only used if upgrading 
+	 * database. */
+	public static final String DATABASE_DROP = "drop table if exists " + 
+			DATABASE_TABLE_FOOD;
 	
 	/**
 	 * Initializes the database.
@@ -43,7 +46,8 @@ public class FoodTable {
 	 * @param newVersion
 	 * 					The new version of the database.
 	 */
-	public static void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion)
+	public static void onUpgrade(SQLiteDatabase database, int oldVersion, 
+			int newVersion)
 	{
 		Log.w(FoodTable.class.getName(), "updating database...");
 		database.execSQL(DATABASE_DROP);
