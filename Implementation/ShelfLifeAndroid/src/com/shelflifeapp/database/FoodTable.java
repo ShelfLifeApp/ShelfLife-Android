@@ -11,22 +11,14 @@ public class FoodTable {
 	public static final String FOOD_KEY_ID = "_id";
 	public static final int FOOD_COL_ID = 0;
 	
-	public static final String FOOD_KEY_CAT = "category";
-	public static final int FOOD_COL_CAT = FOOD_COL_ID + 1;
-	
 	public static final String FOOD_KEY_NAME = "name";
-	public static final int FOOD_COL_NAME = FOOD_COL_ID + 2;
-	
-	public static final String FOOD_KEY_DAYS = "days_left";
-	public static final int FOOD_COL_DAYS= FOOD_COL_ID + 3;
+	public static final int FOOD_COL_NAME = FOOD_COL_ID + 1;
 	
 	/** SQLite database creation statement. Auto-increments IDs of inserted jokes.
 	 * Joke IDs are set after insertion into the database. */
 	public static final String DATABASE_CREATE = "create table " + DATABASE_TABLE_FOOD + " (" + 
 			FOOD_KEY_ID + " integer primary key autoincrement, " + 
-			FOOD_KEY_CAT	+ " text not null, " + 
-			FOOD_KEY_NAME	+ " integer not null, " + 
-			FOOD_KEY_DAYS + " text not null);";
+			FOOD_KEY_NAME	+ " integer not null);";
 	
 	/** SQLite database table removal statement. Only used if upgrading database. */
 	public static final String DATABASE_DROP = "drop table if exists " + DATABASE_TABLE_FOOD;

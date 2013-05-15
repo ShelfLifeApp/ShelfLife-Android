@@ -18,9 +18,10 @@ public class FoodContentProvider extends ContentProvider {
 	/** Values for the URIMatcher. */
 	private static final int FOOD_ID = 1;
 	private static final int FOOD_FILTER = 2;
+	private static final int FOOD_ALL = 3;
 	
 	/** The authority for this content provider. */
-	private static final String AUTHORITY = "com.shelflife.andoid.contentprovider";
+	private static final String AUTHORITY = "com.shelflifeapp.android.provider";
 	
 	/** The database table to read from and write to, and also the root path for use in the URI matcher.
 	 * This is essentially a label to a two-dimensional array in the database filled with rows of jokes
@@ -35,6 +36,7 @@ public class FoodContentProvider extends ContentProvider {
 	 * expected content URI formats to take specific actions in this provider. */
 	private static final UriMatcher sURIMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 	static {
+		sURIMatcher.addURI(AUTHORITY, BASE_PATH + "/food/#", FOOD_ALL);
 		sURIMatcher.addURI(AUTHORITY, BASE_PATH + "/jokes/#", FOOD_ID);
 		sURIMatcher.addURI(AUTHORITY, BASE_PATH + "/filters/#", FOOD_FILTER);
 	}
@@ -69,19 +71,13 @@ public class FoodContentProvider extends ContentProvider {
 		/** Match the passed-in URI to an expected URI format. */
 		int uriType = sURIMatcher.match(uri);
 		switch(uriType) {
-		case FOOD_FILTER:
-		/** Fetch the last segment of the URI, which should be a filter number. */
-		String filter = uri.getLastPathSegment();
-		/** Leave selection as null to fetch all rows if filter is Show All. Otherwise,
-		* fetch rows with a specific rating according to the parsed filter. */
-		/*if(!filter.equals(AdvancedJokeList.SHOW_ALL_FILTER_STRING)) {
-		queryBuilder.appendWhere(FoodTable.FOOD_KEY_CAT + "=" + filter);
-		} else {
-		selection = null;
-		}*/
-		break;
-		default:
-		throw new IllegalArgumentException("Unknown URI: " + uri);
+			case FOOD_ALL:
+				/** Fetch the last segment of the URI, which should be a filter number. */
+				//String category = uri.getLastPathSegment();
+				selection = null;
+				break;
+			default:
+				throw new IllegalArgumentException("Unknown URI: " + uri);
 		}
 		/** Perform the database query. */
 		SQLiteDatabase db = this.database.getWritableDatabase();
@@ -101,13 +97,7 @@ public class FoodContentProvider extends ContentProvider {
 	 * Inserts a joke into the joke table. Given a specific URI that contains a
 	 * joke and the values of that joke, writes a new row in the table filled
 	 * with that joke's information and gives the joke a new ID, then returns a URI
-	 * containing the ID of the inserted joke.<br><br>
-	 * 
-	 * Overrides the built-in version of <b>insert(...)</b> provided by ContentProvider.<br><br>
-	 * 
-	 * For more information, read the documentation for the built-in version of this
-	 * method by hovering over the method name in the method signature below this
-	 * comment block in Eclipse and clicking <b>insert(...)</b> in the Overrides details.
+	 * containing the ID of the inserted joke.
 	 * */
 	@Override
 	public Uri insert(Uri uri, ContentValues values) {
@@ -147,13 +137,7 @@ public class FoodContentProvider extends ContentProvider {
 	 * Removes a row from the joke table. Given a specific URI containing a joke ID,
 	 * removes rows in the table that match the ID and returns the number of rows removed.
 	 * Since IDs are automatically incremented on insertion, this will only ever remove
-	 * a single row from the joke table.<br><br>
-	 * 
-	 * Overrides the built-in version of <b>delete(...)</b> provided by ContentProvider.<br><br>
-	 * 
-	 * For more information, read the documentation for the built-in version of this
-	 * method by hovering over the method name in the method signature below this
-	 * comment block in Eclipse and clicking <b>delete(...)</b> in the Overrides details.
+	 * a single row from the joke table.
 	 * */
 	@Override
 	public int delete(Uri uri, String selection, String[] selectionArgs) {
@@ -173,13 +157,7 @@ public class FoodContentProvider extends ContentProvider {
 	 * Updates a row in the joke table. Given a specific URI containing a joke ID and the
 	 * new joke values, updates the values in the row with the matching ID in the table. 
 	 * Since IDs are automatically incremented on insertion, this will only ever update
-	 * a single row in the joke table.<br><br>
-	 * 
-	 * Overrides the built-in version of <b>update(...)</b> provided by ContentProvider.<br><br>
-	 * 
-	 * For more information, read the documentation for the built-in version of this
-	 * method by hovering over the method name in the method signature below this
-	 * comment block in Eclipse and clicking <b>update(...)</b> in the Overrides details.
+	 * a single row in the joke table.
 	 * */
 	@Override
 	public int update(Uri uri, ContentValues values, String selection,
@@ -204,8 +182,7 @@ public class FoodContentProvider extends ContentProvider {
 	 */
 	private void checkColumns(String[] projection)
 	{
-		String[] available = { FoodTable.FOOD_KEY_ID, FoodTable.FOOD_KEY_CAT, FoodTable.FOOD_KEY_NAME,
-				FoodTable.FOOD_KEY_DAYS };
+		String[] available = { FoodTable.FOOD_KEY_ID, FoodTable.FOOD_KEY_NAME };
 		
 		if(projection != null) {
 			HashSet<String> requestedColumns = new HashSet<String>(Arrays.asList(projection));

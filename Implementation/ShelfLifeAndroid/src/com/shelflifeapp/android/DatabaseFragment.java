@@ -4,21 +4,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import com.shelflife.android.models.Food;
+import com.shelflifeapp.database.FoodCursorAdapter;
+import com.shelflifeapp.database.FoodTable;
 import com.shelflifeapp.views.FoodListItem;
 import com.shelflifeapp.views.ShelfLifeListViewHeader;
 
-public class DatabaseFragment extends ListFragment
+public class DatabaseFragment extends ListFragment implements LoaderCallbacks<Cursor> 
 {
-	private ArrayList<Food> foodList;
 	private Context mContext;
+	
+	/** The ID of the CursorLoader to be initialized in the LoaderManager and used to load a Cursor. */
+	private static final int LOADER_ID = 1;
+	
+	private FoodCursorAdapter m_foodAdapter;
 	
 	  @Override
 	  public void onActivityCreated(Bundle savedInstanceState) {
@@ -29,20 +40,14 @@ public class DatabaseFragment extends ListFragment
 	    this.getListView().setDividerHeight(0);
 	    this.getListView().setVerticalScrollBarEnabled(false);
 	    this.getListView().addHeaderView(new ShelfLifeListViewHeader(mContext, "All Foods", "Browse Database"));
-	    
 	    mContext = getActivity();
+
 	    
-	    foodList = new ArrayList<Food>();
-	    foodList.add(new Food("Apple", R.drawable.icon_fruit));
-	    foodList.add(new Food("Orange", R.drawable.icon_fruit));
-	    foodList.add(new Food("Pear", R.drawable.icon_fruit));
-	    foodList.add(new Food("Grape", R.drawable.icon_fruit));
-	    foodList.add(new Food("Tangerine", R.drawable.icon_fruit));
-	    foodList.add(new Food("Raisin", R.drawable.icon_fruit));
-	    foodList.add(new Food("Blueberry", R.drawable.icon_fruit));
-	    foodList.add(new Food("Raspberry", R.drawable.icon_fruit));
-	    foodList.add(new Food("Banana", R.drawable.icon_fruit));
-	    setListAdapter(new ShelfLifeDatabaseAdapter(mContext, foodList));
+	    this.m_foodAdapter = new FoodCursorAdapter(mContext, null, 0);
+	    displayListView();
+	    getLoaderManager().initLoader(LOADER_ID, null, this);
+	    this.getListView().setAdapter(this.m_foodAdapter);
+	    
 	  }
 
 	  @Override
@@ -50,52 +55,35 @@ public class DatabaseFragment extends ListFragment
 	    // Do something with the data
 
 	  }
-	  
-	  public class ShelfLifeDatabaseAdapter extends BaseAdapter
-	  {
-		  private List<Food> foodList;
-		  private Context mContext;
-		  
-	     public ShelfLifeDatabaseAdapter(Context context, List<Food> foodList) 
-		 {		
-	 		this.foodList = foodList; 
-	 		this.mContext = context;
-  		 }
-	     
-	     @Override
-	     public View getView(int position, View convertView, ViewGroup parent) 
-	     {
-	    	 FoodListItem rowView = (FoodListItem)convertView;
-	    	 Food food = foodList.get(position);
-	    	 
-	    	 if (rowView == null)
-	    	 {
-	    		 rowView = new FoodListItem(mContext, foodList.get(position));
-	    	 }
-	    	 else
-	    	 {
-	    		 rowView = (FoodListItem) convertView;
-	    	 }
-	    	 
-	    	 rowView.setFood(food);
-	    	 
-	    	 return rowView;
-	     }
 
-		@Override
-		public int getCount() {
-			return foodList.size();
+	  @Override
+		public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
+			String[] projection = {FoodTable.FOOD_KEY_ID, FoodTable.FOOD_KEY_NAME};
+			Uri uri = Uri.parse("content://com.shelflifeapp.android.provider/food_table/food/3");
+			return new CursorLoader(mContext, uri, projection, null, null, null);
 		}
 
 		@Override
-		public Object getItem(int arg0) {
-			return foodList.get(arg0);
+		public void onLoadFinished(Loader<Cursor> arg0, Cursor arg1) {
+			this.m_foodAdapter.swapCursor(arg1);
+			setListShown(true);
+			
 		}
 
 		@Override
-		public long getItemId(int position) {
-			return position;
+		public void onLoaderReset(Loader<Cursor> arg0) {
+			this.m_foodAdapter.swapCursor(null);
+			
 		}
 		
-	  }
+		private void displayListView(){
+			String[] columns = new String[] {
+				FoodTable.FOOD_KEY_ID,
+				FoodTable.FOOD_KEY_NAME
+			};
+			
+			
+			
+			
+		}
 }

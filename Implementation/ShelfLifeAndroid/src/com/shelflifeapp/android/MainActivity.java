@@ -1,10 +1,13 @@
 package com.shelflifeapp.android;
 
+import java.io.IOException;
+
 import jim.h.common.android.lib.zxing.integrator.IntentIntegrator;
 import jim.h.common.android.lib.zxing.integrator.IntentResult;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,14 +24,17 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.shelflifeapp.database.FoodCursorAdapter;
+import com.shelflifeapp.database.FoodDatabaseHelper;
 import com.shelflifeapp.database.FoodTable;
 
-public class MainActivity extends SherlockFragmentActivity implements LoaderCallbacks<Cursor> {
+public class MainActivity extends SherlockFragmentActivity {
 
 	private final String TAG = "MAIN_ACTIVITY";
 	private Context mContext = MainActivity.this;
 	
 	private Menu m_vwMenu;
+	FoodDatabaseHelper myDbHelper = new FoodDatabaseHelper(null, null, null, 1);
 	
 	/** The ID of the CursorLoader to be initialized in the LoaderManager and used to load a Cursor. */
 	private static final int LOADER_ID = 1;
@@ -54,9 +60,18 @@ public class MainActivity extends SherlockFragmentActivity implements LoaderCall
         
         actionBar.addTab(databaseTab);
         actionBar.addTab(databaseTab2);
-        
-        //Database Stuff
-        getSupportLoaderManager().initLoader(LOADER_ID, null, this);
+         
+        try {         
+        	myDbHelper.createDataBase();         
+        } catch (IOException ioe) {
+        	throw new Error("Unable to create database");        
+        }
+         
+        try {        
+        	myDbHelper.openDataBase();        
+        }catch(SQLException sqle){       
+        	throw sqle;        
+        }
     }
 
     @Override
@@ -131,27 +146,17 @@ public class MainActivity extends SherlockFragmentActivity implements LoaderCall
     	@Override
     	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
     		ft.remove(fragment);
-    	}
-    	 
+    	}  	 
     }
 
-	@Override
-	public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
-		String[] projection = {FoodTable.FOOD_KEY_ID, 
-				FoodTable.FOOD_KEY_CAT, FoodTable.FOOD_KEY_NAME, FoodTable.FOOD_KEY_DAYS};
-		Uri uri = Uri.parse("content://edu.calpoly.android.lab4.contentprovider/joke_table/filters/" /*+ getFilterString()*/);
-		return new CursorLoader(this, uri, projection, null, null, null);
-	}
 
-	@Override
-	public void onLoadFinished(Loader<Cursor> arg0, Cursor arg1) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onLoaderReset(Loader<Cursor> arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+    
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (myDbHelper != null) {
+        	myDbHelper.close();
+        }
+    }
+    
 }
