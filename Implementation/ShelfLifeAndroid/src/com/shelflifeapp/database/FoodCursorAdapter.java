@@ -1,6 +1,6 @@
 package com.shelflifeapp.database;
 
-import com.shelflife.android.models.Food;
+import com.shelflifeapp.android.models.Food;
 import com.shelflifeapp.views.FoodListItem;
 
 import android.content.Context;

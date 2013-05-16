@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import com.shelflife.android.models.Food;
-import com.shelflife.android.models.MyFood;
+import com.shelflifeapp.android.models.Food;
+import com.shelflifeapp.android.models.MyFood;
 import com.shelflifeapp.views.FoodListItem;
 import com.shelflifeapp.views.MyFoodListItem;
 import com.shelflifeapp.views.ShelfLifeListViewHeader;

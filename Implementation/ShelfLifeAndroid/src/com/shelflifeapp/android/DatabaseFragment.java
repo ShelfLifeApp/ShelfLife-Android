@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import com.shelflife.android.models.Food;
+import com.shelflifeapp.android.models.Food;
 import com.shelflifeapp.database.FoodCursorAdapter;
 import com.shelflifeapp.database.FoodTable;
 import com.shelflifeapp.views.FoodListItem;
