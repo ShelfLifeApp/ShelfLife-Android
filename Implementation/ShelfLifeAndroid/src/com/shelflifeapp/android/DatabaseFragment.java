@@ -45,10 +45,8 @@ public class DatabaseFragment extends ListFragment
 	    this.getListView().setVerticalScrollBarEnabled(false);
 	    this.getListView().addHeaderView(new ShelfLifeListViewHeader(mContext, 
 	    		"All Foods", "Browse Database"));
-	    mContext = getActivity();
 	    
 	    this.m_foodAdapter = new FoodCursorAdapter(mContext, null, 0);
-	    displayListView();
 	    getLoaderManager().initLoader(LOADER_ID, null, this);
 	    this.getListView().setAdapter(this.m_foodAdapter);
 	    
@@ -77,12 +75,5 @@ public class DatabaseFragment extends ListFragment
 		@Override
 		public void onLoaderReset(Loader<Cursor> arg0) {
 			this.m_foodAdapter.swapCursor(null);			
-		}
-		
-		private void displayListView(){
-			String[] columns = new String[] {
-				FoodTable.FOOD_KEY_ID,
-				FoodTable.FOOD_KEY_NAME
-			};	
 		}
 }
