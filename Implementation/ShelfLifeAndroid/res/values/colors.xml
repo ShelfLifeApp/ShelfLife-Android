@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
+    <color name="listitem_myfood_text_expire_color">#F0A03E</color>
+    <color name="listitem_myfood_text_name_color">#000000</color>
+    <color name="listitem_myfood_text_category_color">#929292</color>
+    
     <color name="listitem_background_content">#FFFFFF</color>
     <color name="listitem_background">#f1f0f2</color>    
+    
+    <color name="listitem_myfood_background_content">#FFFFFF</color>
+    <color name="listitem_myfood_background">#f1f0f2</color>   
     
     <color name="list_header_background">#a5cb5d</color>
     <color name="list_header_divider">#464c49</color>

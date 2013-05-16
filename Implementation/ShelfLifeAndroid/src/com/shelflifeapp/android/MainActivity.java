@@ -40,16 +40,16 @@ public class MainActivity extends SherlockFragmentActivity implements LoaderCall
         
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        ActionBar.Tab databaseTab = actionBar.newTab().setText("Database");
-        ActionBar.Tab databaseTab2 = actionBar.newTab().setText("Database2");
+        ActionBar.Tab databaseTab = actionBar.newTab().setText("All Foods");
+        ActionBar.Tab databaseTab2 = actionBar.newTab().setText("My Food");
         ActionBar.Tab myFoodTab = actionBar.newTab().setText("My Food");
         
         Fragment databaseFragment = new DatabaseFragment();
-        Fragment databaseFragment2 = new DatabaseFragment();
+        Fragment myFoodFragment = new MyFoodFragment();
         //Fragment myFoodFragment = new MyFoodFragment();
         
         databaseTab.setTabListener(new MyTabsListener(databaseFragment));
-        databaseTab2.setTabListener(new MyTabsListener(databaseFragment2));
+        databaseTab2.setTabListener(new MyTabsListener(myFoodFragment));
 
         
         actionBar.addTab(databaseTab);

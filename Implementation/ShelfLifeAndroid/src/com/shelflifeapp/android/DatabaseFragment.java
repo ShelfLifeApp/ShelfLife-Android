@@ -28,7 +28,8 @@ public class DatabaseFragment extends ListFragment
 	    
 	    this.getListView().setDividerHeight(0);
 	    this.getListView().setVerticalScrollBarEnabled(false);
-	    this.getListView().addHeaderView(new ShelfLifeListViewHeader(mContext, "All Foods", "Browse Database"));
+	    if (savedInstanceState == null)
+	    	this.getListView().addHeaderView(new ShelfLifeListViewHeader(mContext, "All Foods", "Browse Database"));
 	    
 	    mContext = getActivity();
 	    

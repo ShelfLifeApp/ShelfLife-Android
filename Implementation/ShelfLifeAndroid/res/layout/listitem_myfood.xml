@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/listitem_background" 
+    android:paddingLeft = "10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp">
+    
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:background="@color/listitem_myfood_background_content">
+        
+		<ImageView
+		    android:id="@+id/listitem_myfood_icon"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_centerVertical="true"
+		/>
+		
+		<TextView
+		    android:id="@+id/listitem_myfood_name"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="20dip"
+		    android:layout_toRightOf="@id/listitem_myfood_icon"
+		    android:textStyle="bold"
+		    android:textSize="15sp"
+		/>
+		
+		<TextView
+		    android:id="@+id/listitem_myfood_state"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_below="@+id/listitem_myfood_name"
+		    android:layout_toRightOf="@id/listitem_myfood_icon"
+		    android:layout_alignLeft="@+id/listitem_myfood_name"
+		    android:textSize="12sp"
+		    android:textColor="@color/listitem_myfood_text_category_color"
+		/>
+		
+		<TextView
+		    android:id="@+id/listitem_myfood_expiration"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="20dip"
+		    android:layout_toLeftOf="@+id/listitem_myfood_indicator"
+		    android:layout_centerVertical="true"
+		    android:textStyle="bold"
+		    android:text="2 days"
+		    android:textColor="@color/listitem_myfood_text_expire_color"
+		/>
+		
+		<ImageView
+		    android:id="@+id/listitem_myfood_indicator"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_centerVertical="true"
+		    android:layout_alignParentRight="true"
+		/>
+			
+    </RelativeLayout>
+</RelativeLayout>
