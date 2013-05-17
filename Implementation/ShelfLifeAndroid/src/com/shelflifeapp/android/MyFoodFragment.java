@@ -1,6 +1,7 @@
 package com.shelflifeapp.android;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import android.content.Context;
@@ -11,8 +12,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
+import com.shelflifeapp.android.models.Category;
+import com.shelflifeapp.android.models.ExpirationData;
 import com.shelflifeapp.android.models.Food;
 import com.shelflifeapp.android.models.MyFood;
+import com.shelflifeapp.android.models.MyFood.State;
 import com.shelflifeapp.views.FoodListItem;
 import com.shelflifeapp.views.MyFoodListItem;
 import com.shelflifeapp.views.ShelfLifeListViewHeader;
@@ -34,17 +38,20 @@ public class MyFoodFragment extends ListFragment
 	    	this.getListView().addHeaderView(new ShelfLifeListViewHeader(mContext, "My Foods", "Items you have"));
 	    
 	    mContext = getActivity();
-	    
+
 	    myFoodList = new ArrayList<MyFood>();
-	    myFoodList.add(new MyFood("Apple", R.drawable.icon_fruit, null, "Fruit", "Fruit, Whole", null));
-	    myFoodList.add(new MyFood("Orange", R.drawable.icon_fruit, null, "Fruit", "Fruit, Whole", null));
-	    myFoodList.add(new MyFood("Pear", R.drawable.icon_fruit, null, "Fruit", "Fruit, Whole", null));
-	    myFoodList.add(new MyFood("Grape", R.drawable.icon_fruit, null, "Fruit", "Fruit, Whole", null));
-	    myFoodList.add(new MyFood("Tangerine", R.drawable.icon_fruit, null, "Fruit", "Fruit, Whole", null));
-	    myFoodList.add(new MyFood("Raisin", R.drawable.icon_fruit, null, "Fruit", "Fruit, Whole", null));
-	    myFoodList.add(new MyFood("Blueberry", R.drawable.icon_fruit, null, "Fruit", "Fruit, Whole", null));
-	    myFoodList.add(new MyFood("Raspberry", R.drawable.icon_fruit, null, "Fruit", "Fruit, Whole", null));
-	    myFoodList.add(new MyFood("Banana", R.drawable.icon_fruit, null, "Fruit", "Fruit, Whole", null));
+	    myFoodList.add(new MyFood(0, "Apple", new Category(0, "Fruit", this.getResources().getDrawable(R.drawable.icon_fruit)), 
+	    		new ExpirationData(1, 2, 1, 2, 1, 2), "watch out for mold", State.SHELF_OPENED, new Date()));
+	    myFoodList.add(new MyFood(0, "Orange", new Category(0, "Fruit", this.getResources().getDrawable(R.drawable.icon_fruit)), 
+	    		new ExpirationData(1, 2, 1, 2, 1, 2), "watch out for mold", State.SHELF_OPENED, new Date()));
+	    myFoodList.add(new MyFood(0, "Grape", new Category(0, "Fruit", this.getResources().getDrawable(R.drawable.icon_fruit)), 
+	    		new ExpirationData(1, 2, 1, 2, 1, 2), "watch out for mold", State.SHELF_OPENED, new Date()));
+	    myFoodList.add(new MyFood(0, "Tangerine", new Category(0, "Fruit", this.getResources().getDrawable(R.drawable.icon_fruit)), 
+	    		new ExpirationData(1, 2, 1, 2, 1, 2), "watch out for mold", State.SHELF_OPENED, new Date()));
+	    myFoodList.add(new MyFood(0, "Melon", new Category(0, "Fruit", this.getResources().getDrawable(R.drawable.icon_fruit)), 
+	    		new ExpirationData(1, 2, 1, 2, 1, 2), "watch out for mold", State.SHELF_OPENED, new Date()));
+	    myFoodList.add(new MyFood(0, "Pinapple", new Category(0, "Fruit", this.getResources().getDrawable(R.drawable.icon_fruit)), 
+	    		new ExpirationData(1, 2, 1, 2, 1, 2), "watch out for mold", State.SHELF_OPENED, new Date()));
 	    setListAdapter(new ShelfLifeMyFoodAdapter(mContext, myFoodList));
 	  }
 

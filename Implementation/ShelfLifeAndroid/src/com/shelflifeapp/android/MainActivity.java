@@ -121,11 +121,13 @@ public class MainActivity extends SherlockFragmentActivity {
 						Toast.makeText(mContext, upc, Toast.LENGTH_LONG).show();
 			 
 						//put whatever you want to do with the code here
-						Intent intentVar;						
+						/*Intent intentVar;						
 						intentVar = new Intent(this, 
 								BarCodeViewerActivity.class);
 						intentVar.putExtra("upc", upc);
-						this.startActivity(intentVar);			 
+						this.startActivity(intentVar);*/
+						this.getIntent().putExtra("upc", upc);
+						this.startActivity(this.getIntent());
 					}
 				}
 				break;

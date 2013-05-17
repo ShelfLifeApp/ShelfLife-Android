@@ -1,53 +1,42 @@
 package com.shelflife.android.models;
 
+import java.util.Calendar;
 import java.util.Date;
+
+import android.graphics.drawable.Drawable;
 
 public class MyFood extends Food
 {
-	private String category;
-	private String state;
-	private ExpirationData expirationData;
 	private Date purchaseDate;
+	private Date openDate;
+	private int quantity;
+	private String notes;
+	private Drawable picture;
+	private State state;
 	
-	public MyFood(String name, int iconId, ExpirationData expirationData, String category, String state, Date purchaseDate)
+	public enum State {
+		SHELF_UNOPENED, SHELF_OPENED,
+		FRIDGE_UNOPENED, FRIDGE_OPENED,
+		FREEZER_UNOPENED, FREEZER_OPENED
+	}
+	
+	public MyFood(int id, String name, Category category, 
+			ExpirationData expirationData, String tips, State state, Date purchaseDate)
 	{
-		super(name, iconId);
-		this.setExpirationData(expirationData);
-		this.setCategory(category);
+		super(id, name, category, expirationData, tips);
 		this.setState(state);
 		this.setPurchaseDate(purchaseDate);
-	}
-	
-	public MyFood(Food food, ExpirationData expirationData, String category, String state, Date purchaseDate)
-	{
-		super(food.getName(), food.getIconId());
-		this.setExpirationData(expirationData);
-		this.setCategory(category);
-		this.setState(state);
-		this.setPurchaseDate(purchaseDate);
+		this.setOpenDate(openDate);
+		this.setQuantity(quantity);
+		this.setNotes(notes);
+		this.setPicture(picture);
 	}
 
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public ExpirationData getExpirationData() {
-		return expirationData;
-	}
-
-	public void setExpirationData(ExpirationData expirationData) {
-		this.expirationData = expirationData;
-	}
-
-	public String getState() {
+	public State getState() {
 		return state;
 	}
 
-	public void setState(String state) {
+	public void setState(State state) {
 		this.state = state;
 	}
 
@@ -58,9 +47,59 @@ public class MyFood extends Food
 	public void setPurchaseDate(Date purchaseDate) {
 		this.purchaseDate = purchaseDate;
 	}
+
+	public Date getOpenDate() {
+		return openDate;
+	}
+
+	public void setOpenDate(Date openDate) {
+		this.openDate = openDate;
+	}
 	
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
+	public Drawable getPicture() {
+		return picture;
+	}
+
+	public void setPicture(Drawable picture) {
+		this.picture = picture;
+	}
+
+	// TODO: Appropriate Calculations and String Conversion.
 	public String getExpirationDaysLeft()
 	{
+		int initialDays;
+		int daysUsed;
+		if(state == State.SHELF_UNOPENED){
+			initialDays = this.getExpirationData().getShelfUnopened();
+		}else if(state == State.SHELF_OPENED){
+			initialDays = this.getExpirationData().getShelfOpened();
+		}else if(state == State.FRIDGE_UNOPENED){
+			initialDays = this.getExpirationData().getFridgeUnopened();
+		}else if(state == State.FRIDGE_OPENED){
+			initialDays = this.getExpirationData().getFridgeOpened();
+		}else if(state == State.FREEZER_UNOPENED){
+			initialDays = this.getExpirationData().getFreezerUnopened();
+		}else if(state == State.FREEZER_OPENED){
+			initialDays = this.getExpirationData().getFreezerOpened();
+		}
+		
+		//return initialDays - daysUsed;
 		return "3 days";
 	}
 	
