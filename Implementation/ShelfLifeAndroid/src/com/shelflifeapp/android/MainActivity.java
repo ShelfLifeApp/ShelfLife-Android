@@ -36,13 +36,6 @@ public class MainActivity extends SherlockFragmentActivity {
 	
 	private Menu m_vwMenu;
 	
-	private FoodDatabaseHelper myDbHelper = new FoodDatabaseHelper(null, null, 
-			null, 1);
-	
-	/** The ID of the CursorLoader to be initialized in the LoaderManager and 
-	 * used to load a Cursor. */
-	private static final int LOADER_ID = 1;
-	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,19 +55,7 @@ public class MainActivity extends SherlockFragmentActivity {
         databaseTab2.setTabListener(new MyTabsListener(myFoodFragment));
    
         actionBar.addTab(databaseTab);
-        actionBar.addTab(databaseTab2);
-         
-        try {         
-        	myDbHelper.createDataBase();         
-        } catch (IOException ioe) {
-        	throw new Error("Unable to create database");        
-        }
-         
-        try {        
-        	myDbHelper.openDataBase();        
-        }catch(SQLException sqle){       
-        	throw sqle;        
-        }
+        actionBar.addTab(databaseTab2);       
     }
 
     @Override
@@ -158,11 +139,5 @@ public class MainActivity extends SherlockFragmentActivity {
     	}  	 
     }
     
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (myDbHelper != null) {
-        	myDbHelper.close();
-        }
-    }    
+        
 }
