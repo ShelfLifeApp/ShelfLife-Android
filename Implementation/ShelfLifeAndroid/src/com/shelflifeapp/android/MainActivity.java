@@ -1,9 +1,12 @@
 package com.shelflifeapp.android;
 
 import java.io.IOException;
+import java.util.List;
 
 import jim.h.common.android.lib.zxing.integrator.IntentIntegrator;
 import jim.h.common.android.lib.zxing.integrator.IntentResult;
+import android.app.SearchManager;
+import android.app.SearchableInfo;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -24,17 +27,20 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.widget.SearchView;
 import com.shelflifeapp.database.FoodCursorAdapter;
 import com.shelflifeapp.database.FoodDatabaseHelper;
 import com.shelflifeapp.database.FoodTable;
 
-public class MainActivity extends SherlockFragmentActivity {
+public class MainActivity extends SherlockFragmentActivity{
 
 	private final String TAG = "MAIN_ACTIVITY";
 	
 	private Context mContext = MainActivity.this;
 	
 	private Menu m_vwMenu;
+	
+	private SearchView mSearchView;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +52,7 @@ public class MainActivity extends SherlockFragmentActivity {
         ActionBar.Tab databaseTab = actionBar.newTab().setText("All Foods");
         ActionBar.Tab databaseTab2 = actionBar.newTab().setText("My Food");
         ActionBar.Tab myFoodTab = actionBar.newTab().setText("My Food");
+
         
         Fragment databaseFragment = new DatabaseFragment();
         Fragment myFoodFragment = new MyFoodFragment();
@@ -55,14 +62,32 @@ public class MainActivity extends SherlockFragmentActivity {
         databaseTab2.setTabListener(new MyTabsListener(myFoodFragment));
    
         actionBar.addTab(databaseTab);
-        actionBar.addTab(databaseTab2);       
+        actionBar.addTab(databaseTab2);        
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(final Menu menu) {
 		MenuInflater inflater = this.getSupportMenuInflater();
 		inflater.inflate(R.menu.menu_actionbar, menu);
 		this.m_vwMenu = menu;
+		this.mSearchView = (SearchView) menu.findItem(R.id.menu_ab_search).getActionView();
+	    this.mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+		    @Override
+		    public boolean onQueryTextSubmit(String query) {
+		        // collapse the view ?
+		        menu.findItem(R.id.menu_ab_search).collapseActionView();
+		        return true;
+		    }
+	
+		    @Override
+		    public boolean onQueryTextChange(String newText) {
+		        // search goes here !!
+		        // listAdapter.getFilter().filter(query);
+		        return true;
+		    }
+		
+	    });
 		return true;
     }
     
