@@ -12,11 +12,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import com.shelflifeapp.android.models.Category;
-import com.shelflifeapp.android.models.ExpirationData;
-import com.shelflifeapp.android.models.Food;
-import com.shelflifeapp.android.models.MyFood;
-import com.shelflifeapp.android.models.MyFood.State;
+import com.shelflifeapp.models.Category;
+import com.shelflifeapp.models.ExpirationData;
+import com.shelflifeapp.models.Food;
+import com.shelflifeapp.models.MyFood;
+import com.shelflifeapp.models.MyFood.State;
 import com.shelflifeapp.views.FoodListItem;
 import com.shelflifeapp.views.MyFoodListItem;
 import com.shelflifeapp.views.ShelfLifeListViewHeader;

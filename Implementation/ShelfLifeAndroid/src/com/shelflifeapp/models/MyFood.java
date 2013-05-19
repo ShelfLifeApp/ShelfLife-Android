@@ -1,10 +1,9 @@
-package com.shelflife.android.models;
+package com.shelflifeapp.models;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import android.graphics.drawable.Drawable;
-
-import com.shelflifeapp.android.models.ExpirationData;
 
 public class MyFood extends Food
 {

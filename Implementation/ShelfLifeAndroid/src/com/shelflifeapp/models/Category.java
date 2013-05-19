@@ -1,4 +1,4 @@
-package com.shelflife.android.models;
+package com.shelflifeapp.models;
 
 import android.graphics.drawable.Drawable;
 
@@ -6,6 +6,12 @@ public class Category {
 	private int id;
 	private String name;
 	private Drawable icon;
+	
+	public Category(){
+		this.id = 0;
+		this.name = "Temp";
+		this.icon = null;
+	}
 	
 	public Category(int id, String name, Drawable icon){
 		this.id = id;

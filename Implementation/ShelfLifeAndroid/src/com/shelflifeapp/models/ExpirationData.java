@@ -1,4 +1,4 @@
-package com.shelflifeapp.android.models;
+package com.shelflifeapp.models;
 
 public class ExpirationData 
 {

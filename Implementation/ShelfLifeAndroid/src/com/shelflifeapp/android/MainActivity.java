@@ -44,7 +44,10 @@ public class MainActivity extends SherlockFragmentActivity{
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        
+    	super.onCreate(savedInstanceState);
+        
+       
         setContentView(R.layout.activity_main);
         
         ActionBar actionBar = getSupportActionBar();
@@ -62,7 +65,8 @@ public class MainActivity extends SherlockFragmentActivity{
         databaseTab2.setTabListener(new MyTabsListener(myFoodFragment));
    
         actionBar.addTab(databaseTab);
-        actionBar.addTab(databaseTab2);        
+        actionBar.addTab(databaseTab2); 
+              
     }
 
     @Override
