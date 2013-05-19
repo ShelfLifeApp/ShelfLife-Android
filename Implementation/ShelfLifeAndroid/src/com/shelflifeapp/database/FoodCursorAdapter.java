@@ -29,10 +29,9 @@ public class FoodCursorAdapter extends CursorAdapter {
 		//int freezer_u = arg2.getInt(FoodTable.FOOD_COL_FREEZER_U);
 		//int freezer_o = arg2.getInt(FoodTable.FOOD_COL_FREEZER_O);
 		//String tips = arg2.getString(FoodTable.FOOD_COL_TIPS);
-		Food food = new Food(name, id);
-		
+		Food food = new Food(name, id);		
 		FoodListItem listItem = (FoodListItem) arg0;
-		listItem.setFood(food);
+		listItem.setFood(food);		
 	}
 
 	@Override

@@ -136,8 +136,13 @@ public class MainActivity extends SherlockFragmentActivity{
 								BarCodeViewerActivity.class);
 						intentVar.putExtra("upc", upc);
 						this.startActivity(intentVar);*/
-						this.getIntent().putExtra("upc", upc);
-						this.startActivity(this.getIntent());
+						//this.getIntent().putExtra("upc", upc);
+						//this.startActivity(this.getIntent());
+						Intent i = new Intent(mContext, FoodDetails.class);
+						  startActivity(i);
+					}
+					else{
+						Toast.makeText(mContext, "upc is null", Toast.LENGTH_LONG).show();
 					}
 				}
 				break;

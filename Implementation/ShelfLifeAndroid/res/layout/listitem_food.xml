@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:padding="10dp"
-        android:background="@color/listitem_background_content">
+        android:background="@drawable/rowselector">
         
 		<ImageView
 		    android:id="@+id/listitem_food_icon"
