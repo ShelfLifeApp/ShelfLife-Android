@@ -21,9 +21,24 @@
     <!-- <style name="Custom" parent="@style/Theme.Sherlock">
    			<item name="actionBarTabStyle">@style/Widget.Custom.TabView</item>
     		<item name="android:actionBarTabStyle">@style/Widget.Custom.TabView</item>
-		</style>
+	</style>
 
-		<style name="Widget.Custom.TabView" parent="@style/Widget.Sherlock.ActionBar.TabView">
+	<style name="Widget.Custom.TabView" parent="@style/Widget.Sherlock.ActionBar.TabView">
     		<item name="android:background">@drawable/your_custom_selector</item>
 	</style> -->
+	
+	<color name="custom_theme_color">#ffffff</color>
+	<style name="YOURTHEME" parent="@style/Theme.Sherlock">
+	    <item name="android:windowBackground">@color/custom_theme_color</item>
+	    <item name="android:colorBackground">@color/custom_theme_color</item>
+	</style>
+	
+	
+
+
+	
+	
+	
+	
+	
 </resources>
