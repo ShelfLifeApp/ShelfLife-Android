@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -52,7 +53,7 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase arg0) {
-		FoodTable.onCreate(arg0);		
+			//FoodTable.onCreate(arg0);
 	}
 
 	@Override
@@ -146,4 +147,17 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
 		}
 		super.close();	 
 	}
+	
+	public Cursor fetchAllFood() {
+		 
+		Cursor mCursor = myDataBase.query(FoodTable.DATABASE_TABLE_FOOD, 
+				   new String[] { FoodTable.FOOD_KEY_ID, FoodTable.FOOD_KEY_NAME },
+		     null, null, null, null, null);
+		 
+		  if (mCursor != null) {
+		   mCursor.moveToFirst();
+		  }
+		  return mCursor;
+		 }
+	
 }

@@ -48,9 +48,9 @@ public class MyFoodListItem extends LinearLayout
 		if (myFood != null)
 		{
 			m_vwFood.setText(myFood.getName());
-			m_vwIcon.setImageResource(myFood.getIconId());
+			m_vwIcon.setImageResource(myFood.getId());
 			m_vwIndicator.setImageResource(ICON_INDICATOR);
-			m_vwState.setText(myFood.getState());
+			m_vwState.setText(myFood.getState().toString());
 			m_vwExpiration.setText(myFood.getExpirationDaysLeft());
 		}
 	}

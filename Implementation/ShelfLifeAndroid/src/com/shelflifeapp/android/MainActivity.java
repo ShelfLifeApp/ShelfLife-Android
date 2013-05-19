@@ -1,9 +1,12 @@
 package com.shelflifeapp.android;
 
 import java.io.IOException;
+import java.util.List;
 
 import jim.h.common.android.lib.zxing.integrator.IntentIntegrator;
 import jim.h.common.android.lib.zxing.integrator.IntentResult;
+import android.app.SearchManager;
+import android.app.SearchableInfo;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -24,11 +27,12 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.widget.SearchView;
 import com.shelflifeapp.database.FoodCursorAdapter;
 import com.shelflifeapp.database.FoodDatabaseHelper;
 import com.shelflifeapp.database.FoodTable;
 
-public class MainActivity extends SherlockFragmentActivity {
+public class MainActivity extends SherlockFragmentActivity{
 
 	private final String TAG = "MAIN_ACTIVITY";
 	
@@ -36,12 +40,7 @@ public class MainActivity extends SherlockFragmentActivity {
 	
 	private Menu m_vwMenu;
 	
-	private FoodDatabaseHelper myDbHelper = new FoodDatabaseHelper(null, null, 
-			null, 1);
-	
-	/** The ID of the CursorLoader to be initialized in the LoaderManager and 
-	 * used to load a Cursor. */
-	private static final int LOADER_ID = 1;
+	private SearchView mSearchView;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +52,7 @@ public class MainActivity extends SherlockFragmentActivity {
         ActionBar.Tab databaseTab = actionBar.newTab().setText("All Foods");
         ActionBar.Tab databaseTab2 = actionBar.newTab().setText("My Food");
         ActionBar.Tab myFoodTab = actionBar.newTab().setText("My Food");
+
         
         Fragment databaseFragment = new DatabaseFragment();
         Fragment myFoodFragment = new MyFoodFragment();
@@ -62,26 +62,32 @@ public class MainActivity extends SherlockFragmentActivity {
         databaseTab2.setTabListener(new MyTabsListener(myFoodFragment));
    
         actionBar.addTab(databaseTab);
-        actionBar.addTab(databaseTab2);
-         
-        try {         
-        	myDbHelper.createDataBase();         
-        } catch (IOException ioe) {
-        	throw new Error("Unable to create database");        
-        }
-         
-        try {        
-        	myDbHelper.openDataBase();        
-        }catch(SQLException sqle){       
-        	throw sqle;        
-        }
+        actionBar.addTab(databaseTab2);        
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(final Menu menu) {
 		MenuInflater inflater = this.getSupportMenuInflater();
 		inflater.inflate(R.menu.menu_actionbar, menu);
 		this.m_vwMenu = menu;
+		this.mSearchView = (SearchView) menu.findItem(R.id.menu_ab_search).getActionView();
+	    this.mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+		    @Override
+		    public boolean onQueryTextSubmit(String query) {
+		        // collapse the view ?
+		        menu.findItem(R.id.menu_ab_search).collapseActionView();
+		        return true;
+		    }
+	
+		    @Override
+		    public boolean onQueryTextChange(String newText) {
+		        // search goes here !!
+		        // listAdapter.getFilter().filter(query);
+		        return true;
+		    }
+		
+	    });
 		return true;
     }
     
@@ -121,11 +127,13 @@ public class MainActivity extends SherlockFragmentActivity {
 						Toast.makeText(mContext, upc, Toast.LENGTH_LONG).show();
 			 
 						//put whatever you want to do with the code here
-						Intent intentVar;						
+						/*Intent intentVar;						
 						intentVar = new Intent(this, 
 								BarCodeViewerActivity.class);
 						intentVar.putExtra("upc", upc);
-						this.startActivity(intentVar);			 
+						this.startActivity(intentVar);*/
+						this.getIntent().putExtra("upc", upc);
+						this.startActivity(this.getIntent());
 					}
 				}
 				break;
@@ -156,11 +164,5 @@ public class MainActivity extends SherlockFragmentActivity {
     	}  	 
     }
     
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (myDbHelper != null) {
-        	myDbHelper.close();
-        }
-    }    
+        
 }

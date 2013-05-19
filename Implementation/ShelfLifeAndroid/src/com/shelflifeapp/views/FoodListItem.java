@@ -43,7 +43,7 @@ public class FoodListItem extends LinearLayout
 		if (food != null)
 		{
 			m_vwFood.setText(food.getName());
-			m_vwIcon.setImageResource(food.getIconId());
+			m_vwIcon.setImageResource(food.getId());
 			m_vwIndicator.setImageResource(ICON_INDICATOR);
 		}
 	}

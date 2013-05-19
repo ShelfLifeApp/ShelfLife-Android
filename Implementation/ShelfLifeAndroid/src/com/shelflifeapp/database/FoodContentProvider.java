@@ -191,7 +191,11 @@ public class FoodContentProvider extends ContentProvider {
 	 */
 	private void checkColumns(String[] projection)
 	{
-		String[] available = { FoodTable.FOOD_KEY_ID, FoodTable.FOOD_KEY_NAME };
+		String[] available = { FoodTable.FOOD_KEY_ID, FoodTable.FOOD_KEY_NAME, 
+				FoodTable.FOOD_KEY_CATEGORY, FoodTable.FOOD_KEY_SHELF_U, 
+				FoodTable.FOOD_KEY_SHELF_O, FoodTable.FOOD_KEY_FRIDGE_U,
+				FoodTable.FOOD_KEY_FRIDGE_O, FoodTable.FOOD_KEY_FREEZER_U,
+				FoodTable.FOOD_KEY_FREEZER_O, FoodTable.FOOD_KEY_TIPS};
 		
 		if(projection != null) {
 			HashSet<String> requestedColumns = 

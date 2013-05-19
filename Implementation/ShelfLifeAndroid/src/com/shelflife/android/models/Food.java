@@ -1,6 +1,5 @@
-package com.shelflifeapp.android.models;
+package com.shelflife.android.models;
 
-import com.shelflifeapp.android.models.Category;
 import com.shelflifeapp.android.models.ExpirationData;
 
 public class Food 

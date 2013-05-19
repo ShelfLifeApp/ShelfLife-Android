@@ -15,6 +15,15 @@
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        
     </style>
 
+    <!-- <style name="Custom" parent="@style/Theme.Sherlock">
+   			<item name="actionBarTabStyle">@style/Widget.Custom.TabView</item>
+    		<item name="android:actionBarTabStyle">@style/Widget.Custom.TabView</item>
+		</style>
+
+		<style name="Widget.Custom.TabView" parent="@style/Widget.Sherlock.ActionBar.TabView">
+    		<item name="android:background">@drawable/your_custom_selector</item>
+	</style> -->
 </resources>
