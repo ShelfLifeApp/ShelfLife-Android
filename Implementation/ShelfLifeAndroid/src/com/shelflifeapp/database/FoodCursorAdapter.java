@@ -1,8 +1,8 @@
 package com.shelflifeapp.database;
 
-import com.shelflifeapp.android.models.Category;
-import com.shelflifeapp.android.models.ExpirationData;
-import com.shelflifeapp.android.models.Food;
+import com.shelflifeapp.models.Category;
+import com.shelflifeapp.models.ExpirationData;
+import com.shelflifeapp.models.Food;
 import com.shelflifeapp.views.FoodListItem;
 
 import android.content.Context;

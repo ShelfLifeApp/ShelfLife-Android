@@ -1,4 +1,4 @@
-package com.shelflifeapp.android.models;
+package com.shelflifeapp.models;
 
 import java.util.Calendar;
 import java.util.Date;

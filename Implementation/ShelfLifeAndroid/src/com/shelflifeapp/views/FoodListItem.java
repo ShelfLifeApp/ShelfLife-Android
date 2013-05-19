@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.shelflifeapp.android.R;
-import com.shelflifeapp.android.models.Food;
+import com.shelflifeapp.models.Food;
 
 public class FoodListItem extends LinearLayout
 {

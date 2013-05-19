@@ -1,10 +1,9 @@
 package com.shelflifeapp.android;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.net.Uri;
@@ -18,13 +17,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import com.shelflifeapp.android.models.Category;
-import com.shelflifeapp.android.models.ExpirationData;
-import com.shelflifeapp.android.models.Food;
 import com.shelflifeapp.database.FoodCursorAdapter;
 import com.shelflifeapp.database.FoodDatabaseHelper;
 import com.shelflifeapp.database.FoodTable;
-import com.shelflifeapp.views.FoodListItem;
 import com.shelflifeapp.views.ShelfLifeListViewHeader;
 
 public class DatabaseFragment extends ListFragment 
@@ -75,8 +70,10 @@ public class DatabaseFragment extends ListFragment
 	  }
 
 	  @Override
-	  public void onListItemClick(ListView l, View v, int position, long id) {
-	    // Do something with the data
+	  public void onListItemClick(ListView l, View v, int position, long id) 
+	  {
+		  Intent i = new Intent(mContext, FoodDetails.class);
+		  startActivity(i);
 	  }
 
 	  @Override
