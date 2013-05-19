@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -24,7 +25,7 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
 	private final Context myContext;
 	
 	/** The starting database version. */
-	public static final int DATABASE_VERSION = 1;
+	public static final int DATABASE_VERSION = 7;
 	
 	private SQLiteDatabase myDataBase;
 	
@@ -53,12 +54,13 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase arg0) {
-			//FoodTable.onCreate(arg0);
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		FoodTable.onUpgrade(db, oldVersion, newVersion);
+		CategoryTable.onUpgrade(db, oldVersion, newVersion);
+		MyFoodTable.onUpgrade(db, oldVersion, newVersion);
 	}
 	
 	 /**
@@ -67,7 +69,7 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
 	  */
 	public void createDataBase() throws IOException{
 	 
-		boolean dbExist = checkDataBase();
+		boolean dbExist = databaseExist();
 	 
 		if(dbExist){
 			/* do nothing - database already exist */
@@ -83,6 +85,12 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
 				throw new Error("Error copying database");	 
 			}
 		}	 
+	}
+	
+	public boolean databaseExist()
+	{
+	    File dbFile = new File(DB_PATH + DATABASE_NAME);
+	    return dbFile.exists();
 	}
 	 
 	/**
@@ -148,8 +156,7 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
 		super.close();	 
 	}
 	
-	public Cursor fetchAllFood() {
-		 
+	public Cursor fetchAllFood() {		 
 		Cursor mCursor = myDataBase.query(FoodTable.DATABASE_TABLE_FOOD, 
 				   new String[] { FoodTable.FOOD_KEY_ID, FoodTable.FOOD_KEY_NAME },
 		     null, null, null, null, null);
@@ -158,6 +165,5 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
 		   mCursor.moveToFirst();
 		  }
 		  return mCursor;
-		 }
-	
+		 }	
 }

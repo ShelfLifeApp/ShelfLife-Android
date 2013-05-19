@@ -16,9 +16,11 @@ public class FoodContentProvider extends ContentProvider {
 	private FoodDatabaseHelper database;
 	
 	/** Values for the URIMatcher. */
-	private static final int FOOD_ID = 1;
-	private static final int FOOD_FILTER = 2;
-	private static final int FOOD_ALL = 3;
+	private static final int FOOD_ALL = 1;
+	private static final int MYFOOD_ALL = 2;
+	private static final int CATEGORY_ALL = 3;
+	private static final int FOOD_BYCAT = 4;
+	private static final int MYFOOD_BYCAT = 5;
 	
 	/** The authority for this content provider. */
 	private static final String AUTHORITY = "com.shelflifeapp.android.provider";
@@ -29,14 +31,22 @@ public class FoodContentProvider extends ContentProvider {
 	 * two-dimensional array in the database filled with rows of jokes
 	 * whose columns contain joke data. 
 	 */
-	private static final String BASE_PATH = "food_table";
+	private static final String FOOD_TABLE = "food_table";
+	private static final String MYFOOD_TABLE = "myfood_table";
+	private static final String CATEGORY_TABLE = "category_table";
 	
 	/** 
 	 * This provider's content location. Used by accessing applications to
 	 * interact with this provider. 
 	 */
-	public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + 
-			"/" + BASE_PATH);
+	public static final Uri CONTENT_URI_FOOD = Uri.parse("content://" + AUTHORITY + 
+			"/" + FOOD_TABLE);
+	
+	public static final Uri CONTENT_URI_MYFOOD = Uri.parse("content://" + AUTHORITY + 
+			"/" + MYFOOD_TABLE);
+	
+	public static final Uri CONTENT_URI_CATEGORY = Uri.parse("content://" + AUTHORITY + 
+			"/" + CATEGORY_TABLE);
 	
 	/** 
 	 * Matches content URIs requested by accessing applications with possible
@@ -45,9 +55,11 @@ public class FoodContentProvider extends ContentProvider {
 	private static final UriMatcher sURIMatcher = 
 		new UriMatcher(UriMatcher.NO_MATCH);
 	static {
-		sURIMatcher.addURI(AUTHORITY, BASE_PATH + "/food/#", FOOD_ALL);
-		sURIMatcher.addURI(AUTHORITY, BASE_PATH + "/jokes/#", FOOD_ID);
-		sURIMatcher.addURI(AUTHORITY, BASE_PATH + "/filters/#", FOOD_FILTER);
+		sURIMatcher.addURI(AUTHORITY, FOOD_TABLE + "/all", FOOD_ALL);
+		sURIMatcher.addURI(AUTHORITY, MYFOOD_TABLE + "/all", MYFOOD_ALL);
+		sURIMatcher.addURI(AUTHORITY, CATEGORY_TABLE + "/all", CATEGORY_ALL);
+		sURIMatcher.addURI(AUTHORITY, FOOD_TABLE + "/bycat", FOOD_BYCAT);
+		sURIMatcher.addURI(AUTHORITY, MYFOOD_TABLE + "/bycat", MYFOOD_BYCAT);
 	}
 	
 	@Override
@@ -68,15 +80,36 @@ public class FoodContentProvider extends ContentProvider {
 			String[] selectionArgs, String sortOrder) {
 		 /** Use a helper class to perform a query for us. */
 		SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
-		/** Make sure the projection is proper before querying. */
-		checkColumns(projection);
-		/** Set up helper to query our jokes table. */
-		queryBuilder.setTables(FoodTable.DATABASE_TABLE_FOOD);
+		
 		/** Match the passed-in URI to an expected URI format. */
 		int uriType = sURIMatcher.match(uri);
+		String orderBy = null;
 		switch(uriType) {
 			case FOOD_ALL:
+				/** Make sure the projection is proper before querying. */
+				checkFoodColumns(projection);
+				/** Set up helper to query our jokes table. */
+				queryBuilder.setTables(FoodTable.DATABASE_TABLE_FOOD);
+				orderBy = FoodTable.FOOD_KEY_NAME + " ASC";
 				selection = null;
+				break;
+			case CATEGORY_ALL:
+				/** Make sure the projection is proper before querying. */
+				checkCategoryColumns(projection);
+				/** Set up helper to query our jokes table. */
+				queryBuilder.setTables(CategoryTable.DATABASE_TABLE_CATEGORY);
+				orderBy = CategoryTable.FOOD_KEY_NAME + " ASC";
+				selection = null;
+				break;
+			case FOOD_BYCAT:
+				/** Make sure the projection is proper before querying. */
+				checkFoodColumns(projection);
+				/** Set up helper to query our jokes table. */
+				queryBuilder.setTables(FoodTable.DATABASE_TABLE_FOOD + ", " 
+						+ CategoryTable.DATABASE_TABLE_CATEGORY);
+				orderBy = FoodTable.FOOD_KEY_NAME + " ASC";
+				selection = FoodTable.DATABASE_TABLE_FOOD + "." + FoodTable.FOOD_KEY_CATEGORY + " = " + 
+						FoodTable.DATABASE_TABLE_FOOD + "." + CategoryTable.FOOD_KEY_ID;
 				break;
 			default:
 				throw new IllegalArgumentException("Unknown URI: " + uri);
@@ -84,7 +117,7 @@ public class FoodContentProvider extends ContentProvider {
 		/** Perform the database query. */
 		SQLiteDatabase db = this.database.getWritableDatabase();
 		Cursor cursor = queryBuilder.query(db, projection, selection, null, 
-				null, null, null);
+				null, null, orderBy);
 		/** Set the cursor to automatically alert listeners for content/view 
 		 * refreshing. */
 		cursor.setNotificationUri(getContext().getContentResolver(), uri);
@@ -123,7 +156,7 @@ public class FoodContentProvider extends ContentProvider {
 		 * incrementation. IMPORTANT: joke ID cannot be set to -1 in passed-in 
 		 * URI; -1 is not interpreted as a numerical value by the URIMatcher. 
 		 */
-		case FOOD_ID:			
+		case FOOD_ALL:			
 			/** Perform the database insert, placing the joke at the bottom 
 			 * of the table. */
 			id = sqlDB.insert(FoodTable.DATABASE_TABLE_FOOD, null, values);
@@ -136,7 +169,7 @@ public class FoodContentProvider extends ContentProvider {
 		 * refreshing. */
 		getContext().getContentResolver().notifyChange(uri, null);
 		
-		return Uri.parse(BASE_PATH + "/" + id);
+		return Uri.parse(FOOD_TABLE + "/" + id);
 	}
 
 	/**
@@ -149,7 +182,7 @@ public class FoodContentProvider extends ContentProvider {
 	public int delete(Uri uri, String selection, String[] selectionArgs) {
 		SQLiteDatabase sqlDB = this.database.getWritableDatabase();
 		int rowsDeleted = 0;
-		if(sURIMatcher.match(uri) == FOOD_ID){
+		if(sURIMatcher.match(uri) == FOOD_ALL){
 			String id = uri.getLastPathSegment();			
 			rowsDeleted = sqlDB.delete(FoodTable.DATABASE_TABLE_FOOD, 
 					FoodTable.FOOD_KEY_ID + "=" + id, null);
@@ -171,7 +204,7 @@ public class FoodContentProvider extends ContentProvider {
 			String[] selectionArgs) {
 		SQLiteDatabase sqlDB = this.database.getWritableDatabase();
 		int rowsUpdated = 0;
-		if(sURIMatcher.match(uri) == FOOD_ID){
+		if(sURIMatcher.match(uri) == FOOD_ALL){
 			String id = uri.getLastPathSegment();			
 			rowsUpdated = sqlDB.update(FoodTable.DATABASE_TABLE_FOOD, values, 
 					FoodTable.FOOD_KEY_ID + "=" + id, null);
@@ -189,13 +222,37 @@ public class FoodContentProvider extends ContentProvider {
 	 * @param projection
 	 * 						The set of columns about to be queried.
 	 */
-	private void checkColumns(String[] projection)
+	private void checkFoodColumns(String[] projection)
 	{
 		String[] available = { FoodTable.FOOD_KEY_ID, FoodTable.FOOD_KEY_NAME, 
 				FoodTable.FOOD_KEY_CATEGORY, FoodTable.FOOD_KEY_SHELF_U, 
 				FoodTable.FOOD_KEY_SHELF_O, FoodTable.FOOD_KEY_FRIDGE_U,
 				FoodTable.FOOD_KEY_FRIDGE_O, FoodTable.FOOD_KEY_FREEZER_U,
 				FoodTable.FOOD_KEY_FREEZER_O, FoodTable.FOOD_KEY_TIPS};
+		
+		if(projection != null) {
+			HashSet<String> requestedColumns = 
+				new HashSet<String>(Arrays.asList(projection));
+			HashSet<String> availableColumns = 
+				new HashSet<String>(Arrays.asList(available));
+			
+			if(!availableColumns.containsAll(requestedColumns))	{
+				throw new IllegalArgumentException("Unknown columns in projection");
+			}
+		}
+	}
+	
+	/**
+	 * Verifies the correct set of columns to return data from when performing 
+	 * a query.
+	 * 
+	 * @param projection
+	 * 						The set of columns about to be queried.
+	 */
+	private void checkCategoryColumns(String[] projection)
+	{
+		String[] available = { CategoryTable.FOOD_KEY_ID, CategoryTable.FOOD_KEY_NAME, 
+				CategoryTable.FOOD_KEY_ICON};
 		
 		if(projection != null) {
 			HashSet<String> requestedColumns = 
