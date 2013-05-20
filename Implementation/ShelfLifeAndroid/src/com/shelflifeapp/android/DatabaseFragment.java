@@ -48,6 +48,7 @@ public class DatabaseFragment extends ListFragment
 	  public void onActivityCreated(Bundle savedInstanceState) {
 	    super.onActivityCreated(savedInstanceState);
 	    mContext = this.getActivity();
+	    this.getListView().setBackgroundColor(getResources().getColor(R.color.activity_background));
 	    
 	    Bundle catIdBundle = this.getArguments();
 	    if(catIdBundle == null){

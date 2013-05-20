@@ -4,6 +4,66 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
+	    <LinearLayout
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:layout_gravity="center_horizontal">
+	    
+		    <LinearLayout 
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal"
+		    android:paddingBottom="10dp"> 
+		    
+			    <LinearLayout 
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:orientation="vertical"
+			    android:layout_gravity="left"> 
+			      
+					<TextView android:id="@+id/food_name_text"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:text="Pineapple"
+				        android:textSize="24sp"
+				        android:textStyle="bold"
+				        android:textColor="#a5cb5d" 
+				        />
+					
+					<TextView android:id="@+id/food_details_text"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:text="Average Life"
+				        android:textColor="#000000" 
+				        />
+				</LinearLayout>
+				
+			    <Button android:id="@+id/add_food_button"
+			        android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:text="Add"
+				    android:textSize="24sp"
+				    android:textStyle="bold"
+				    android:textColor="#FFFFFF"
+			        android:background="#a5cb5d"
+			        android:padding="5dp"
+			        android:layout_marginLeft="20dp"
+			        android:layout_gravity="bottom"/>"
+	
+    </LinearLayout>
+    
+		    
+		    
+    <!-- <include layout="@layout/expiration_table"/> -->
+    <com.shelflifeapp.views.ExpirationTable
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        
+    />
+    </LinearLayout>    
     <TextView
         android:id="@+id/food_details_simpleupc"
         android:layout_width="wrap_content"
@@ -11,4 +71,5 @@
         android:text="Making SimpleUPC API Call..."
         />
 
+	
 </LinearLayout>

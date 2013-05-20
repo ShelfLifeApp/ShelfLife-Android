@@ -15,5 +15,8 @@
     <color name="list_header_divider">#464c49</color>
     <color name="list_header_title_color">#464c49</color>
     <color name="list_header_subtitle_color">#ffffff</color>
+    <color name="exp_table_cell_border">#000000</color>
+    <color name="activity_background">#f1f0f2</color>
+    <color name="exp_table_cell_bkgd">#f1f0f2</color>
     
 </resources>

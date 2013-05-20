@@ -1,17 +1,17 @@
 package com.shelflifeapp.views;
 
 import android.content.Context;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.shelflifeapp.android.R;
-import com.shelflifeapp.android.R.id;
-import com.shelflifeapp.android.R.layout;
 import com.shelflifeapp.models.ExpirationData;
 import com.shelflifeapp.models.Food;
 
-public class ExpirationTable extends TableLayout
+public class ExpirationTable extends LinearLayout
 {
 	private TextView m_vwShelfOpened;
 	private TextView m_vwShelfUnopened;
@@ -25,7 +25,7 @@ public class ExpirationTable extends TableLayout
 	private Context mContext;
 	private ExpirationData mExpirationData;
 	
-	public ExpirationTable(Context context, ExpirationData expirationData)
+	public ExpirationTable(Context context)
 	{
 		super(context);
 		
@@ -42,8 +42,25 @@ public class ExpirationTable extends TableLayout
 		
 		m_vwFreezerOpened = (TextView) findViewById(R.id.row4_freezer_opened);
 		m_vwFreezerUnopened = (TextView) findViewById(R.id.row4_freezer_unopened);
+	}
 	
-		setExpirationData(mExpirationData);
+	public ExpirationTable(Context context, AttributeSet attrSet)
+	{
+		super(context, attrSet);
+		
+		mContext = context;
+		
+		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		inflater.inflate(R.layout.expiration_table, this, true);
+		
+		m_vwShelfOpened = (TextView) findViewById(R.id.row2_shelf_opened);
+		m_vwShelfUnopened = (TextView) findViewById(R.id.row2_shelf_unopened);
+		
+		m_vwFridgeOpened = (TextView) findViewById(R.id.row3_fridge_opened);
+		m_vwFridgeUnopened = (TextView) findViewById(R.id.row3_fridge_unopened);
+		
+		m_vwFreezerOpened = (TextView) findViewById(R.id.row4_freezer_opened);
+		m_vwFreezerUnopened = (TextView) findViewById(R.id.row4_freezer_unopened);
 	}
 
 	public void setFood(Food food)

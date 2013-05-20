@@ -12,22 +12,22 @@ public class MyFoodTable {
 	public static final int FOOD_COL_ID = 0;
 	
 	public static final String FOOD_KEY_FOODID = "foodId";
-	public static final int FOOD_COL_NAME = FOOD_COL_ID + 1;
+	public static final int FOOD_COL_FOODID = FOOD_COL_ID + 1;
 	
 	public static final String FOOD_KEY_PURCHASED = "purchaseDate";
-	public static final int FOOD_COL_CATEGORY = FOOD_COL_ID + 2;
+	public static final int FOOD_COL_PURCHASED = FOOD_COL_ID + 2;
 	
 	public static final String FOOD_KEY_OPENED = "openDate";
-	public static final int FOOD_COL_SHELF_U = FOOD_COL_ID + 3;
+	public static final int FOOD_COL_OPENED = FOOD_COL_ID + 3;
 	
 	public static final String FOOD_KEY_QUANTITY = "quantity";
-	public static final int FOOD_COL_SHELF_O = FOOD_COL_ID + 4;
+	public static final int FOOD_COL_QUANTITY = FOOD_COL_ID + 4;
 	
 	public static final String FOOD_KEY_PICTURE = "picture";
-	public static final int FOOD_COL_FRIDGE_U = FOOD_COL_ID + 5;
+	public static final int FOOD_COL_PICTURE = FOOD_COL_ID + 5;
 	
 	public static final String FOOD_KEY_NOTES = "notes";
-	public static final int FOOD_COL_FRIDGE_O = FOOD_COL_ID + 6;
+	public static final int FOOD_COL_NOTES = FOOD_COL_ID + 6;
 	
 	/** SQLite database creation statement. Auto-increments IDs of inserted 
 	 * jokes. Joke IDs are set after insertion into the database. */

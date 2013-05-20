@@ -41,7 +41,8 @@ private Context mContext;
 	  public void onActivityCreated(Bundle savedInstanceState) {
 	    super.onActivityCreated(savedInstanceState);
 	    mContext = this.getActivity();
-	    
+	    this.getListView().setBackgroundColor(getResources().getColor(R.color.activity_background));
+
 	    this.getListView().setDividerHeight(0);
 	    this.getListView().setVerticalScrollBarEnabled(false);
 	    this.getListView().setScrollingCacheEnabled(true);
