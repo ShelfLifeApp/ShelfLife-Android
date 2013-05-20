@@ -58,8 +58,8 @@ public class FoodContentProvider extends ContentProvider {
 		sURIMatcher.addURI(AUTHORITY, FOOD_TABLE + "/all", FOOD_ALL);
 		sURIMatcher.addURI(AUTHORITY, MYFOOD_TABLE + "/all", MYFOOD_ALL);
 		sURIMatcher.addURI(AUTHORITY, CATEGORY_TABLE + "/all", CATEGORY_ALL);
-		sURIMatcher.addURI(AUTHORITY, FOOD_TABLE + "/bycat", FOOD_BYCAT);
-		sURIMatcher.addURI(AUTHORITY, MYFOOD_TABLE + "/bycat", MYFOOD_BYCAT);
+		sURIMatcher.addURI(AUTHORITY, FOOD_TABLE + "/bycat/#", FOOD_BYCAT);
+		sURIMatcher.addURI(AUTHORITY, MYFOOD_TABLE + "/bycat/#", MYFOOD_BYCAT);
 	}
 	
 	@Override
@@ -107,9 +107,15 @@ public class FoodContentProvider extends ContentProvider {
 				/** Set up helper to query our jokes table. */
 				queryBuilder.setTables(FoodTable.DATABASE_TABLE_FOOD + ", " 
 						+ CategoryTable.DATABASE_TABLE_CATEGORY);
-				orderBy = FoodTable.FOOD_KEY_NAME + " ASC";
-				selection = FoodTable.DATABASE_TABLE_FOOD + "." + FoodTable.FOOD_KEY_CATEGORY + " = " + 
-						FoodTable.DATABASE_TABLE_FOOD + "." + CategoryTable.FOOD_KEY_ID;
+				orderBy = FoodTable.DATABASE_TABLE_FOOD + "." + FoodTable.FOOD_KEY_NAME + " ASC";
+				String catId = uri.getLastPathSegment();
+				if(catId != null){
+					queryBuilder.appendWhere(FoodTable.FOOD_KEY_CATEGORY + "=" 
+							+ catId + " and " + FoodTable.FOOD_KEY_CATEGORY + "=" 
+							+ CategoryTable.DATABASE_TABLE_CATEGORY + "." + CategoryTable.FOOD_KEY_ID);
+				}else{
+					queryBuilder.appendWhere(FoodTable.FOOD_KEY_CATEGORY + "=" + CategoryTable.FOOD_KEY_ID);
+				}
 				break;
 			default:
 				throw new IllegalArgumentException("Unknown URI: " + uri);
@@ -228,7 +234,9 @@ public class FoodContentProvider extends ContentProvider {
 				FoodTable.FOOD_KEY_CATEGORY, FoodTable.FOOD_KEY_SHELF_U, 
 				FoodTable.FOOD_KEY_SHELF_O, FoodTable.FOOD_KEY_FRIDGE_U,
 				FoodTable.FOOD_KEY_FRIDGE_O, FoodTable.FOOD_KEY_FREEZER_U,
-				FoodTable.FOOD_KEY_FREEZER_O, FoodTable.FOOD_KEY_TIPS};
+				FoodTable.FOOD_KEY_FREEZER_O, FoodTable.FOOD_KEY_TIPS,
+				FoodTable.DATABASE_TABLE_FOOD + "." + FoodTable.FOOD_KEY_ID, 
+				FoodTable.DATABASE_TABLE_FOOD + "." + FoodTable.FOOD_KEY_NAME};
 		
 		if(projection != null) {
 			HashSet<String> requestedColumns = 

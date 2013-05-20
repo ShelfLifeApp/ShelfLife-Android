@@ -48,4 +48,14 @@ public class FoodListItem extends LinearLayout
 		}
 	}
 	
+	public int getFoodId()
+	{
+		return m_food.getId(); 
+	}
+	
+	public int getCategoryId()
+	{
+		return m_food.getCategory().getId();
+	}
+	
 }

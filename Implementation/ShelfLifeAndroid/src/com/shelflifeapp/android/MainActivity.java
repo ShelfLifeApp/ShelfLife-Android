@@ -1,24 +1,13 @@
 package com.shelflifeapp.android;
 
-import java.io.IOException;
-import java.util.List;
-
 import jim.h.common.android.lib.zxing.integrator.IntentIntegrator;
 import jim.h.common.android.lib.zxing.integrator.IntentResult;
-import android.app.SearchManager;
-import android.app.SearchableInfo;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.SQLException;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
-import android.widget.TextView;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
@@ -28,11 +17,8 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.widget.SearchView;
-import com.shelflifeapp.database.FoodCursorAdapter;
-import com.shelflifeapp.database.FoodDatabaseHelper;
-import com.shelflifeapp.database.FoodTable;
 
-public class MainActivity extends SherlockFragmentActivity{
+public class MainActivity extends SherlockFragmentActivity implements CategoryFragment.CategoryFragmentSelectedListener{
 
 	private final String TAG = "MAIN_ACTIVITY";
 	
@@ -45,27 +31,24 @@ public class MainActivity extends SherlockFragmentActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         
-    	super.onCreate(savedInstanceState);
-        
-       
+    	super.onCreate(savedInstanceState);       
         setContentView(R.layout.activity_main);
         
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         ActionBar.Tab databaseTab = actionBar.newTab().setText("All Foods");
-        ActionBar.Tab databaseTab2 = actionBar.newTab().setText("My Food");
         ActionBar.Tab myFoodTab = actionBar.newTab().setText("My Food");
-
+        
         
         Fragment databaseFragment = new DatabaseFragment();
         Fragment myFoodFragment = new MyFoodFragment();
-        //Fragment myFoodFragment = new MyFoodFragment();
+        Fragment categoryFragment = new CategoryFragment();
         
-        databaseTab.setTabListener(new MyTabsListener(databaseFragment));
-        databaseTab2.setTabListener(new MyTabsListener(myFoodFragment));
-   
+        databaseTab.setTabListener(new DatabaseTabListener(categoryFragment));
+        myFoodTab.setTabListener(new MyFoodTabListener(myFoodFragment));
+        
         actionBar.addTab(databaseTab);
-        actionBar.addTab(databaseTab2); 
+        actionBar.addTab(myFoodTab); 
               
     }
 
@@ -150,28 +133,77 @@ public class MainActivity extends SherlockFragmentActivity{
 		}
 	}
     
-    private class MyTabsListener implements ActionBar.TabListener 
+    private class DatabaseTabListener implements ActionBar.TabListener 
     {
     	public Fragment fragment;
     	 
-    	public MyTabsListener(Fragment fragment) {
-    	this.fragment = fragment;
+    	public DatabaseTabListener(Fragment fragment) 
+    	{
+    		this.fragment = fragment;
     	}
     	 
     	@Override
-    	public void onTabReselected(Tab tab, FragmentTransaction ft) {
+    	public void onTabReselected(Tab tab, FragmentTransaction ft) 
+    	{
     	}
     	 
     	@Override
-    	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+    	public void onTabSelected(Tab tab, FragmentTransaction ft) 
+    	{
     		ft.replace(R.id.fragment_container, fragment);
     	}
     	 
     	@Override
-    	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+    	public void onTabUnselected(Tab tab, FragmentTransaction ft) 
+    	{
+    		ft.remove(fragment);
+    	}  	 
+    }    
+
+    private class MyFoodTabListener implements ActionBar.TabListener 
+    {
+    	public Fragment fragment;
+    	 
+    	public MyFoodTabListener(Fragment fragment) 
+    	{
+    		this.fragment = fragment;
+    	}
+    	 
+    	@Override
+    	public void onTabReselected(Tab tab, FragmentTransaction ft) 
+    	{
+    	}
+    	 
+    	@Override
+    	public void onTabSelected(Tab tab, FragmentTransaction ft) 
+    	{
+    		ft.replace(R.id.fragment_container, fragment);
+    	}
+    	 
+    	@Override
+    	public void onTabUnselected(Tab tab, FragmentTransaction ft) 
+    	{
     		ft.remove(fragment);
     	}  	 
     }
-    
-        
+
+	@Override
+	public void onCategorySelected(int category) 
+	{
+		Log.d("SPOCK", "onCategorySelected: " + category);
+        DatabaseFragment dbFrag = new DatabaseFragment();
+        Bundle args = new Bundle();
+        args.putInt(DatabaseFragment.CATEGORY_KEY, category);
+        dbFrag.setArguments(args);
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack so the user can navigate back
+        transaction.replace(R.id.fragment_container, dbFrag);
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+	}    
 }

@@ -25,7 +25,7 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
 	private final Context myContext;
 	
 	/** The starting database version. */
-	public static final int DATABASE_VERSION = 7;
+	public static final int DATABASE_VERSION = 9;
 	
 	private SQLiteDatabase myDataBase;
 	
@@ -165,5 +165,17 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
 		   mCursor.moveToFirst();
 		  }
 		  return mCursor;
-		 }	
+	}	
+	
+	public Cursor fetchAllCategories() {		 
+		Cursor mCursor = myDataBase.query(CategoryTable.DATABASE_TABLE_CATEGORY, 
+				    new String[] { CategoryTable.FOOD_KEY_ID, 
+					CategoryTable.FOOD_KEY_NAME, CategoryTable.FOOD_KEY_ICON },
+					null, null, null, null, null);
+		 
+		  if (mCursor != null) {
+		   mCursor.moveToFirst();
+		  }
+		  return mCursor;
+	}	
 }
