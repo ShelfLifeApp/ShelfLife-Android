@@ -1,8 +1,10 @@
 package com.shelflifeapp.models;
 
 import android.graphics.drawable.Drawable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Category {
+public class Category implements Parcelable{
 	private int id;
 	private String name;
 	private Drawable icon;
@@ -32,4 +34,33 @@ public class Category {
 	public Drawable getIcon(){
 		return this.icon;
 	}
+
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeInt(id);
+		dest.writeString(name);
+		//dest.writeParcelable(icon, 0);
+		// write Drawable ???
+	}
+	
+	public static final Parcelable.Creator<Category> CREATOR = new Parcelable.Creator<Category>() {
+        public Category createFromParcel(Parcel in) {
+            return new Category(in);
+        }
+
+        public Category[] newArray(int size) {
+            return new Category[size];
+        }
+    };
+    
+    private Category(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+    }
 }

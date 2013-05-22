@@ -1,6 +1,9 @@
 package com.shelflifeapp.models;
 
-public class ExpirationData 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class ExpirationData implements Parcelable 
 {
 	private final int NO_DATA = -1;
 	
@@ -72,5 +75,39 @@ public class ExpirationData
 	public void setFreezerUnopened(int freezerUnopened) {
 		this.freezerUnopened = freezerUnopened;
 	}
+
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeInt(shelfUnopened);
+		dest.writeInt(shelfOpened);
+		dest.writeInt(fridgeUnopened);
+		dest.writeInt(fridgeOpened);
+		dest.writeInt(freezerUnopened);
+		dest.writeInt(freezerOpened);
+	}
 	
+	public static final Parcelable.Creator<ExpirationData> CREATOR = new Parcelable.Creator<ExpirationData>() {
+        public ExpirationData createFromParcel(Parcel in) {
+            return new ExpirationData(in);
+        }
+
+        public ExpirationData[] newArray(int size) {
+            return new ExpirationData[size];
+        }
+    };
+    
+    private ExpirationData(Parcel in) {
+        shelfUnopened = in.readInt();
+        shelfOpened = in.readInt();
+        fridgeUnopened = in.readInt();
+        fridgeOpened = in.readInt();
+        freezerUnopened = in.readInt();
+        freezerOpened = in.readInt();
+    }
 }

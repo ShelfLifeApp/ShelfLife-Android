@@ -1,9 +1,12 @@
 package com.shelflifeapp.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.shelflifeapp.models.Category;
 import com.shelflifeapp.models.ExpirationData;
 
-public class Food 
+public class Food implements Parcelable
 {
 	private int id;
 	private String name;	
@@ -49,5 +52,37 @@ public class Food
 	{
 		return this.tips;
 	}
+
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel arg0, int arg1) {
+		arg0.writeInt(id);
+		arg0.writeString(name);
+		arg0.writeParcelable(category, 0);
+		arg0.writeParcelable(expirationData, 0);
+		arg0.writeString(tips);		
+	}
 	
+	public static final Parcelable.Creator<Food> CREATOR = new Parcelable.Creator<Food>() {
+        public Food createFromParcel(Parcel in) {
+            return new Food(in);
+        }
+
+        public Food[] newArray(int size) {
+            return new Food[size];
+        }
+    };
+    
+    private Food(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        category = in.readParcelable(Category.class.getClassLoader());
+        expirationData = in.readParcelable(ExpirationData.class.getClassLoader());
+        tips = in.readString();
+    }
 }

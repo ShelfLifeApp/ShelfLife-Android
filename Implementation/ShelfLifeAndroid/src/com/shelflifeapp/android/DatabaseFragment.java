@@ -24,6 +24,7 @@ import com.shelflifeapp.database.CategoryTable;
 import com.shelflifeapp.database.FoodCursorAdapter;
 import com.shelflifeapp.database.FoodDatabaseHelper;
 import com.shelflifeapp.database.FoodTable;
+import com.shelflifeapp.views.FoodListItem;
 import com.shelflifeapp.views.ShelfLifeListViewHeader;
 
 public class DatabaseFragment extends ListFragment 
@@ -90,6 +91,7 @@ public class DatabaseFragment extends ListFragment
 	  public void onListItemClick(ListView l, View v, int position, long id) 
 	  {
 		  Intent i = new Intent(mContext, FoodDetails.class);
+		  i.putExtra("food", ((FoodListItem) v).getFood());
 		  startActivity(i);
 	  }
 
