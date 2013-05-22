@@ -12,21 +12,47 @@ import org.apache.http.params.HttpParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.ContentValues;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
+import com.shelflifeapp.database.MyFoodTable;
+import com.shelflifeapp.models.Category;
+import com.shelflifeapp.models.ExpirationData;
+import com.shelflifeapp.models.Food;
 
 public class FoodDetails extends SherlockActivity 
 {
+	Button addButton; 
+	private Food m_food;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) 
     {
         super.onCreate(savedInstanceState);
+        m_food = new Food(2, "Banana", new Category(), new ExpirationData(1, 2, 3, 4, 5, 6), "enjoy!");
         setContentView(R.layout.food_details);
+        addButton = (Button) findViewById(R.id.add_food_button);
+        addButton.setOnClickListener(new Button.OnClickListener() {  
+
+			@Override
+			public void onClick(View arg0) {
+				Uri uri = Uri.parse("content://com.shelflifeapp.android.provider/myfood_table/insert/" + 0);
+				ContentValues cv = new ContentValues();
+				cv.put(MyFoodTable.FOOD_KEY_FOODID, m_food.getId());
+				Uri idUri = getContentResolver().insert(uri, cv);
+				//joke.setID(Long.parseLong(idUri.getLastPathSegment())); // ?????
+				//fillData();
+				Toast.makeText(FoodDetails.this, m_food.getName() + " Inserted", Toast.LENGTH_LONG).show();
+			}
+        });
         SimpleUpcPost s = new SimpleUpcPost();
         s.execute("");
     }
