@@ -7,21 +7,23 @@ import android.graphics.drawable.Drawable;
 
 public class MyFood extends Food
 {
+	public static final String SHELF_UNOPENED = "Shelf, Unopened";
+	public static final String SHELF_OPENED = "Shelf, Opened";
+	public static final String FRIDGE_UNOPENED = "Fridge, Unopened";
+	public static final String FRIDGE_OPENED = "Fridge, Opened";
+	public static final String FREEZER_UNOPENED = "Freezer, Unopened";
+	public static final String FREEZER_OPENED = "Freezer, Opened";
+	
 	private Date purchaseDate;
 	private Date openDate;
 	private int quantity;
 	private String notes;
 	private Drawable picture;
-	private State state;
-	
-	public enum State {
-		SHELF_UNOPENED, SHELF_OPENED,
-		FRIDGE_UNOPENED, FRIDGE_OPENED,
-		FREEZER_UNOPENED, FREEZER_OPENED
-	}
+	private String state;
 	
 	public MyFood(int id, String name, Category category, 
-			ExpirationData expirationData, String tips, State state, Date purchaseDate)
+			ExpirationData expirationData, String tips, String state, Date purchaseDate,
+			Date openDate, int quantity, String notes, Drawable picture)
 	{
 		super(id, name, category, expirationData, tips);
 		this.setState(state);
@@ -32,11 +34,11 @@ public class MyFood extends Food
 		this.setPicture(picture);
 	}
 
-	public State getState() {
+	public String getState() {
 		return state;
 	}
 
-	public void setState(State state) {
+	public void setState(String state) {
 		this.state = state;
 	}
 
@@ -85,22 +87,24 @@ public class MyFood extends Food
 	{
 		int initialDays;
 		int daysUsed;
-		if(state == State.SHELF_UNOPENED){
+		if(state == SHELF_UNOPENED){
 			initialDays = this.getExpirationData().getShelfUnopened();
-		}else if(state == State.SHELF_OPENED){
+		}else if(state == SHELF_OPENED){
 			initialDays = this.getExpirationData().getShelfOpened();
-		}else if(state == State.FRIDGE_UNOPENED){
+		}else if(state == FRIDGE_UNOPENED){
 			initialDays = this.getExpirationData().getFridgeUnopened();
-		}else if(state == State.FRIDGE_OPENED){
+		}else if(state == FRIDGE_OPENED){
 			initialDays = this.getExpirationData().getFridgeOpened();
-		}else if(state == State.FREEZER_UNOPENED){
+		}else if(state == FREEZER_UNOPENED){
 			initialDays = this.getExpirationData().getFreezerUnopened();
-		}else if(state == State.FREEZER_OPENED){
+		}else if(state == FREEZER_OPENED){
 			initialDays = this.getExpirationData().getFreezerOpened();
+		}else{
+			return "unknown";
 		}
 		
 		//return initialDays - daysUsed;
-		return "3 days";
+		return "a million days";
 	}
 	
 	

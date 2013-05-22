@@ -43,6 +43,10 @@ public class MyFoodListItem extends LinearLayout
 		displayFood(m_myFood);
 	}
 	
+	public MyFood getMyFood(){
+		return m_myFood;
+	}
+	
 	private void displayFood(MyFood myFood)
 	{
 		if (myFood != null)

@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
+import android.util.Log;
 
 public class FoodContentProvider extends ContentProvider {
 	/** The joke database. */
@@ -21,6 +22,7 @@ public class FoodContentProvider extends ContentProvider {
 	private static final int CATEGORY_ALL = 3;
 	private static final int FOOD_BYCAT = 4;
 	private static final int MYFOOD_BYCAT = 5;
+	private static final int MYFOOD_DELETE = 6;
 	
 	/** The authority for this content provider. */
 	private static final String AUTHORITY = "com.shelflifeapp.android.provider";
@@ -60,6 +62,7 @@ public class FoodContentProvider extends ContentProvider {
 		sURIMatcher.addURI(AUTHORITY, CATEGORY_TABLE + "/all", CATEGORY_ALL);
 		sURIMatcher.addURI(AUTHORITY, FOOD_TABLE + "/bycat/#", FOOD_BYCAT);
 		sURIMatcher.addURI(AUTHORITY, MYFOOD_TABLE + "/bycat/#", MYFOOD_BYCAT);
+		sURIMatcher.addURI(AUTHORITY, MYFOOD_TABLE + "/delete/#", MYFOOD_DELETE);
 	}
 	
 	@Override
@@ -101,13 +104,26 @@ public class FoodContentProvider extends ContentProvider {
 				orderBy = CategoryTable.FOOD_KEY_NAME + " ASC";
 				selection = null;
 				break;
+			case MYFOOD_ALL:
+				/** Make sure the projection is proper before querying. */
+				checkMyFoodColumns(projection);
+				/** Set up helper to query our jokes table. */
+				queryBuilder.setTables(MyFoodTable.DATABASE_TABLE_MYFOOD + ", " 
+						+ FoodTable.DATABASE_TABLE_FOOD);
+				orderBy = FoodTable.FOOD_KEY_NAME + " ASC";
+				queryBuilder.appendWhere(FoodTable.DATABASE_TABLE_FOOD + "." 
+						+ FoodTable.FOOD_KEY_ID + "=" 
+						+ MyFoodTable.DATABASE_TABLE_MYFOOD + "." 
+						+ MyFoodTable.FOOD_KEY_FOODID);
+				break;
 			case FOOD_BYCAT:
 				/** Make sure the projection is proper before querying. */
 				checkFoodColumns(projection);
 				/** Set up helper to query our jokes table. */
 				queryBuilder.setTables(FoodTable.DATABASE_TABLE_FOOD + ", " 
 						+ CategoryTable.DATABASE_TABLE_CATEGORY);
-				orderBy = FoodTable.DATABASE_TABLE_FOOD + "." + FoodTable.FOOD_KEY_NAME + " ASC";
+				orderBy = FoodTable.DATABASE_TABLE_FOOD + "." 
+						+ FoodTable.FOOD_KEY_NAME + " ASC";
 				String catId = uri.getLastPathSegment();
 				if(catId != null){
 					queryBuilder.appendWhere(FoodTable.FOOD_KEY_CATEGORY + "=" 
@@ -188,10 +204,10 @@ public class FoodContentProvider extends ContentProvider {
 	public int delete(Uri uri, String selection, String[] selectionArgs) {
 		SQLiteDatabase sqlDB = this.database.getWritableDatabase();
 		int rowsDeleted = 0;
-		if(sURIMatcher.match(uri) == FOOD_ALL){
-			String id = uri.getLastPathSegment();			
-			rowsDeleted = sqlDB.delete(FoodTable.DATABASE_TABLE_FOOD, 
-					FoodTable.FOOD_KEY_ID + "=" + id, null);
+		if(sURIMatcher.match(uri) == MYFOOD_DELETE){
+			String id = uri.getLastPathSegment();
+			rowsDeleted = sqlDB.delete(MyFoodTable.DATABASE_TABLE_MYFOOD, 
+					MyFoodTable.FOOD_KEY_ID + "=" + id, null);
 			if(rowsDeleted > 0){
 				getContext().getContentResolver().notifyChange(uri, null);
 			}
@@ -261,6 +277,38 @@ public class FoodContentProvider extends ContentProvider {
 	{
 		String[] available = { CategoryTable.FOOD_KEY_ID, CategoryTable.FOOD_KEY_NAME, 
 				CategoryTable.FOOD_KEY_ICON};
+		
+		if(projection != null) {
+			HashSet<String> requestedColumns = 
+				new HashSet<String>(Arrays.asList(projection));
+			HashSet<String> availableColumns = 
+				new HashSet<String>(Arrays.asList(available));
+			
+			if(!availableColumns.containsAll(requestedColumns))	{
+				throw new IllegalArgumentException("Unknown columns in projection");
+			}
+		}
+	}
+	
+	/**
+	 * Verifies the correct set of columns to return data from when performing 
+	 * a query.
+	 * 
+	 * @param projection
+	 * 						The set of columns about to be queried.
+	 */
+	private void checkMyFoodColumns(String[] projection)
+	{
+		String[] available = { FoodTable.DATABASE_TABLE_FOOD + "." 
+				+ FoodTable.FOOD_KEY_ID, FoodTable.FOOD_KEY_NAME, 
+				FoodTable.FOOD_KEY_CATEGORY, FoodTable.FOOD_KEY_SHELF_U, 
+				FoodTable.FOOD_KEY_SHELF_O, FoodTable.FOOD_KEY_FRIDGE_U,
+				FoodTable.FOOD_KEY_FRIDGE_O, FoodTable.FOOD_KEY_FREEZER_U,
+				FoodTable.FOOD_KEY_FREEZER_O, FoodTable.FOOD_KEY_TIPS,
+				MyFoodTable.DATABASE_TABLE_MYFOOD + "." + MyFoodTable.FOOD_KEY_ID, 
+				MyFoodTable.FOOD_KEY_FOODID, MyFoodTable.FOOD_KEY_PURCHASED, 
+				MyFoodTable.FOOD_KEY_OPENED, MyFoodTable.FOOD_KEY_QUANTITY, 
+				MyFoodTable.FOOD_KEY_PICTURE, MyFoodTable.FOOD_KEY_NOTES};
 		
 		if(projection != null) {
 			HashSet<String> requestedColumns = 
