@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.Toast;
 
 import com.actionbarsherlock.view.ActionMode;
 import com.actionbarsherlock.view.ActionMode.Callback;
@@ -88,7 +87,6 @@ public class MyFoodFragment extends SherlockListFragment
 
 			@Override
 			public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-				// TODO Auto-generated method stub
 				return false;
 			}
 
@@ -97,7 +95,6 @@ public class MyFoodFragment extends SherlockListFragment
 				switch (item.getItemId()) {
 	            case R.id.menu_remove:
 	            	removeFood(((MyFoodListItem) MyFoodFragment.this.getListView().getChildAt(selected_position)).getMyFood());
-	            	//Toast.makeText(MyFoodFragment.this.mContext, "Remove", Toast.LENGTH_LONG).show();
 	            	mode.finish();
 	                return true;
 	                

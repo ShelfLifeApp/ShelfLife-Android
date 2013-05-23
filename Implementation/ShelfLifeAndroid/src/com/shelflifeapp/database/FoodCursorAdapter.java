@@ -22,15 +22,15 @@ public class FoodCursorAdapter extends CursorAdapter {
 		int id = arg2.getInt(FoodTable.FOOD_COL_ID);
 		String name  = arg2.getString(FoodTable.FOOD_COL_NAME);
 		int category = arg2.getInt(FoodTable.FOOD_COL_CATEGORY);
-		//int shelf_u = arg2.getInt(FoodTable.FOOD_COL_SHELF_U);
-		//int shelf_o = arg2.getInt(FoodTable.FOOD_COL_SHELF_O);
-		//int fridge_u = arg2.getInt(FoodTable.FOOD_COL_FRIDGE_U);
-		//int fridge_o = arg2.getInt(FoodTable.FOOD_COL_FRIDGE_O);
-		//int freezer_u = arg2.getInt(FoodTable.FOOD_COL_FREEZER_U);
-		//int freezer_o = arg2.getInt(FoodTable.FOOD_COL_FREEZER_O);
+		int shelf_u = arg2.getInt(FoodTable.FOOD_COL_SHELF_U);
+		int shelf_o = arg2.getInt(FoodTable.FOOD_COL_SHELF_O);
+		int fridge_u = arg2.getInt(FoodTable.FOOD_COL_FRIDGE_U);
+		int fridge_o = arg2.getInt(FoodTable.FOOD_COL_FRIDGE_O);
+		int freezer_u = arg2.getInt(FoodTable.FOOD_COL_FREEZER_U);
+		int freezer_o = arg2.getInt(FoodTable.FOOD_COL_FREEZER_O);
 		String tips = arg2.getString(FoodTable.FOOD_COL_TIPS);
 
-		Food food = new Food(id, name, new Category(), new ExpirationData(2, 2, 2, 2, 2, 2), tips);		
+		Food food = new Food(id, name, new Category(), new ExpirationData(5, 5, 2, 2, 2, 2), tips);		
 		FoodListItem listItem = (FoodListItem) arg0;
 		listItem.setFood(food);		
 	}
@@ -48,7 +48,7 @@ public class FoodCursorAdapter extends CursorAdapter {
 		int freezer_o = arg1.getInt(FoodTable.FOOD_COL_FREEZER_O);
 		String tips = arg1.getString(FoodTable.FOOD_COL_TIPS);
 		
-		Food food = new Food(id, name, new Category(), new ExpirationData(2, 2, 2, 2, 2, 2), tips);
+		Food food = new Food(id, name, new Category(), new ExpirationData(5, 5, 2, 2, 2, 2), tips);
 		FoodListItem foodView = new FoodListItem(arg0, food);
 		return foodView;
 	}

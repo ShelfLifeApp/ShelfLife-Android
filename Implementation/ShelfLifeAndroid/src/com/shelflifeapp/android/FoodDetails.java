@@ -85,6 +85,7 @@ public class FoodDetails extends SherlockActivity
 					Uri uri = Uri.parse("content://com.shelflifeapp.android.provider/myfood_table/insert/" + 0);
 					ContentValues cv = new ContentValues();
 					cv.put(MyFoodTable.FOOD_KEY_FOODID, m_food.getId());
+					cv.put(MyFoodTable.FOOD_KEY_PURCHASED, "2013-05-21");
 					Uri idUri = getContentResolver().insert(uri, cv);
 					//joke.setID(Long.parseLong(idUri.getLastPathSegment())); // ?????
 					//fillData();

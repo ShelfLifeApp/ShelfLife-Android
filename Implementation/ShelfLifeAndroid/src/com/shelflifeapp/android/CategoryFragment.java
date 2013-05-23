@@ -71,10 +71,6 @@ private Context mContext;
 	  @Override
 	  public void onListItemClick(ListView l, View v, int position, long id) 
 	  {  
-		  //Intent intent = new Intent();
-          //intent.setClass(getActivity(), FoodActivity.class);
-          //intent.putExtra("category", ((FoodListItem) v).getId());
-          //startActivity(intent);
 		  int category = ((CategoryListItem) v).getCategoryId();
 		  Log.d("SPOCK", "Callback with Category: " + category);
 		  mCallback.onCategorySelected(category);

@@ -1,13 +1,13 @@
 package com.shelflifeapp.views;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.shelflifeapp.android.R;
-import com.shelflifeapp.models.Food;
 import com.shelflifeapp.models.MyFood;
 
 public class MyFoodListItem extends LinearLayout
@@ -17,6 +17,8 @@ public class MyFoodListItem extends LinearLayout
 	private TextView m_vwExpiration;
 	private ImageView m_vwIcon;
 	private ImageView m_vwIndicator;
+	
+	private static String EXPIRED = "Expired";
 	
 	private int ICON_INDICATOR = R.drawable.icon_indicator;
 	
@@ -56,6 +58,12 @@ public class MyFoodListItem extends LinearLayout
 			m_vwIndicator.setImageResource(ICON_INDICATOR);
 			m_vwState.setText(myFood.getState().toString());
 			m_vwExpiration.setText(myFood.getExpirationDaysLeft());
+			
+			if(EXPIRED.equals(myFood.getExpirationDaysLeft())){
+				m_vwExpiration.setTextColor(Color.RED);
+			}else{
+				m_vwExpiration.setTextColor(getResources().getColor(R.color.listitem_myfood_text_expire_color));
+			}
 		}
 	}
 	

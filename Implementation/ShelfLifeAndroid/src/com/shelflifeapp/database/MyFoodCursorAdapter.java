@@ -5,6 +5,7 @@ import java.util.Date;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.widget.CursorAdapter;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -39,8 +40,8 @@ public class MyFoodCursorAdapter extends CursorAdapter{
 		String notes  = arg2.getString(MyFoodTable.FOOD_COL_NOTES + FoodTable.FOOD_COL_TIPS + 1);
 		
 		MyFood food = new MyFood(id, name, new Category(), 
-				new ExpirationData(1, 2, 3, 4, 5, 6), 
-				tips, MyFood.SHELF_OPENED, new Date(), new Date(), quantity, notes, null);		
+				new ExpirationData(1, 1, 3, 4, 5, 6), 
+				tips, MyFood.SHELF_UNOPENED, MyFood.convertStringToDate(purchased), MyFood.convertStringToDate(opened), quantity, notes, null);		
 		MyFoodListItem listItem = (MyFoodListItem) arg0;
 		listItem.setMyFood(food);		
 	}
@@ -64,9 +65,16 @@ public class MyFoodCursorAdapter extends CursorAdapter{
 		int quantity  = arg1.getInt(MyFoodTable.FOOD_COL_QUANTITY + FoodTable.FOOD_COL_TIPS + 1);
 		String notes  = arg1.getString(MyFoodTable.FOOD_COL_NOTES + FoodTable.FOOD_COL_TIPS + 1);
 
+		Log.d("mgrap", "id: " + id);
+		Log.d("mgrap", "foodid: " + foodid);
+		Log.d("mgrap", "purchased: " + purchased);
+		Log.d("mgrap", "opened: " + opened);
+		Log.d("mgrap", "quantity: " + quantity);
+		Log.d("mgrap", "notes: " + notes);
+		
 		MyFood food = new MyFood(id, name, new Category(), 
 				new ExpirationData(1, 2, 3, 4, 5, 6), 
-				tips, MyFood.SHELF_OPENED, new Date(), new Date(), quantity, notes, null);
+				tips, MyFood.SHELF_UNOPENED, MyFood.convertStringToDate(purchased), MyFood.convertStringToDate(opened), quantity, notes, null);
 		MyFoodListItem foodView = new MyFoodListItem(arg0, food);
 		return foodView;
 	}
