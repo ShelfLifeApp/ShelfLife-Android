@@ -1,9 +1,7 @@
 package com.shelflifeapp.database;
 
 import com.shelflifeapp.models.Category;
-import com.shelflifeapp.models.ExpirationData;
-import com.shelflifeapp.models.Food;
-import com.shelflifeapp.views.FoodListItem;
+import com.shelflifeapp.views.CategoryListItem;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -22,9 +20,9 @@ public class CategoryCursorAdapter extends CursorAdapter {
 		int id = arg2.getInt(CategoryTable.FOOD_COL_ID);
 		String name  = arg2.getString(CategoryTable.FOOD_COL_NAME);
 
-		Food food = new Food(name, id);		
-		FoodListItem listItem = (FoodListItem) arg0;
-		listItem.setFood(food);		
+		Category cat = new Category(id, name, null);
+		CategoryListItem listItem = (CategoryListItem) arg0;
+		listItem.setCategory(cat);		
 	}
 
 	@Override
@@ -32,9 +30,11 @@ public class CategoryCursorAdapter extends CursorAdapter {
 		int id = arg1.getInt(CategoryTable.FOOD_COL_ID);
 		String name  = arg1.getString(CategoryTable.FOOD_COL_NAME);
 
-		Food food = new Food(name, id);
-		FoodListItem foodView = new FoodListItem(arg0, food);
-		return foodView;
+		Category cat = new Category(id, name, null);
+		CategoryListItem listItem = new CategoryListItem(arg0, cat);
+		listItem.setCategory(cat);
+		
+		return listItem;
 	}
 	
 

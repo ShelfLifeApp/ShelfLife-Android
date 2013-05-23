@@ -19,7 +19,7 @@ import android.widget.ListView;
 import com.shelflifeapp.database.CategoryCursorAdapter;
 import com.shelflifeapp.database.CategoryTable;
 import com.shelflifeapp.database.FoodDatabaseHelper;
-import com.shelflifeapp.views.FoodListItem;
+import com.shelflifeapp.views.CategoryListItem;
 import com.shelflifeapp.views.ShelfLifeListViewHeader;
 
 public class CategoryFragment extends ListFragment implements LoaderCallbacks<Cursor>{
@@ -75,7 +75,7 @@ private Context mContext;
           //intent.setClass(getActivity(), FoodActivity.class);
           //intent.putExtra("category", ((FoodListItem) v).getId());
           //startActivity(intent);
-		  int category = ((FoodListItem) v).getFoodId();
+		  int category = ((CategoryListItem) v).getCategoryId();
 		  Log.d("SPOCK", "Callback with Category: " + category);
 		  mCallback.onCategorySelected(category);
 	  }
