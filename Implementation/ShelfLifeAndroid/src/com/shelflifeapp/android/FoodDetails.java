@@ -19,14 +19,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TableLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.shelflifeapp.database.MyFoodTable;
-import com.shelflifeapp.models.Category;
-import com.shelflifeapp.models.ExpirationData;
 import com.shelflifeapp.models.Food;
 
 public class FoodDetails extends SherlockActivity 
@@ -41,6 +39,8 @@ public class FoodDetails extends SherlockActivity
 	private TextView fridgeUnopened;
 	private TextView freezerOpened;
 	private TextView freezerUnopened;
+	
+	private ImageView iconView;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) 
@@ -58,6 +58,9 @@ public class FoodDetails extends SherlockActivity
 			}			
 		}
         
+	    iconView = (ImageView) findViewById(R.id.food_details_plate_food);
+	    iconView.setImageResource(R.drawable.icon_fruit);
+	    
 	    foodName = (TextView) findViewById(R.id.food_name_text);
 	    shelfOpened = (TextView) findViewById(R.id.row2_shelf_opened);
 	    shelfUnopened = (TextView) findViewById(R.id.row2_shelf_unopened);

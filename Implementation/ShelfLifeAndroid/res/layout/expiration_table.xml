@@ -60,6 +60,8 @@
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:padding="10dp"
+	            android:textColor="@color/exp_table_text_loc"
+	            android:textStyle="bold"
 	            android:text="Shelf"/>
 	        
 	        <TextView
@@ -93,6 +95,8 @@
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:padding="10dp"
+	            android:textColor="@color/exp_table_text_loc"
+	            android:textStyle="bold"
 	            android:text="Fridge"/>
 	        
 	        <TextView
@@ -126,6 +130,8 @@
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:padding="10dp"
+	            android:textColor="@color/exp_table_text_loc"
+	            android:textStyle="bold"
 	            android:text="Freezer"/>
 	        
 	        <TextView

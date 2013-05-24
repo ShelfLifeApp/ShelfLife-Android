@@ -10,6 +10,9 @@
     
     <color name="listitem_myfood_background_content">#FFFFFF</color>
     <color name="listitem_myfood_background">#f1f0f2</color>   
+
+    <color name="placemat_background">#a5cb5d</color>
+    <color name="placemat_divider">#464c49</color>
     
     <color name="list_header_background">#a5cb5d</color>
     <color name="list_header_divider">#464c49</color>
@@ -17,6 +20,7 @@
     <color name="list_header_subtitle_color">#ffffff</color>
     <color name="exp_table_cell_border">#000000</color>
     <color name="activity_background">#f1f0f2</color>
-    <color name="exp_table_cell_bkgd">#f1f0f2</color>
     
+    <color name="exp_table_cell_bkgd">#f1f0f2</color>
+    <color name="exp_table_text_loc">#ffbb33</color>
 </resources>

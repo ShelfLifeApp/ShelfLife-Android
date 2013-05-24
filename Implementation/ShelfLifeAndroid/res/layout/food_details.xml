@@ -4,10 +4,37 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
    
+    <RelativeLayout
+        android:id="@+id/food_details_placemat"
+        android:layout_width="fill_parent"
+        android:layout_height="250dip"
+        android:background="@drawable/placemat_background"
+        android:layout_marginBottom="10dp"
+        >
+        <RelativeLayout
+            android:id="@+id/food_details_plate"
+            android:layout_width="235dip"
+            android:layout_height="235dip"
+            android:layout_centerInParent="true"
+            android:background="@drawable/plate_icon">
+       
+        	<ImageView
+    	   		android:id="@+id/food_details_plate_food"
+    	    	android:layout_width="100dp"
+    	    	android:layout_height="100dp"
+    	    	android:layout_centerInParent="true"
+    	    	/>
+            
+        </RelativeLayout>
+    	
+        
+    </RelativeLayout>
+    
 	<TextView android:id="@+id/food_name_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/ExpirationTable"
+        android:layout_below="@+id/food_details_placemat"
         android:text="Food"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -53,6 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ExpirationTable"
         android:text="Making SimpleUPC API Call..."
+        android:visibility="gone"
         />
 
 	
