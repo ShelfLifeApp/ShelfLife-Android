@@ -1043,7 +1043,7 @@ containing a value of this type.
         public static final int abs__textButton=0x7f060019;
         public static final int abs__title=0x7f060021;
         public static final int abs__up=0x7f060011;
-        public static final int action_settings=0x7f06006a;
+        public static final int action_settings=0x7f06006b;
         public static final int add_food_button=0x7f060051;
         public static final int database_list=0x7f060053;
         public static final int disableHome=0x7f06000f;
@@ -1067,15 +1067,16 @@ containing a value of this type.
         public static final int listitem_myfood_state=0x7f060059;
         public static final int listview_header_subtitle=0x7f06005d;
         public static final int listview_header_title=0x7f06005c;
-        public static final int menu_ab_barcode=0x7f06006c;
-        public static final int menu_ab_search=0x7f06006b;
-        public static final int menu_edit=0x7f06006d;
-        public static final int menu_remove=0x7f060069;
-        public static final int myfood_days_left_num=0x7f060062;
-        public static final int myfood_days_left_text=0x7f060063;
+        public static final int menu_ab_barcode=0x7f06006d;
+        public static final int menu_ab_search=0x7f06006c;
+        public static final int menu_edit=0x7f06006e;
+        public static final int menu_remove=0x7f06006a;
+        public static final int myfood_days_left_num=0x7f060063;
+        public static final int myfood_days_left_num_layout=0x7f060062;
+        public static final int myfood_days_left_text=0x7f060064;
         public static final int myfood_name_text=0x7f06005e;
-        public static final int myfood_notes_text=0x7f060065;
-        public static final int myfood_notes_title_text=0x7f060064;
+        public static final int myfood_notes_text=0x7f060066;
+        public static final int myfood_notes_title_text=0x7f060065;
         public static final int myfood_opened_text=0x7f060060;
         public static final int myfood_purchased_text=0x7f06005f;
         public static final int myfood_quantity_text=0x7f060061;
@@ -1110,11 +1111,11 @@ containing a value of this type.
         public static final int zxinglib_decode=0x7f060001;
         public static final int zxinglib_decode_failed=0x7f060002;
         public static final int zxinglib_decode_succeeded=0x7f060003;
-        public static final int zxinglib_preview_view=0x7f060066;
+        public static final int zxinglib_preview_view=0x7f060067;
         public static final int zxinglib_quit=0x7f060004;
         public static final int zxinglib_return_scan_result=0x7f060005;
-        public static final int zxinglib_status_view=0x7f060068;
-        public static final int zxinglib_viewfinder_view=0x7f060067;
+        public static final int zxinglib_status_view=0x7f060069;
+        public static final int zxinglib_viewfinder_view=0x7f060068;
     }
     public static final class integer {
         public static final int abs__max_action_buttons=0x7f0a0000;

@@ -76,14 +76,14 @@ public class ExpirationTable extends LinearLayout
 	
 	private void displayExpirationData(ExpirationData expirationData)
 	{
-		m_vwShelfOpened.setText(expirationData.getShelfOpened());
-		m_vwShelfUnopened.setText(expirationData.getShelfUnopened());
+		m_vwShelfOpened.setText("" + expirationData.getShelfOpened());
+		m_vwShelfUnopened.setText("" + expirationData.getShelfUnopened());
 		
-		m_vwFridgeOpened.setText(expirationData.getFridgeOpened());
-		m_vwFridgeOpened.setText(expirationData.getFridgeUnopened());
+		m_vwFridgeOpened.setText("" + expirationData.getFridgeOpened());
+		m_vwFridgeOpened.setText("" +expirationData.getFridgeUnopened());
 		
-		m_vwFreezerOpened.setText(expirationData.getFreezerOpened());
-		m_vwFreezerUnopened.setText(expirationData.getFreezerUnopened());
+		m_vwFreezerOpened.setText("" + expirationData.getFreezerOpened());
+		m_vwFreezerUnopened.setText("" + expirationData.getFreezerUnopened());
 	}
 	
 	

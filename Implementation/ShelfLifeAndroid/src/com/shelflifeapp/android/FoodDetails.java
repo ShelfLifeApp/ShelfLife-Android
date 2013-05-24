@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.shelflifeapp.database.MyFoodTable;
 import com.shelflifeapp.models.Food;
+import com.shelflifeapp.views.ExpirationTable;
 
 public class FoodDetails extends SherlockActivity 
 {
@@ -58,26 +59,10 @@ public class FoodDetails extends SherlockActivity
 			}			
 		}
         
-	    iconView = (ImageView) findViewById(R.id.food_details_plate_food);
-	    iconView.setImageResource(R.drawable.icon_fruit);
-	    
-	    foodName = (TextView) findViewById(R.id.food_name_text);
-	    shelfOpened = (TextView) findViewById(R.id.row2_shelf_opened);
-	    shelfUnopened = (TextView) findViewById(R.id.row2_shelf_unopened);
-	    fridgeOpened = (TextView) findViewById(R.id.row3_fridge_opened);
-	    fridgeUnopened = (TextView) findViewById(R.id.row3_fridge_unopened);
-	    freezerOpened = (TextView) findViewById(R.id.row4_freezer_opened);
-	    freezerUnopened = (TextView) findViewById(R.id.row4_freezer_unopened);
-	    
-	    if(m_food != null){
-	    	foodName.setText(m_food.getName());
-	    	shelfOpened.setText("" + m_food.getExpirationData().getShelfOpened());
-		    shelfUnopened.setText("" + m_food.getExpirationData().getShelfUnopened());
-		    fridgeOpened.setText("" + m_food.getExpirationData().getFridgeOpened());
-		    fridgeUnopened.setText("" + m_food.getExpirationData().getFridgeUnopened());
-		    freezerOpened.setText("" + m_food.getExpirationData().getFreezerOpened());
-		    freezerUnopened.setText("" + m_food.getExpirationData().getFreezerUnopened());
-	    }
+
+	    ExpirationTable expirationTable = (ExpirationTable) findViewById(R.id.ExpirationTable);
+	    expirationTable.setExpirationData(m_food.getExpirationData());
+
 	    
         addButton = (Button) findViewById(R.id.add_food_button);
         addButton.setOnClickListener(new Button.OnClickListener() {  
