@@ -41,28 +41,40 @@
        android:textColor="#000000" 
        />
 	
-	<TextView android:id="@+id/myfood_days_left_num"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_alignTop="@+id/myfood_name_text"
-       android:layout_alignRight="@+id/ExpirationTable"
-       android:layout_marginRight="20dp"
-       android:text="222"
-       android:textSize="50sp"
-       android:textStyle="bold"
-       android:textColor="@color/orange"
-       />
+	<RelativeLayout
+	    android:id="@+id/myfood_days_left_num_layout"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignTop="@+id/myfood_name_text"
+        android:layout_alignRight="@+id/ExpirationTable"
+        >
+	    
+	    	<TextView android:id="@+id/myfood_days_left_num"
+       			android:layout_width="wrap_content"
+       			android:layout_height="wrap_content"
+       			android:layout_marginRight="0dp"
+       			android:layout_centerHorizontal="true"
+			    android:text="1"
+			    android:textSize="50sp"
+			    android:textStyle="bold"
+			    android:textColor="@color/orange"
+			    android:layout_marginBottom="-15dip"
+			    />
 	
-	<TextView android:id="@+id/myfood_days_left_text"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_alignRight="@+id/ExpirationTable"
-       android:layout_below="@+id/myfood_days_left_num"
-       android:layout_marginRight="20dp"
-       android:text="days"
-       android:textStyle="bold"
-       android:textColor="@color/orange"
-       />
+			<TextView android:id="@+id/myfood_days_left_text"
+		       android:layout_width="wrap_content"
+		       android:layout_height="wrap_content"
+		       android:layout_below="@+id/myfood_days_left_num"
+		       android:layout_centerHorizontal="true"
+		       android:text="days"
+		       android:textStyle="bold"
+		       android:textColor="@color/orange"
+		       />
+	    
+	</RelativeLayout>
+	    
+	
+
     
     <com.shelflifeapp.views.ExpirationTable
         android:id="@+id/ExpirationTable"
