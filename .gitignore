@@ -6,22 +6,22 @@ Implementation/ShelfLifeAndroid/bin/*.apk
 Implementation/ShelfLifeAndroid/bin/*.dex
 
 # Java class files
-#Implementation/ShelfLifeAndroid/bin/classes/com/actionbarsherlock/*.class
-#Implementation/ShelfLifeAndroid/bin/classes/com/shelflifeapp/android/*.class
-#Implementation/ShelfLifeAndroid/bin/classes/com/shelflife/android/*.class
-#Implementation/ShelfLifeAndroid/bin/classes/com/SimpleUPC/android/*.class
+Implementation/ShelfLifeAndroid/bin/classes/com/actionbarsherlock/*.class
+Implementation/ShelfLifeAndroid/bin/classes/com/shelflifeapp/android/*.class
+Implementation/ShelfLifeAndroid/bin/classes/com/shelflife/android/*.class
+Implementation/ShelfLifeAndroid/bin/classes/com/SimpleUPC/android/*.class
 
 # generated files
-#Implementation/ShelfLifeAndroid/bin/
-#Implementation/ShelfLifeAndroid/gen/
-#Implementation/SimpleUPC/bin/
-#Implementation/SimpleUPC/gen/
-#Implementation/actionbarsherlock-i18n/bin/
-#Implementation/actionbarsherlock-i18n/gen/
-#Implementation/actionbarsherlock/bin/
-#Implementation/actionbarsherlock/gen/
-#Implementation/ZXingLib/bin/
-#Implementation/ZXingLib/gen/
+Implementation/ShelfLifeAndroid/bin/
+Implementation/ShelfLifeAndroid/gen/
+Implementation/SimpleUPC/bin/
+Implementation/SimpleUPC/gen/
+Implementation/actionbarsherlock-i18n/bin/
+Implementation/actionbarsherlock-i18n/gen/
+Implementation/actionbarsherlock/bin/
+Implementation/actionbarsherlock/gen/
+Implementation/ZXingLib/bin/
+Implementation/ZXingLib/gen/
 
 # Local configuration file (sdk path, etc)
 #Implementation/ShelfLifeAndroid/project.properties
