@@ -59,10 +59,8 @@ public class FoodDetails extends SherlockActivity
 			}			
 		}
         
-
 	    ExpirationTable expirationTable = (ExpirationTable) findViewById(R.id.ExpirationTable);
 	    expirationTable.setExpirationData(m_food.getExpirationData());
-
 	    
         addButton = (Button) findViewById(R.id.add_food_button);
         addButton.setOnClickListener(new Button.OnClickListener() {  
