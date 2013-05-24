@@ -27,6 +27,10 @@
             android:name="com.shelflifeapp.android.FoodDetails"
             android:label="Food Details" >
         </activity>
+        <activity
+            android:name="com.shelflifeapp.android.MyFoodDetails"
+            android:label="My Food Details" >
+        </activity>
         <provider android:name="com.shelflifeapp.database.FoodContentProvider"
 		          android:authorities="com.shelflifeapp.android.provider">
 		</provider>

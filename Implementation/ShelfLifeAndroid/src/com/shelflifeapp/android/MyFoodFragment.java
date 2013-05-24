@@ -129,7 +129,7 @@ public class MyFoodFragment extends SherlockListFragment
 
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		Intent i = new Intent(mContext, FoodDetails.class);
+		Intent i = new Intent(mContext, MyFoodDetails.class);
 		startActivity(i);
 	
 	}
