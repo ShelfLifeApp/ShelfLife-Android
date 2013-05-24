@@ -78,7 +78,7 @@ public class Food implements Parcelable
         }
     };
     
-    private Food(Parcel in) {
+    public Food(Parcel in) {
         id = in.readInt();
         name = in.readString();
         category = in.readParcelable(Category.class.getClassLoader());

@@ -74,7 +74,7 @@
         
     />
     
-    <TextView android:id="@+id/myfood_days_notes_title_text"
+    <TextView android:id="@+id/myfood_notes_title_text"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_alignLeft="@+id/ExpirationTable"
@@ -85,11 +85,11 @@
        android:layout_marginTop="10dp"
        />
     
-    <TextView android:id="@+id/myfood_days_notes_text"
+    <TextView android:id="@+id/myfood_notes_text"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_alignLeft="@+id/ExpirationTable"
-       android:layout_below="@+id/myfood_days_notes_title_text"
+       android:layout_below="@+id/myfood_notes_title_text"
        android:text="These are some great notes."      
        />
 

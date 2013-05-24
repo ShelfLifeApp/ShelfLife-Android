@@ -27,6 +27,7 @@ import com.shelflifeapp.database.FoodTable;
 import com.shelflifeapp.database.MyFoodCursorAdapter;
 import com.shelflifeapp.database.MyFoodTable;
 import com.shelflifeapp.models.MyFood;
+import com.shelflifeapp.views.FoodListItem;
 import com.shelflifeapp.views.MyFoodListItem;
 import com.shelflifeapp.views.ShelfLifeListViewHeader;
 
@@ -130,6 +131,7 @@ public class MyFoodFragment extends SherlockListFragment
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		Intent i = new Intent(mContext, MyFoodDetails.class);
+		i.putExtra("myfood", ((MyFoodListItem) v).getMyFood());
 		startActivity(i);
 	
 	}

@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import android.graphics.drawable.Drawable;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
 public class MyFood extends Food
@@ -164,5 +166,32 @@ public class MyFood extends Food
 	public static int diff(int y1, int m1, int d1, int y2, int m2, int d2) {
 	  return julianDay(y1, m1, d1) - julianDay(y2, m2, d2);
 	}
+	
+	@Override
+	public void writeToParcel(Parcel arg0, int arg1) {
+		super.writeToParcel(arg0, arg1);
+		arg0.writeValue(purchaseDate);
+		arg0.writeValue(openDate);
+		arg0.writeInt(quantity);
+		arg0.writeString(state);		
+	}
+	
+	public static final Parcelable.Creator<MyFood> CREATOR = new Parcelable.Creator<MyFood>() {
+        public MyFood createFromParcel(Parcel in) {
+            return new MyFood(in);
+        }
+
+        public MyFood[] newArray(int size) {
+            return new MyFood[size];
+        }
+    };
+    
+    public MyFood(Parcel in) {
+        super(in);
+        purchaseDate = (Calendar) in.readValue(Calendar.class.getClassLoader());
+        openDate = (Calendar) in.readValue(Calendar.class.getClassLoader());
+        quantity = in.readInt();
+        notes = in.readString();
+    }
 	
 }
