@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/table_shape">
@@ -9,39 +9,46 @@
 	<TableLayout
 	    android:background="@drawable/table_shape"
 	    android:id="@+id/state_table"
-	    android:layout_width="wrap_content"
+	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
 	    android:layout_margin="2dp"
 	    android:gravity="center" >
 	    
 	    <TableRow
+	        android:layout_weight="1"
 	        android:id="@+id/row1_state"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content">       
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent">       
 	        
 	        <TextView
-	            android:background="@drawable/cell_shape" 
+	            android:layout_weight="1"
+	            android:background="@drawable/cell_shape_dark" 
 	            android:id="@+id/row1_state_location"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
+	            android:gravity="center_horizontal"
 	            android:padding="10dp"
 	            android:text="Location"
 	            android:textStyle="bold"/>
 	        
 	        <TextView
-	            android:background="@drawable/cell_shape" 
+	            android:layout_weight="2.5"
+	            android:background="@drawable/cell_shape_dark" 
 	            android:id="@+id/row1_state_opened"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
+	            android:gravity="center_horizontal"
 	            android:padding="10dp"
-	            android:text="Opened"
+	            android:text=" Opened "
 	            android:textStyle="bold"/>
 	        
 	        <TextView
-	            android:background="@drawable/cell_shape" 
+	            android:layout_weight="2.5"
+	            android:background="@drawable/cell_shape_dark" 
 	            android:id="@+id/row1_state_unopened"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
+	            android:gravity="center_horizontal"
 	            android:padding="10dp"
 	            android:text="Unopened"
 	            android:textStyle="bold"/>
@@ -49,34 +56,39 @@
 	        </TableRow>
 	        
 	    	<TableRow
+	    	    android:layout_weight="1"
 	        android:id="@+id/row2_shelf"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
 	        android:layout_gravity="center_horizontal">
 	        
 	        <TextView
-	            android:background="@drawable/cell_shape" 
+	            android:layout_weight="1"
+	            android:background="@drawable/cell_shape_dark" 
 	            android:id="@+id/row2_shelf_location"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
+	            android:gravity="center_horizontal"
 	            android:padding="10dp"
 	            android:textColor="@color/exp_table_text_loc"
 	            android:textStyle="bold"
 	            android:text="Shelf"/>
 	        
 	        <TextView
+	            android:layout_weight="2.5"
 	            android:background="@drawable/cell_shape" 
 	            android:id="@+id/row2_shelf_opened"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
 	            android:padding="10dp"
 	            android:text="3"
 	            android:gravity="center_horizontal"/>
 	        
 	        <TextView
+	            android:layout_weight="2.5"
 	            android:id="@+id/row2_shelf_unopened"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
 	            android:background="@drawable/cell_shape"
 	            android:gravity="center_horizontal"
 	            android:padding="10dp"
@@ -85,34 +97,39 @@
 	        </TableRow>
 	        
 	    	<TableRow
+	    	    android:layout_weight="1"
 	        android:id="@+id/row3_fridge"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content">
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent">
 	        
 	        <TextView
-	            android:background="@drawable/cell_shape" 
+	            android:layout_weight="1"
+	            android:background="@drawable/cell_shape_dark" 
 	            android:id="@+id/row3_fridge_location"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
+	            android:gravity="center_horizontal"
 	            android:padding="10dp"
 	            android:textColor="@color/exp_table_text_loc"
 	            android:textStyle="bold"
 	            android:text="Fridge"/>
 	        
 	        <TextView
+	            android:layout_weight="2.5"
 	            android:background="@drawable/cell_shape" 
 	            android:id="@+id/row3_fridge_opened"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
 	            android:padding="10dp"
 	            android:text="2"
 	            android:gravity="center_horizontal"/>
 	        
 	        <TextView
+	            android:layout_weight="2.5"
 	            android:background="@drawable/cell_shape" 
 	            android:id="@+id/row3_fridge_unopened"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
 	            android:padding="10dp"
 	            android:text="5"
 	            android:gravity="center_horizontal"/>
@@ -120,34 +137,39 @@
 	        </TableRow>
 	        
 	    	<TableRow
+	    	    android:layout_weight="1"
 	        android:id="@+id/row4_freezer"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content">
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent">
 	        
 	        <TextView
-	            android:background="@drawable/cell_shape" 
+	            android:layout_weight="1"
+	            android:background="@drawable/cell_shape_dark" 
 	            android:id="@+id/row4_freezer_location"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
+	            android:gravity="center_horizontal"
 	            android:padding="10dp"
 	            android:textColor="@color/exp_table_text_loc"
 	            android:textStyle="bold"
 	            android:text="Freezer"/>
 	        
 	        <TextView
+	            android:layout_weight="2.5"
 	            android:background="@drawable/cell_shape" 
 	            android:id="@+id/row4_freezer_opened"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
 	            android:padding="10dp"
 	            android:text="1"
 	            android:gravity="center_horizontal"/>
 	        
 	        <TextView
+	            android:layout_weight="2.5"
 	            android:background="@drawable/cell_shape" 
 	            android:id="@+id/row4_freezer_unopened"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
 	            android:padding="10dp"
 	            android:text="6"
 	            android:gravity="center_horizontal"/>

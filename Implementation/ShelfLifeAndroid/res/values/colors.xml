@@ -24,6 +24,7 @@
     <color name="exp_table_cell_border">#000000</color>
     <color name="activity_background">#f1f0f2</color>
     
+    <color name="exp_table_cell_dk_bkgd">#cdcdcd</color>
     <color name="exp_table_cell_bkgd">#f1f0f2</color>
-    <color name="exp_table_text_loc">#ffbb33</color>
+    <color name="exp_table_text_loc">#ff8800</color>
 </resources>

@@ -76,16 +76,24 @@ public class ExpirationTable extends LinearLayout
 	
 	private void displayExpirationData(ExpirationData expirationData)
 	{
-		m_vwShelfOpened.setText("" + expirationData.getShelfOpened());
-		m_vwShelfUnopened.setText("" + expirationData.getShelfUnopened());
+		m_vwShelfOpened.setText(formatData(expirationData.getShelfOpened()));
+		m_vwShelfUnopened.setText(formatData(expirationData.getShelfUnopened()));
 		
-		m_vwFridgeOpened.setText("" + expirationData.getFridgeOpened());
-		m_vwFridgeOpened.setText("" +expirationData.getFridgeUnopened());
+		m_vwFridgeOpened.setText(formatData(expirationData.getFridgeOpened()));
+		m_vwFridgeUnopened.setText(formatData(expirationData.getFridgeUnopened()));
 		
-		m_vwFreezerOpened.setText("" + expirationData.getFreezerOpened());
-		m_vwFreezerUnopened.setText("" + expirationData.getFreezerUnopened());
+		m_vwFreezerOpened.setText(formatData(expirationData.getFreezerOpened()));
+		m_vwFreezerUnopened.setText(formatData(expirationData.getFreezerUnopened()));
 	}
 	
-	
+	private String formatData(int days)
+	{
+		if (days == 0)
+			return "<1 day";
+		else if (days == 1)
+			return "1 day";
+		else 
+			return days + " days";
+	}
 	
 }
