@@ -27,8 +27,10 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.shelflifeapp.database.MyFoodTable;
 import com.shelflifeapp.models.Food;
 import com.shelflifeapp.views.ExpirationTable;
+import com.slewson.simpleupc.SimpleUpcApi;
+import com.slewson.simpleupc.SimpleUpcResponse;
 
-public class FoodDetails extends SherlockActivity 
+public class FoodDetails extends SherlockActivity
 {
 	Button addButton; 
 	private Food m_food;
@@ -81,71 +83,5 @@ public class FoodDetails extends SherlockActivity
 				}
 			}
         });
-        SimpleUpcPost s = new SimpleUpcPost();
-        s.execute("");
-    }
-    
-    private class SimpleUpcPost extends AsyncTask<String, Void, String>
-    {
-    	private String getPostInfo()
-    	{
-    		JSONObject postObject = new JSONObject();
-    		JSONObject paramsObject = new JSONObject();
-
-    		try 
-    		{
-        		paramsObject.put("upc", "073731001059");
-        		
-        		postObject.put("auth", "etxXV93BmMwtwlAHTRjbKaOOaF0T2Y");
-				postObject.put("method", "FetchProductByUPC");
-				postObject.put("params", paramsObject);
-				postObject.put("returnFormat", "JSON");
-				
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			Log.d("SPOCK", postObject.toString());
-			return postObject.toString();
-    		
-    	}
-    	
-    	
-		@Override
-		protected String doInBackground(String... arg0) 
-		{
-			try
-			{
-				HttpParams httpParams = new BasicHttpParams();
-				HttpConnectionParams.setConnectionTimeout(httpParams, 10000);
-				HttpConnectionParams.setSoTimeout(httpParams, 10000);
-				HttpClient client = new DefaultHttpClient(httpParams);
-				
-				HttpPost post = new HttpPost("http://api.simpleupc.com/v1.php");
-				StringEntity se = new StringEntity(getPostInfo());
-				
-				post.setEntity(se);
-				//post.setHeader("Accept", "application/json");
-			    //post.setHeader("Content-type", "application/json");
-			    
-			    ResponseHandler<String> responseHandler = new BasicResponseHandler();
-			    String response = client.execute(post, responseHandler);
-			    return response;
-			}
-			catch (Exception e)
-			{
-				e.printStackTrace();
-				return "uh-oh";
-			}
-		}
-		
-		@Override
-		protected void onPostExecute(String arg)
-		{
-			TextView tv = (TextView) findViewById(R.id.food_details_simpleupc);
-			tv.setText(arg);
-			//Toast.makeText(FoodDetails.this, arg, Toast.LENGTH_LONG).show();
-		}
-    	
     }
 }

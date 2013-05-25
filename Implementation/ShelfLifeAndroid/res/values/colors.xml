@@ -6,7 +6,10 @@
     <color name="listitem_myfood_text_category_color">#929292</color>
     
     <color name="listitem_background_content">#FFFFFF</color>
-    <color name="listitem_background">#f1f0f2</color>    
+    <color name="listitem_background">#f1f0f2</color>   
+    <color name="listitem_shade">#cdcdcd</color> 
+    <color name="listitem_shade_selected">#ff8800</color>
+    <color name="listitem_background_content_selected">#ffbb33</color>
     
     <color name="listitem_myfood_background_content">#FFFFFF</color>
     <color name="listitem_myfood_background">#f1f0f2</color>   
