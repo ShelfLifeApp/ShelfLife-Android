@@ -28,6 +28,8 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
 	
 	private SearchView mSearchView;
 	
+	private final int SCAN_BARCODE = 0;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         
@@ -89,7 +91,7 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
 	        	Intent intent = new Intent("com.google.zxing.client.android.SCAN");
 	        	intent.putExtra("com.google.zxing.client.android.SCAN.SCAN_MODE", 
 	        			"QR_CODE_MODE");
-	        	startActivityForResult(intent, 0);
+	        	startActivityForResult(intent, SCAN_BARCODE);
 	            return true;
 	        case R.id.menu_ab_search:	        		           
 	        	return true;	        
@@ -103,33 +105,17 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		switch(requestCode) {
-			case IntentIntegrator.REQUEST_CODE: {
-				if (resultCode != RESULT_CANCELED) {
-					IntentResult scanResult = 
-						IntentIntegrator.parseActivityResult(requestCode, 
-								resultCode, data);
-					if (scanResult != null) {
-						String upc = scanResult.getContents();
-						Toast.makeText(mContext, upc, Toast.LENGTH_LONG).show();
-			 
-						//put whatever you want to do with the code here
-						/*Intent intentVar;						
-						intentVar = new Intent(this, 
-								BarCodeViewerActivity.class);
-						intentVar.putExtra("upc", upc);
-						this.startActivity(intentVar);*/
-						//this.getIntent().putExtra("upc", upc);
-						//this.startActivity(this.getIntent());
-						Intent i = new Intent(mContext, FoodDetails.class);
-						  startActivity(i);
-					}
-					else{
-						Toast.makeText(mContext, "upc is null", Toast.LENGTH_LONG).show();
-					}
-				}
-				break;
-			}	
+		switch(requestCode) 
+		{
+			case SCAN_BARCODE:
+			{
+	            String contents = data.getStringExtra("SCAN_RESULT");
+	            String format = data.getStringExtra("SCAN_RESULT_FORMAT");
+	            
+				Intent searchResults = new Intent(mContext, SearchResultsActivity.class);
+				searchResults.putExtra("BARCODE", contents);
+				startActivity(searchResults);
+			}
 		}
 	}
     

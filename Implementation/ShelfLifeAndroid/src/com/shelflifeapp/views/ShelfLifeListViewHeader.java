@@ -37,7 +37,7 @@ public class ShelfLifeListViewHeader extends LinearLayout
 	
 	private void displayTitles(String title, String subtitle)
 	{
-		if (title != null && subtitle != null)
+		if (mTitle != null && mSubtitle != null)
 		{
 			m_vwTitle.setText(title);
 			m_vwSubtitle.setText(subtitle);

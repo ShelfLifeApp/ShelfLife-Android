@@ -2,8 +2,12 @@ package com.shelflifeapp.android;
 
 import java.io.IOException;
 
+import jim.h.common.android.lib.zxing.integrator.IntentIntegrator;
+import jim.h.common.android.lib.zxing.integrator.IntentResult;
+
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.net.Uri;
@@ -15,6 +19,7 @@ import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.shelflifeapp.database.CategoryCursorAdapter;
 import com.shelflifeapp.database.CategoryTable;
@@ -67,6 +72,12 @@ private Context mContext;
 	    getLoaderManager().initLoader(LOADER_ID, null, this);
 	    this.getListView().setAdapter(this.m_catAdapter);	    
 	  }
+	  
+	   @Override
+	   public void onActivityResult(int requestCode, int resultCode, Intent data) 
+	   {
+			super.onActivityResult(requestCode, resultCode, data);
+	   }
 
 	  @Override
 	  public void onListItemClick(ListView l, View v, int position, long id) 

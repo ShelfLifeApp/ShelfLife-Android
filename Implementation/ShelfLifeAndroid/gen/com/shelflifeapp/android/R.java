@@ -1052,7 +1052,7 @@ containing a value of this type.
         public static final int abs__textButton=0x7f060019;
         public static final int abs__title=0x7f060021;
         public static final int abs__up=0x7f060011;
-        public static final int action_settings=0x7f06006b;
+        public static final int action_settings=0x7f06006c;
         public static final int add_food_button=0x7f060051;
         public static final int database_list=0x7f060053;
         public static final int disableHome=0x7f06000f;
@@ -1076,11 +1076,11 @@ containing a value of this type.
         public static final int listitem_myfood_state=0x7f060059;
         public static final int listview_header_subtitle=0x7f06005d;
         public static final int listview_header_title=0x7f06005c;
-        public static final int menu_ab_barcode=0x7f06006d;
-        public static final int menu_ab_search=0x7f06006c;
-        public static final int menu_ab_settings=0x7f06006e;
-        public static final int menu_edit=0x7f06006f;
-        public static final int menu_remove=0x7f06006a;
+        public static final int menu_ab_barcode=0x7f06006e;
+        public static final int menu_ab_search=0x7f06006d;
+        public static final int menu_ab_settings=0x7f06006f;
+        public static final int menu_edit=0x7f060070;
+        public static final int menu_remove=0x7f06006b;
         public static final int myfood_days_left_num=0x7f060063;
         public static final int myfood_days_left_num_layout=0x7f060062;
         public static final int myfood_days_left_text=0x7f060064;
@@ -1107,6 +1107,7 @@ containing a value of this type.
         public static final int row4_freezer_location=0x7f060048;
         public static final int row4_freezer_opened=0x7f060049;
         public static final int row4_freezer_unopened=0x7f06004a;
+        public static final int search_list_view=0x7f060067;
         public static final int showCustom=0x7f06000e;
         public static final int showHome=0x7f06000b;
         public static final int showTitle=0x7f06000d;
@@ -1121,11 +1122,11 @@ containing a value of this type.
         public static final int zxinglib_decode=0x7f060001;
         public static final int zxinglib_decode_failed=0x7f060002;
         public static final int zxinglib_decode_succeeded=0x7f060003;
-        public static final int zxinglib_preview_view=0x7f060067;
+        public static final int zxinglib_preview_view=0x7f060068;
         public static final int zxinglib_quit=0x7f060004;
         public static final int zxinglib_return_scan_result=0x7f060005;
-        public static final int zxinglib_status_view=0x7f060069;
-        public static final int zxinglib_viewfinder_view=0x7f060068;
+        public static final int zxinglib_status_view=0x7f06006a;
+        public static final int zxinglib_viewfinder_view=0x7f060069;
     }
     public static final class integer {
         public static final int abs__max_action_buttons=0x7f0a0000;
@@ -1161,9 +1162,10 @@ containing a value of this type.
         public static final int listitem_myfood=0x7f03001b;
         public static final int listview_header=0x7f03001c;
         public static final int myfood_details=0x7f03001d;
-        public static final int sherlock_spinner_dropdown_item=0x7f03001e;
-        public static final int sherlock_spinner_item=0x7f03001f;
-        public static final int zxinglib_capture=0x7f030020;
+        public static final int searchresults=0x7f03001e;
+        public static final int sherlock_spinner_dropdown_item=0x7f03001f;
+        public static final int sherlock_spinner_item=0x7f030020;
+        public static final int zxinglib_capture=0x7f030021;
     }
     public static final class menu {
         public static final int context_action_menu=0x7f0c0000;

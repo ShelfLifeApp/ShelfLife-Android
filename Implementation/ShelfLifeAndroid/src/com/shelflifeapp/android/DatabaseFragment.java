@@ -87,6 +87,12 @@ public class DatabaseFragment extends ListFragment
 	    this.getListView().setAdapter(this.m_foodAdapter);	    
 	  }
 
+	   @Override
+	   public void onActivityResult(int requestCode, int resultCode, Intent data) 
+	   {
+			super.onActivityResult(requestCode, resultCode, data);
+	   }
+	  
 	  @Override
 	  public void onListItemClick(ListView l, View v, int position, long id) 
 	  {
