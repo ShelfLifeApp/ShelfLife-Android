@@ -37,6 +37,8 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
         setContentView(R.layout.activity_main);
         
         ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         ActionBar.Tab databaseTab = actionBar.newTab().setText("All Foods");
         ActionBar.Tab myFoodTab = actionBar.newTab().setText("My Food");

@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -41,6 +42,9 @@ public class SearchResultsActivity extends SherlockActivity implements SimpleUpc
     { 
     	super.onCreate(savedInstanceState);       
         setContentView(R.layout.searchresults);
+        
+        ActionBar actionBar = this.getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         
         Bundle data = this.getIntent().getExtras();
         String result = data.getString("BARCODE");

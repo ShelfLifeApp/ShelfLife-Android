@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.shelflifeapp.database.MyFoodTable;
 import com.shelflifeapp.models.Food;
@@ -51,12 +52,17 @@ public class FoodDetails extends SherlockActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.food_details);
         
+        
         Bundle foodBundle = this.getIntent().getExtras();
-	    if(foodBundle == null){
+	    if(foodBundle == null)
+	    {
 			Log.d("shelflife", "Bundle is null");
-		}else{
+		}
+	    else
+	    {
 			m_food = foodBundle.getParcelable("food");
-			if(m_food == null){
+			if(m_food == null)
+			{
 				Log.d("shelflife", "food is null");
 			}			
 		}
@@ -65,20 +71,22 @@ public class FoodDetails extends SherlockActivity
 	    expirationTable.setExpirationData(m_food.getExpirationData());
 	    
         addButton = (Button) findViewById(R.id.add_food_button);
-        addButton.setOnClickListener(new Button.OnClickListener() {  
-
+        addButton.setOnClickListener(new Button.OnClickListener() 
+        {  
 			@Override
-			public void onClick(View arg0) {
-				if(m_food != null){
+			public void onClick(View arg0) 
+			{
+				if(m_food != null)
+				{
 					Uri uri = Uri.parse("content://com.shelflifeapp.android.provider/myfood_table/insert/" + 0);
 					ContentValues cv = new ContentValues();
 					cv.put(MyFoodTable.FOOD_KEY_FOODID, m_food.getId());
 					cv.put(MyFoodTable.FOOD_KEY_PURCHASED, "2013-05-21");
 					Uri idUri = getContentResolver().insert(uri, cv);
-					//joke.setID(Long.parseLong(idUri.getLastPathSegment())); // ?????
-					//fillData();
 					Toast.makeText(FoodDetails.this, m_food.getName() + " Inserted", Toast.LENGTH_LONG).show();
-				}else{
+				}
+				else
+				{
 					Toast.makeText(FoodDetails.this, "Insert Failed", Toast.LENGTH_LONG).show();
 				}
 			}

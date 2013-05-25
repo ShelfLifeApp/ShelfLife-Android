@@ -181,6 +181,7 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
 	
 	public Cursor fetchFoodByStringQuery(String query)
 	{
+		// NOT IMPLEMENTED YET, JUST COPIED fetchAllFood()
 		Cursor mCursor = myDataBase.query(CategoryTable.DATABASE_TABLE_CATEGORY, 
 			    new String[] { CategoryTable.FOOD_KEY_ID, 
 				CategoryTable.FOOD_KEY_NAME, CategoryTable.FOOD_KEY_ICON },
