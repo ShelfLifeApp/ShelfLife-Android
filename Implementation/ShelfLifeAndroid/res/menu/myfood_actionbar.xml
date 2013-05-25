@@ -3,5 +3,6 @@
 	<item android:id="@+id/menu_edit"
 	    android:title="Edit"
 	    android:showAsAction="always"
+	    android:icon="@drawable/edit_icon"
 	    />
 </menu>

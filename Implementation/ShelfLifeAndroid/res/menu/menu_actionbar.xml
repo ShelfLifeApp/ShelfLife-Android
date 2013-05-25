@@ -8,6 +8,11 @@
 	    />
 	<item android:id="@+id/menu_ab_barcode"
 	    android:title="@string/menu_ab_scanner"
-	    android:icon="@drawable/icon_scan"
+	    android:icon="@drawable/icon_barcode3"
 	    android:showAsAction="always"/>
+	
+	<item android:id="@+id/menu_ab_settings"
+	    android:title="Settings"
+	    android:showAsAction="never"/>
+	
 </menu>
