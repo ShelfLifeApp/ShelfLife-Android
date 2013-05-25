@@ -109,6 +109,7 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
 		{
 			case SCAN_BARCODE:
 			{
+				
 	            String contents = data.getStringExtra("SCAN_RESULT");
 	            String format = data.getStringExtra("SCAN_RESULT_FORMAT");
 	            

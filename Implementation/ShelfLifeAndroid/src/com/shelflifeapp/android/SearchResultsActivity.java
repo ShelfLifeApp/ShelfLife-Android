@@ -44,7 +44,7 @@ public class SearchResultsActivity extends SherlockActivity implements SimpleUpc
         
         Bundle data = this.getIntent().getExtras();
         String result = data.getString("BARCODE");
-        Toast.makeText(SearchResultsActivity.this, result, Toast.LENGTH_LONG).show();
+        Toast.makeText(SearchResultsActivity.this, "Barcode: " + result, Toast.LENGTH_LONG).show();
         
         listView = (ListView) findViewById(R.id.search_list_view);
         listView.setDividerHeight(0);
@@ -177,7 +177,7 @@ public class SearchResultsActivity extends SherlockActivity implements SimpleUpc
 
 	@Override
 	public void onFetchProductByUpc(SimpleUpcResponse response) {
-		Toast.makeText(SearchResultsActivity.this, response.getCategory(), Toast.LENGTH_LONG).show();
+		Toast.makeText(SearchResultsActivity.this, "SimpleUPC Response: " + response.getCategory(), Toast.LENGTH_LONG).show();
 		
 	}
 }
