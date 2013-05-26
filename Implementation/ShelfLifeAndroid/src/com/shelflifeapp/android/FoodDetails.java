@@ -13,6 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.MenuItem;
 import com.shelflifeapp.database.MyFoodTable;
 import com.shelflifeapp.models.Food;
 import com.shelflifeapp.views.ExpirationTable;
@@ -52,6 +54,8 @@ public class FoodDetails extends SherlockActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.food_details);
         
+        ActionBar actionBar = this.getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         
         Bundle foodBundle = this.getIntent().getExtras();
 	    if(foodBundle == null)
@@ -92,4 +96,17 @@ public class FoodDetails extends SherlockActivity
 			}
         });
     }
+    
+    @Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) 
+	    {
+	    	case android.R.id.home:
+	    		finish();
+	    		return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
 }

@@ -19,6 +19,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.actionbarsherlock.view.MenuItem;
 import com.shelflifeapp.database.CategoryCursorAdapter;
 import com.shelflifeapp.database.CategoryTable;
 import com.shelflifeapp.database.FoodCursorAdapter;
@@ -86,7 +87,7 @@ public class DatabaseFragment extends ListFragment
 	    getLoaderManager().initLoader(LOADER_ID, null, this);
 	    this.getListView().setAdapter(this.m_foodAdapter);	    
 	  }
-
+	  
 	   @Override
 	   public void onActivityResult(int requestCode, int resultCode, Intent data) 
 	   {

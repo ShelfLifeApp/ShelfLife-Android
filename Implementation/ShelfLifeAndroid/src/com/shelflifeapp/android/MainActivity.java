@@ -21,15 +21,15 @@ import com.actionbarsherlock.widget.SearchView;
 public class MainActivity extends SherlockFragmentActivity implements CategoryFragment.CategoryFragmentSelectedListener{
 
 	private final String TAG = "MAIN_ACTIVITY";
-	
+
 	private Context mContext = MainActivity.this;
-	
+
 	private Menu m_vwMenu;
-	
+
 	private SearchView mSearchView;
-	
+
 	private final int SCAN_BARCODE = 0;
-	
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         
@@ -37,8 +37,6 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
         setContentView(R.layout.activity_main);
         
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         ActionBar.Tab databaseTab = actionBar.newTab().setText("All Foods");
         ActionBar.Tab myFoodTab = actionBar.newTab().setText("My Food");
@@ -67,17 +65,21 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
 		    @Override
 		    public boolean onQueryTextSubmit(String query) {
 		        // collapse the view ?
+				Intent searchResults = new Intent(mContext, SearchResultsActivity.class);
+				searchResults.putExtra(SearchResultsActivity.SEARCH_STRING, query);
+				startActivity(searchResults);
 		        menu.findItem(R.id.menu_ab_search).collapseActionView();
+		        
 		        return true;
 		    }
-	
+
 		    @Override
 		    public boolean onQueryTextChange(String newText) {
 		        // search goes here !!
 		        // listAdapter.getFilter().filter(query);
 		        return true;
 		    }
-		
+
 	    });
 		return true;
     }
@@ -111,12 +113,12 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
 		{
 			case SCAN_BARCODE:
 			{
-				
+
 	            String contents = data.getStringExtra("SCAN_RESULT");
 	            String format = data.getStringExtra("SCAN_RESULT_FORMAT");
-	            
+
 				Intent searchResults = new Intent(mContext, SearchResultsActivity.class);
-				searchResults.putExtra("BARCODE", contents);
+				searchResults.putExtra(SearchResultsActivity.SEARCH_UPC, contents);
 				startActivity(searchResults);
 			}
 		}

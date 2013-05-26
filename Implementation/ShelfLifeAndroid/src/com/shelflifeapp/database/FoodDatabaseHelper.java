@@ -29,6 +29,7 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
 	
 	private SQLiteDatabase myDataBase;
 	
+	
 	/**
 	 * Create a helper object to create, open, and/or manage a database.
 	 * 
@@ -181,16 +182,23 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
 	
 	public Cursor fetchFoodByStringQuery(String query)
 	{
-		// NOT IMPLEMENTED YET, JUST COPIED fetchAllFood()
-		Cursor mCursor = myDataBase.query(CategoryTable.DATABASE_TABLE_CATEGORY, 
-			    new String[] { CategoryTable.FOOD_KEY_ID, 
-				CategoryTable.FOOD_KEY_NAME, CategoryTable.FOOD_KEY_ICON },
-				null, null, null, null, null);
-	 
-	  if (mCursor != null) {
-	   mCursor.moveToFirst();
+		String WHERE_CLAUSE = FoodTable.FOOD_KEY_NAME + " = " + "'" +  query + "'";
+		
+		Cursor mCursor = myDataBase.query(FoodTable.DATABASE_TABLE_FOOD, 
+				   new String[] { FoodTable.FOOD_KEY_ID, FoodTable.FOOD_KEY_NAME },
+				   WHERE_CLAUSE, 
+				   null, 
+				   null, 
+				   null, 
+				   null);
+		 
+	  if (mCursor != null) 
+	  {
+		  mCursor.moveToFirst();
 	  }
+	  
 	  return mCursor;
+
 	}
 	
 	public Cursor fetchAllMyFood() {		 

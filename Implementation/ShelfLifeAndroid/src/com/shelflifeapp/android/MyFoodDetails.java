@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -35,6 +36,9 @@ public class MyFoodDetails extends SherlockActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.myfood_details);
+        
+        ActionBar actionBar = this.getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         
         Bundle foodBundle = this.getIntent().getExtras();
 	    if(foodBundle == null){
@@ -88,10 +92,14 @@ public class MyFoodDetails extends SherlockActivity
     @Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle item selection
-	    switch (item.getItemId()) {
+	    switch (item.getItemId()) 
+	    {
 	        case R.id.menu_edit:
 	        	Toast.makeText(this, "Edit Selected", Toast.LENGTH_LONG).show();
-	            return true;	        
+	            return true;	
+	    	case android.R.id.home:
+	    		finish();
+	    		return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
