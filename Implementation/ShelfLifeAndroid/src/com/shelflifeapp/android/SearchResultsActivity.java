@@ -45,6 +45,8 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
 	public final static String SEARCH_UPC = "SEARCH_UPC";
 	public final static String SEARCH_STRING = "SEARCH_STRING";
 	
+	private String searchItem = "beef";
+	
 	private FoodCursorAdapter m_foodAdapter;
 	
 	private FoodDatabaseHelper myDbHelper;
@@ -57,23 +59,40 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
         
         ActionBar actionBar = this.getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        
-        Bundle data = this.getIntent().getExtras();
-        
-        String upc = data.getString(SEARCH_UPC);
-        if (upc != null)
-        	Toast.makeText(SearchResultsActivity.this, "UPC: " + upc, Toast.LENGTH_LONG).show();
-        
-        String search = data.getString(SEARCH_STRING);
-        if (search != null)
-        	Toast.makeText(SearchResultsActivity.this, "Search: " + search, Toast.LENGTH_LONG).show();       
-        
+ 
         listView = (ListView) findViewById(R.id.search_list_view);
         listView.setDividerHeight(0);
         listView.addHeaderView(new ShelfLifeListViewHeader(mContext, "Search Results", "SEARCH GOES HERE"));
         
-	    myDbHelper = new FoodDatabaseHelper(this.mContext, null, null, 9);
+	    setUpDatabase();
+	    
+	    searchForItem();
+
+    }
+    
+    private void searchForItem()
+    {
+        Bundle data = this.getIntent().getExtras();
         
+        String upc = data.getString(SEARCH_UPC);
+        if (upc != null)
+        {
+	    	SimpleUpcApi simpleUpcApi = new SimpleUpcApi(this);
+	    	simpleUpcApi.fetchProductByUpc(upc);
+        }
+        
+        String searchString = data.getString(SEARCH_STRING);
+        if (searchString != null)
+        {
+        	Toast.makeText(this, searchString, Toast.LENGTH_LONG).show();
+        	setUpLoader(searchString);
+        }	
+    }
+    
+    private void setUpDatabase()
+    {
+    	myDbHelper = new FoodDatabaseHelper(this.mContext, null, null, 9);
+    	
 	    try 
 	    {         
         	myDbHelper.createDataBase(); 
@@ -87,28 +106,14 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
         {       
         	throw sqle;        
         }
-	    
-        /* Right now, its just hard coded to search for all the foods that have the name
-         * equal to "Apple".  Its giving some errors about the columns or something.  
-         * 
-         * Also, in onLoadFinished, what does setListShown() due?
-         * 
-         * Maybe something to do with 
-         * Uri uri = Uri.parse("content://com.shelflifeapp.android.provider/food_table/");
-         * 
-         * I put the WHERE clause is in the fetchFoodByStringQuery(String query) in the helper
-         * but is it supposed to go there???  Makes more sense that it should be in the helper
-         */
-
+    }
+    
+    private void setUpLoader(String searchText)
+    {
+    	searchItem = searchText;
 	    this.m_foodAdapter = new FoodCursorAdapter(mContext, null, 0);
 	    getSupportLoaderManager().initLoader(LOADER_ID, null, this);
-	    listView.setAdapter(this.m_foodAdapter);	
-
-	    if (upc != null)
-	    {
-	    	SimpleUpcApi simpleUpcApi = new SimpleUpcApi(this);
-	    	simpleUpcApi.fetchProductByUpc(upc);
-	    }
+	    listView.setAdapter(this.m_foodAdapter);
     }
     
     @Override
@@ -189,7 +194,7 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
 				FoodTable.FOOD_KEY_FREEZER_O,
 				FoodTable.FOOD_KEY_TIPS};
 		
-		Uri uri = Uri.parse("content://com.shelflifeapp.android.provider/food_table/byname/Apple");
+		Uri uri = Uri.parse("content://com.shelflifeapp.android.provider/food_table/byname/" + searchItem);
 		return new CursorLoader(mContext, uri, projection, null, null, 
 				null);
 	}
@@ -220,6 +225,13 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
 	@Override
 	public void onFetchProductByUpc(SimpleUpcResponse response) 
 	{
-		Toast.makeText(SearchResultsActivity.this, "SimpleUPC Response: " + response.getCategory(), Toast.LENGTH_LONG).show();
+		if (response.isSuccess())
+		{
+			setUpLoader(response.getCategory());
+		}
+		else
+		{
+			Toast.makeText(this, "Unable to look up UPC", Toast.LENGTH_LONG).show();
+		}
 	}
 }
