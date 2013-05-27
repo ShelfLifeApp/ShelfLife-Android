@@ -8,8 +8,9 @@ Implementation/ShelfLifeAndroid/bin/*.dex
 # Java class files
 Implementation/ShelfLifeAndroid/bin/classes/com/actionbarsherlock/*.class
 Implementation/ShelfLifeAndroid/bin/classes/com/shelflifeapp/android/*.class
-Implementation/ShelfLifeAndroid/bin/classes/com/shelflife/android/*.class
+Implementation/ShelfLifeAndroid/bin/classes/com/shelflifeapp/android/*.class
 Implementation/ShelfLifeAndroid/bin/classes/com/SimpleUPC/android/*.class
+Implementation/ShelfLifeAndroid/bin/classes/com/slewson/simpleupc/*.class
 
 # generated files
 Implementation/ShelfLifeAndroid/bin/

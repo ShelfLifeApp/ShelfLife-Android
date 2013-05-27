@@ -1,5 +1,6 @@
 package com.shelflifeapp.android;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -109,17 +110,24 @@ public class FoodDetails extends SherlockActivity
 		{
 			case KEY_WARNING_AGREE:
 			{
-				boolean agreed = data.getBooleanExtra(KEY_DATA_AGREE, false);
-				
-				if (agreed)
+				if (resultCode == Activity.RESULT_CANCELED)
 				{
-					prefs.edit().putBoolean(PREF_KEY_AGREE, agreed).commit();
-				}
-				else
-				{
-					prefs.edit().putBoolean(PREF_KEY_AGREE, agreed).commit();
 					this.finish();
 				}
+				else if (resultCode == Activity.RESULT_OK)
+				{
+					boolean agreed = data.getBooleanExtra(KEY_DATA_AGREE, false);
+					
+					if (agreed)
+					{
+						prefs.edit().putBoolean(PREF_KEY_AGREE, agreed).commit();
+					}
+					else
+					{
+						prefs.edit().putBoolean(PREF_KEY_AGREE, agreed).commit();
+						this.finish();
+					}
+				}	
 			}
 		}
 	}
