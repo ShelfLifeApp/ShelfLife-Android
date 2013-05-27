@@ -3,7 +3,9 @@ package com.shelflifeapp.android;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,16 +22,23 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.shelflifeapp.database.MyFoodTable;
 import com.shelflifeapp.models.MyFood;
 import com.shelflifeapp.views.MyFoodListItem;
 
 public class EditFoodActivity extends SherlockActivity  {
 	
-	private final int SHELF = 0;
-	private final int FRIDGE = 1;
-	private final int FREEZER = 2;
+	private final static int SHELF = 0;
+	private final static int FRIDGE = 1;
+	private final static int FREEZER = 2;
+	
+	public final static int ADD = 3;
+	public final static int EDIT = 4;
 	
 	private MyFood m_myfood;
+	private int foodid;
+	private int operation;
+	
 	private EditText myFoodName;
 	private DatePicker purchased;
 	private RadioGroup openedBool;
@@ -51,10 +60,18 @@ public class EditFoodActivity extends SherlockActivity  {
 	    if(foodBundle == null){
 			Log.d("shelflife", "Bundle is null");
 		}else{
-			m_myfood = foodBundle.getParcelable("food");
+			m_myfood = foodBundle.getParcelable("myfood");
 			if(m_myfood == null){
 				Log.d("shelflife", "food is null");
-			}			
+			}
+			foodid = foodBundle.getInt("foodid");
+			if(foodid == 0){
+				Log.d("shelflife", "foodid is 0");
+			}
+			operation = foodBundle.getInt("operation");
+			if(operation != ADD && operation != EDIT){
+				Log.d("shelflife", "operation error");
+			}
 		}
         
 	    myFoodName = (EditText) findViewById(R.id.edit_name_text);
@@ -64,7 +81,7 @@ public class EditFoodActivity extends SherlockActivity  {
 	    opened = (DatePicker) findViewById(R.id.edit_open_date);
 	    state = (Spinner) findViewById(R.id.state_spinner);
 	    quantity = (EditText) findViewById(R.id.edit_quantity_text);
-	    //notes = (EditText) findViewById(R.id.edit_notes_text);
+	    notes = (EditText) findViewById(R.id.edit_notes_text);
 	    
 	    openedBool.setOnCheckedChangeListener(
             new RadioGroup.OnCheckedChangeListener() {
@@ -119,7 +136,7 @@ public class EditFoodActivity extends SherlockActivity  {
 	    	}
 	    	quantity.setText("" + m_myfood.getQuantity());
 	    	if(m_myfood.getNotes() != null){
-	    		//notes.setText(m_myfood.getNotes());
+	    		notes.setText(m_myfood.getNotes());
 	    	}
 	    }
 	    else{
@@ -140,7 +157,11 @@ public class EditFoodActivity extends SherlockActivity  {
 	    switch (item.getItemId()) 
 	    {
 	        case R.id.menu_done:
-	        	final Calendar purchasedCal = Calendar.getInstance();
+	        	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    	    	sdf.setLenient(false);
+	        	
+	        	Calendar purchasedCal = Calendar.getInstance();
+	        	Calendar openedCal = null;
 	        	int purchaseDay = purchased.getDayOfMonth();
 	        	int purchaseMonth = purchased.getMonth();
 	        	int purchaseYear = purchased.getYear();
@@ -149,17 +170,24 @@ public class EditFoodActivity extends SherlockActivity  {
 	        	if(myFoodName.getText() != null){
 	        		m_myfood.setName(myFoodName.getText().toString());
 	        	}else{
-	        		m_myfood.setName(null);
+	        		Toast.makeText(this, "Food name must be specified.", 
+        					Toast.LENGTH_LONG).show();
+        			return false;
 	        	}
 	        	m_myfood.setPurchaseDate(purchasedCal);
 	        	
 	        	if(openedBool.getCheckedRadioButtonId() == R.id.edit_opened_true){
-	        		final Calendar openedCal = Calendar.getInstance();
+	        		openedCal = Calendar.getInstance();
 		        	int openedDay = opened.getDayOfMonth();
 		        	int openedMonth = opened.getMonth();
 		        	int openedYear = opened.getYear();
 		        	openedCal.set(openedYear, openedMonth, openedDay);
-	        		m_myfood.setOpenDate(openedCal);
+	        		if(purchasedCal.compareTo(openedCal) > 0){
+	        			Toast.makeText(this, "Open date must be on or after purchase date.", 
+	        					Toast.LENGTH_LONG).show();
+	        			return false;
+	        		}
+		        	m_myfood.setOpenDate(openedCal);
 	        		
 	        		if(state.getSelectedItemPosition() == SHELF){
 	        			m_myfood.setState(MyFood.SHELF_OPENED);
@@ -182,13 +210,50 @@ public class EditFoodActivity extends SherlockActivity  {
 	        	if(quantity.getText() != null){
 	        		m_myfood.setQuantity(Integer.parseInt(quantity.getText().toString()));
 	        	}else{
-	        		m_myfood.setQuantity(0);
+	        		Toast.makeText(this, "Quantity must be specified.", 
+        					Toast.LENGTH_LONG).show();
+        			return false;
 	        	}
-	        	/*if(notes.getText() != null){
+	        	if(notes.getText() != null){
 	        		m_myfood.setNotes(notes.getText().toString());
 	        	}else{
 	        		m_myfood.setNotes(null);
-	        	}*/
+	        	}
+	        	
+	        	/* put food in database */
+	        	if(operation == ADD){
+	        		
+	    	    	
+		        	Uri uri = Uri.parse("content://com.shelflifeapp.android.provider/myfood_table/insert/" + 0);
+					ContentValues cv = new ContentValues();
+					cv.put(MyFoodTable.FOOD_KEY_NAME, m_myfood.getName());
+					cv.put(MyFoodTable.FOOD_KEY_FOODID, foodid);
+					cv.put(MyFoodTable.FOOD_KEY_PURCHASED, sdf.format(m_myfood.getPurchaseDate().getTime()));
+					if(openedCal != null){
+						cv.put(MyFoodTable.FOOD_KEY_OPENED, sdf.format(m_myfood.getOpenDate().getTime()));
+					}
+					cv.put(MyFoodTable.FOOD_KEY_STATE, m_myfood.getState());
+					cv.put(MyFoodTable.FOOD_KEY_QUANTITY, m_myfood.getQuantity());
+					cv.put(MyFoodTable.FOOD_KEY_NOTES, m_myfood.getNotes());
+					Uri idUri = getContentResolver().insert(uri, cv);
+					Toast.makeText(this, m_myfood.getName() + " Inserted", Toast.LENGTH_LONG).show();
+					Log.d("id", "id: " + m_myfood.getId());
+					Log.d("id", "uri: " + idUri);
+	        	}else{
+	        		Uri uri = Uri.parse("content://com.shelflifeapp.android.provider/myfood_table/edit/" + m_myfood.getId());
+					ContentValues cv = new ContentValues();
+					cv.put(MyFoodTable.FOOD_KEY_NAME, m_myfood.getName());
+					cv.put(MyFoodTable.FOOD_KEY_PURCHASED, sdf.format(m_myfood.getPurchaseDate().getTime()));
+					if(openedCal != null){
+						cv.put(MyFoodTable.FOOD_KEY_OPENED, sdf.format(m_myfood.getOpenDate().getTime()));
+					}
+					cv.put(MyFoodTable.FOOD_KEY_STATE, m_myfood.getState());
+					cv.put(MyFoodTable.FOOD_KEY_QUANTITY, m_myfood.getQuantity());
+					cv.put(MyFoodTable.FOOD_KEY_NOTES, m_myfood.getNotes());
+					getContentResolver().update(uri, cv, null, null);
+					Toast.makeText(this, m_myfood.getName() + " Edited", Toast.LENGTH_LONG).show();
+	        	}
+	        	
 	        	Intent i = new Intent(this, MyFoodDetails.class);
 	    		i.putExtra("myfood", m_myfood);
 	    		startActivity(i);

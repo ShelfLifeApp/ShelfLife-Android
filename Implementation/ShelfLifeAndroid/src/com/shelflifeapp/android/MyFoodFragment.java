@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.net.Uri;
@@ -13,6 +15,7 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemLongClickListener;
 
@@ -132,14 +135,20 @@ public class MyFoodFragment extends SherlockListFragment
 		Intent i = new Intent(mContext, MyFoodDetails.class);
 		i.putExtra("myfood", ((MyFoodListItem) v).getMyFood());
 		startActivity(i);
+	}
 	
+	@Override
+	public void onResume(){
+		super.onResume();
+		fillData();
 	}
 	
 	@Override
 	public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
 		String[] projection = {FoodTable.DATABASE_TABLE_FOOD + "." 
 				+ FoodTable.FOOD_KEY_ID, 
-				FoodTable.FOOD_KEY_NAME,
+				FoodTable.DATABASE_TABLE_FOOD + "." 
+				+ FoodTable.FOOD_KEY_NAME,
 				FoodTable.FOOD_KEY_CATEGORY,
 				FoodTable.FOOD_KEY_SHELF_U,
 				FoodTable.FOOD_KEY_SHELF_O,
@@ -149,9 +158,11 @@ public class MyFoodFragment extends SherlockListFragment
 				FoodTable.FOOD_KEY_FREEZER_O,
 				FoodTable.FOOD_KEY_TIPS,
 				MyFoodTable.DATABASE_TABLE_MYFOOD + "." + MyFoodTable.FOOD_KEY_ID,
+				MyFoodTable.DATABASE_TABLE_MYFOOD + "." + MyFoodTable.FOOD_KEY_NAME,
 				MyFoodTable.FOOD_KEY_FOODID,
 				MyFoodTable.FOOD_KEY_PURCHASED,
 				MyFoodTable.FOOD_KEY_OPENED,
+				MyFoodTable.FOOD_KEY_STATE,
 				MyFoodTable.FOOD_KEY_QUANTITY,
 				MyFoodTable.FOOD_KEY_PICTURE,
 				MyFoodTable.FOOD_KEY_NOTES};

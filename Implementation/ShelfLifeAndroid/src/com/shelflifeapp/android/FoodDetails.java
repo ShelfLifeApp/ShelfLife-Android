@@ -42,6 +42,7 @@ public class FoodDetails extends SherlockActivity
 	private TextView fridgeUnopened;
 	private TextView freezerOpened;
 	private TextView freezerUnopened;
+	private TextView tips;
 	
 	private ImageView iconView;
 	
@@ -87,8 +88,15 @@ public class FoodDetails extends SherlockActivity
 			}			
 		}
         
+	    foodName = (TextView) findViewById(R.id.food_name_text);	    
 	    ExpirationTable expirationTable = (ExpirationTable) findViewById(R.id.ExpirationTable);
-	    expirationTable.setExpirationData(m_food.getExpirationData());
+	    tips = (TextView) findViewById(R.id.food_details_tip_content);
+	    
+	    if(m_food != null){
+	    	foodName.setText(m_food.getName());
+	    	expirationTable.setExpirationData(m_food.getExpirationData());
+	    	tips.setText(m_food.getTips());
+	    }
 	    
         addButton = (Button) findViewById(R.id.add_food_button);
         addButton.setOnClickListener(new Button.OnClickListener() 
@@ -105,9 +113,11 @@ public class FoodDetails extends SherlockActivity
 					Toast.makeText(FoodDetails.this, m_food.getName() + " Inserted", Toast.LENGTH_LONG).show();*/
 					Intent i = new Intent(FoodDetails.this, EditFoodActivity.class);
 					
-					MyFood myfood = new MyFood(m_food.getId(), m_food.getName(), m_food.getCategory(),
+					MyFood myfood = new MyFood(0, m_food.getName(), m_food.getCategory(),
 							m_food.getExpirationData(), m_food.getTips(), null, null, null, 0, null, null);
-					i.putExtra("food", myfood);
+					i.putExtra("myfood", myfood);
+					i.putExtra("foodid", m_food.getId());
+					i.putExtra("operation", EditFoodActivity.ADD);
 					startActivity(i);
 				}
 				else

@@ -143,7 +143,9 @@ public class MyFoodDetails extends SherlockActivity
 	    {
 	        case R.id.menu_edit:
 	        	Intent i = new Intent(MyFoodDetails.this, EditFoodActivity.class);
-				i.putExtra("food", m_myfood);
+				i.putExtra("myfood", m_myfood);
+				i.putExtra("operation", EditFoodActivity.EDIT);
+				i.putExtra("foodid", m_myfood.getId());
 				startActivity(i);
 	            return true;	
 	    	case android.R.id.home:
