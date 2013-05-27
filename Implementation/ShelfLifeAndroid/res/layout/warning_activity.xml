@@ -18,18 +18,35 @@
         	android:id="@+id/warning_image"
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
-        	android:src="@drawable/plate_icon"
+        	android:src="@drawable/warning_icon_smaller"
         	android:layout_centerHorizontal="true"
         />
+        
+        <TextView
+            android:id="@+id/warning_message_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/warning_image"
+            android:layout_centerHorizontal="true"
+            android:text="WARNING!"
+            android:textColor="@color/warning_text_title_color"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            />
     
     	<TextView
         	android:id="@+id/warning_message"
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
-        	android:layout_below="@+id/warning_image"
+        	android:layout_below="@+id/warning_message_title"
         	android:layout_centerHorizontal="true"
-        	android:text="You agree that these are estimates"
-        />
+        	android:paddingLeft="30dp"
+        	android:paddingRight="30dp"
+        	android:textStyle="bold"
+        	android:layout_gravity="center_vertical|right"
+        	android:text="@string/warning_message">
+    	    </TextView>
+        
         
     </RelativeLayout>
 	

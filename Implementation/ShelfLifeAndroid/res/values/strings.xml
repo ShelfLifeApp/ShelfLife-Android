@@ -11,5 +11,7 @@
     <string name="state_fridge">Fridge</string>
     <string name="state_freezer">Freezer</string>
     <string name="select_a_state">Select a state</string>
+    
+    <string name="warning_message">ShelfLife provides suggestions for product expiration dates.  External conditions can affect the shelf life of products.  Please exercise caution on any questionable foods.  ShelfLife is not responsible for any sickness or injury that may result from the consumption of any foods.</string>
 
 </resources>

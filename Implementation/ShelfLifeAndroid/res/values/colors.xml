@@ -33,5 +33,6 @@
     <color name="warning_button_agree_unselected">#b4d478</color>
     <color name="warning_button_disagree_unselected">#e96363</color>
     <color name="warning_text_color">#FFFFFF</color>
+    <color name="warning_text_title_color">#ff8800</color>
     
 </resources>
