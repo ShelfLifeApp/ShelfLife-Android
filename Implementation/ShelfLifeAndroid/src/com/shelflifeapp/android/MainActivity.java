@@ -36,6 +36,10 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
         
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        //actionBar.setDisplayShowTitleEnabled(false);
+        //actionBar.setDisplayUseLogoEnabled(true);
+        //actionBar.setLogo(R.drawable.logo_name);
+        
         ActionBar.Tab databaseTab = actionBar.newTab().setText("All Foods");
         ActionBar.Tab myFoodTab = actionBar.newTab().setText("My Food");
         
