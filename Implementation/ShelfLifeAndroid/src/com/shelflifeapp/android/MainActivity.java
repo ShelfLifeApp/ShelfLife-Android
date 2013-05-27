@@ -1,7 +1,5 @@
 package com.shelflifeapp.android;
 
-import jim.h.common.android.lib.zxing.integrator.IntentIntegrator;
-import jim.h.common.android.lib.zxing.integrator.IntentResult;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;

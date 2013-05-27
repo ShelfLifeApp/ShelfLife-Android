@@ -121,9 +121,8 @@ public class MyFoodFragment extends SherlockListFragment
         }catch(SQLException sqle){       
         	throw sqle;        
         }
-	    
-	    Cursor myfoodCursor = myDbHelper.fetchAllMyFood();
-	    this.m_myfoodAdapter = new MyFoodCursorAdapter(mContext, myfoodCursor, 0);
+
+	    this.m_myfoodAdapter = new MyFoodCursorAdapter(mContext, null, 0);
 	    getLoaderManager().initLoader(LOADER_ID, null, this);
 	    this.getListView().setAdapter(this.m_myfoodAdapter);
 	}

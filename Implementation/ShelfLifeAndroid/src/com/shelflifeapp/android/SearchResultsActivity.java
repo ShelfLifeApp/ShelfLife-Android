@@ -99,9 +99,8 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
          * I put the WHERE clause is in the fetchFoodByStringQuery(String query) in the helper
          * but is it supposed to go there???  Makes more sense that it should be in the helper
          */
-        
-	    Cursor foodCursor = myDbHelper.fetchFoodByStringQuery("Apple");
-	    this.m_foodAdapter = new FoodCursorAdapter(mContext, foodCursor, 0);
+
+	    this.m_foodAdapter = new FoodCursorAdapter(mContext, null, 0);
 	    getSupportLoaderManager().initLoader(LOADER_ID, null, this);
 	    listView.setAdapter(this.m_foodAdapter);	
 
@@ -189,7 +188,7 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
 				FoodTable.FOOD_KEY_FREEZER_U,
 				FoodTable.FOOD_KEY_FREEZER_O,
 				FoodTable.FOOD_KEY_TIPS};
-		Uri uri = Uri.parse("content://com.shelflifeapp.android.provider/food_table/");
+		Uri uri = Uri.parse("content://com.shelflifeapp.android.provider/food_table/byname/Apple");
 		return new CursorLoader(mContext, uri, projection, null, null, 
 				null);
 	}

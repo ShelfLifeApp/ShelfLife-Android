@@ -2,9 +2,6 @@ package com.shelflifeapp.android;
 
 import java.io.IOException;
 
-import jim.h.common.android.lib.zxing.integrator.IntentIntegrator;
-import jim.h.common.android.lib.zxing.integrator.IntentResult;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -66,9 +63,8 @@ private Context mContext;
         }catch(SQLException sqle){       
         	throw sqle;        
         }
-	    
-	    Cursor catCursor = myDbHelper.fetchAllCategories();
-	    this.m_catAdapter = new CategoryCursorAdapter(mContext, catCursor, 0);
+
+	    this.m_catAdapter = new CategoryCursorAdapter(mContext, null, 0);
 	    getLoaderManager().initLoader(LOADER_ID, null, this);
 	    this.getListView().setAdapter(this.m_catAdapter);	    
 	  }

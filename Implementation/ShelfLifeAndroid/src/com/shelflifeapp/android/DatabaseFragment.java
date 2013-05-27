@@ -81,9 +81,8 @@ public class DatabaseFragment extends ListFragment
         }catch(SQLException sqle){       
         	throw sqle;        
         }
-	    
-	    Cursor foodCursor = myDbHelper.fetchAllFood();
-	    this.m_foodAdapter = new FoodCursorAdapter(mContext, foodCursor, 0);
+
+	    this.m_foodAdapter = new FoodCursorAdapter(mContext, null, 0);
 	    getLoaderManager().initLoader(LOADER_ID, null, this);
 	    this.getListView().setAdapter(this.m_foodAdapter);	    
 	  }

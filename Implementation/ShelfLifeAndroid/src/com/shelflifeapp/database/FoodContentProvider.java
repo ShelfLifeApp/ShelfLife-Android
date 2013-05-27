@@ -23,6 +23,7 @@ public class FoodContentProvider extends ContentProvider {
 	private static final int MYFOOD_BYCAT = 5;
 	private static final int MYFOOD_DELETE = 6;
 	private static final int MYFOOD_INSERT = 7;
+	private static final int FOOD_BYNAME = 8;
 	
 	private static final String AUTHORITY = "com.shelflifeapp.android.provider";
 	
@@ -49,6 +50,7 @@ public class FoodContentProvider extends ContentProvider {
 		sURIMatcher.addURI(AUTHORITY, MYFOOD_TABLE + "/bycat/#", MYFOOD_BYCAT);
 		sURIMatcher.addURI(AUTHORITY, MYFOOD_TABLE + "/delete/#", MYFOOD_DELETE);
 		sURIMatcher.addURI(AUTHORITY, MYFOOD_TABLE + "/insert/#", MYFOOD_INSERT);
+		sURIMatcher.addURI(AUTHORITY, FOOD_TABLE + "/byname/*", FOOD_BYNAME);
 	}
 	
 	@Override
@@ -104,6 +106,16 @@ public class FoodContentProvider extends ContentProvider {
 							+ CategoryTable.DATABASE_TABLE_CATEGORY + "." + CategoryTable.FOOD_KEY_ID);
 				}else{
 					queryBuilder.appendWhere(FoodTable.FOOD_KEY_CATEGORY + "=" + CategoryTable.FOOD_KEY_ID);
+				}
+				break;
+			case FOOD_BYNAME:
+				checkFoodColumns(projection);
+				queryBuilder.setTables(FoodTable.DATABASE_TABLE_FOOD);
+				orderBy = FoodTable.FOOD_KEY_NAME + " ASC";
+				String name = uri.getLastPathSegment();
+				if(name != null){
+					queryBuilder.appendWhere(FoodTable.FOOD_KEY_NAME + " = " 
+							+ "'" + name + "'");
 				}
 				break;
 			default:
