@@ -126,10 +126,13 @@ public class FoodDetails extends SherlockActivity
 			{
 				if (resultCode == Activity.RESULT_CANCELED)
 				{
+					Toast.makeText(this, "CANCELLED", Toast.LENGTH_LONG).show();
+					prefs.edit().putBoolean(PREF_KEY_AGREE, false).commit();
 					this.finish();
 				}
 				else if (resultCode == Activity.RESULT_OK)
 				{
+					Toast.makeText(this, "OKAY", Toast.LENGTH_LONG).show();
 					boolean agreed = data.getBooleanExtra(KEY_DATA_AGREE, false);
 					
 					if (agreed)
