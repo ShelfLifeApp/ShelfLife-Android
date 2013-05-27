@@ -46,7 +46,8 @@
             android:label="Warning" >
         </activity>
         <activity
-            android:name="com.shelflifeapp.android.EditFoodActivity"
+            android:name=".EditFoodActivity"
+            android:screenOrientation="portrait"
             android:label="Edit My Food" >
         </activity>
         <provider android:name="com.shelflifeapp.database.FoodContentProvider"
