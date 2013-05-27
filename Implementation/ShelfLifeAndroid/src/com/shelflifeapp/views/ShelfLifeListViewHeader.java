@@ -25,7 +25,7 @@ public class ShelfLifeListViewHeader extends LinearLayout
 		m_vwTitle = (TextView)findViewById(R.id.listview_header_title);
 		m_vwSubtitle = (TextView)findViewById(R.id.listview_header_subtitle);
 		
-		setTitles(mTitle, mSubtitle);
+		setTitles(title, subtitle);
 	}
 	
 	public void setTitles(String title, String subtitle)

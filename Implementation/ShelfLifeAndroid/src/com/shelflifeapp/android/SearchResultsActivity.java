@@ -188,6 +188,7 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
 				FoodTable.FOOD_KEY_FREEZER_U,
 				FoodTable.FOOD_KEY_FREEZER_O,
 				FoodTable.FOOD_KEY_TIPS};
+		
 		Uri uri = Uri.parse("content://com.shelflifeapp.android.provider/food_table/byname/Apple");
 		return new CursorLoader(mContext, uri, projection, null, null, 
 				null);

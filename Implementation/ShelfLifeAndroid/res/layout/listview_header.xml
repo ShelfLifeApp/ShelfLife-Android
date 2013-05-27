@@ -17,7 +17,7 @@
 	        android:id="@+id/listview_header_title"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="All Food"
+	        android:text="Title"
 	        android:textSize="17sp"
 	        android:textStyle="bold"
 	        android:textColor="@color/list_header_title_color"
@@ -27,7 +27,7 @@
 	        android:id="@+id/listview_header_subtitle"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="Browse Categories"
+	        android:text="Subtitle"
 	        android:textSize="13sp"
 	        android:textColor="@color/list_header_subtitle_color"
 	    />
