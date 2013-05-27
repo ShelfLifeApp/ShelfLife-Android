@@ -23,7 +23,8 @@ public class FoodContentProvider extends ContentProvider {
 	private static final int MYFOOD_BYCAT = 5;
 	private static final int MYFOOD_DELETE = 6;
 	private static final int MYFOOD_INSERT = 7;
-	private static final int FOOD_BYNAME = 8;
+	private static final int MYFOOD_EDIT = 8;
+	private static final int FOOD_BYNAME = 9;
 	
 	private static final String AUTHORITY = "com.shelflifeapp.android.provider";
 	
@@ -50,6 +51,7 @@ public class FoodContentProvider extends ContentProvider {
 		sURIMatcher.addURI(AUTHORITY, MYFOOD_TABLE + "/bycat/#", MYFOOD_BYCAT);
 		sURIMatcher.addURI(AUTHORITY, MYFOOD_TABLE + "/delete/#", MYFOOD_DELETE);
 		sURIMatcher.addURI(AUTHORITY, MYFOOD_TABLE + "/insert/#", MYFOOD_INSERT);
+		sURIMatcher.addURI(AUTHORITY, MYFOOD_TABLE + "/edit/#", MYFOOD_EDIT);
 		sURIMatcher.addURI(AUTHORITY, FOOD_TABLE + "/byname/*", FOOD_BYNAME);
 	}
 	
@@ -87,7 +89,7 @@ public class FoodContentProvider extends ContentProvider {
 				checkMyFoodColumns(projection);
 				queryBuilder.setTables(MyFoodTable.DATABASE_TABLE_MYFOOD + ", " 
 						+ FoodTable.DATABASE_TABLE_FOOD);
-				orderBy = FoodTable.FOOD_KEY_NAME + " ASC";
+				orderBy = MyFoodTable.DATABASE_TABLE_MYFOOD + "." + MyFoodTable.FOOD_KEY_NAME + " ASC";
 				queryBuilder.appendWhere(FoodTable.DATABASE_TABLE_FOOD + "." 
 						+ FoodTable.FOOD_KEY_ID + "=" 
 						+ MyFoodTable.DATABASE_TABLE_MYFOOD + "." 
@@ -177,10 +179,10 @@ public class FoodContentProvider extends ContentProvider {
 			String[] selectionArgs) {
 		SQLiteDatabase sqlDB = this.database.getWritableDatabase();
 		int rowsUpdated = 0;
-		if(sURIMatcher.match(uri) == FOOD_ALL){
+		if(sURIMatcher.match(uri) == MYFOOD_EDIT){
 			String id = uri.getLastPathSegment();			
-			rowsUpdated = sqlDB.update(FoodTable.DATABASE_TABLE_FOOD, values, 
-					FoodTable.FOOD_KEY_ID + "=" + id, null);
+			rowsUpdated = sqlDB.update(MyFoodTable.DATABASE_TABLE_MYFOOD, values, 
+					MyFoodTable.FOOD_KEY_ID + "=" + id, null);
 			if(rowsUpdated > 0){
 				getContext().getContentResolver().notifyChange(uri, null);
 			}
@@ -230,15 +232,18 @@ public class FoodContentProvider extends ContentProvider {
 	private void checkMyFoodColumns(String[] projection)
 	{
 		String[] available = { FoodTable.DATABASE_TABLE_FOOD + "." 
-				+ FoodTable.FOOD_KEY_ID, FoodTable.FOOD_KEY_NAME, 
+				+ FoodTable.FOOD_KEY_ID, FoodTable.DATABASE_TABLE_FOOD + "." 
+				+ FoodTable.FOOD_KEY_NAME, 
 				FoodTable.FOOD_KEY_CATEGORY, FoodTable.FOOD_KEY_SHELF_U, 
 				FoodTable.FOOD_KEY_SHELF_O, FoodTable.FOOD_KEY_FRIDGE_U,
 				FoodTable.FOOD_KEY_FRIDGE_O, FoodTable.FOOD_KEY_FREEZER_U,
 				FoodTable.FOOD_KEY_FREEZER_O, FoodTable.FOOD_KEY_TIPS,
-				MyFoodTable.DATABASE_TABLE_MYFOOD + "." + MyFoodTable.FOOD_KEY_ID, 
+				MyFoodTable.DATABASE_TABLE_MYFOOD + "." + MyFoodTable.FOOD_KEY_ID,
+				MyFoodTable.DATABASE_TABLE_MYFOOD + "." + MyFoodTable.FOOD_KEY_NAME,
 				MyFoodTable.FOOD_KEY_FOODID, MyFoodTable.FOOD_KEY_PURCHASED, 
-				MyFoodTable.FOOD_KEY_OPENED, MyFoodTable.FOOD_KEY_QUANTITY, 
-				MyFoodTable.FOOD_KEY_PICTURE, MyFoodTable.FOOD_KEY_NOTES};
+				MyFoodTable.FOOD_KEY_OPENED, MyFoodTable.FOOD_KEY_STATE, 
+				MyFoodTable.FOOD_KEY_QUANTITY, MyFoodTable.FOOD_KEY_PICTURE, 
+				MyFoodTable.FOOD_KEY_NOTES};
 		
 		if(projection != null) {
 			HashSet<String> requestedColumns = 
