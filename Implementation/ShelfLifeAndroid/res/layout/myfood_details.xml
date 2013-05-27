@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" 
+    android:scrollbars="none"
     android:isScrollContainer="true">
 
 <LinearLayout 
@@ -125,9 +126,12 @@
     
     <com.shelflifeapp.views.ExpirationTable
         android:id="@+id/ExpirationTable"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+	    android:layout_marginTop="10dp"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginLeft="25dip"
+	    android:layout_marginRight="25dip"
+	    android:layout_marginBottom="10dip"
 		android:layout_centerHorizontal="true"
         android:layout_below="@+id/myfood_quantity_text"
         
@@ -167,6 +171,7 @@
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_alignLeft="@+id/ExpirationTable"
+       android:layout_alignRight="@+id/ExpirationTable"
        android:layout_below="@+id/myfood_notes_title_text"
        android:hint="Add some notes."      
        />
