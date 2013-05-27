@@ -11,6 +11,9 @@ import android.os.Bundle;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -23,12 +26,13 @@ import com.actionbarsherlock.widget.SearchView;
 import com.shelflifeapp.database.FoodCursorAdapter;
 import com.shelflifeapp.database.FoodDatabaseHelper;
 import com.shelflifeapp.database.FoodTable;
+import com.shelflifeapp.views.FoodListItem;
 import com.shelflifeapp.views.ShelfLifeListViewHeader;
 import com.slewson.simpleupc.SimpleUpcApi;
 import com.slewson.simpleupc.SimpleUpcApi.SimpleUpcApiListener;
 import com.slewson.simpleupc.SimpleUpcResponse;
 
-public class SearchResultsActivity extends SherlockFragmentActivity implements SimpleUpcApiListener, LoaderCallbacks<Cursor>
+public class SearchResultsActivity extends SherlockFragmentActivity implements SimpleUpcApiListener, LoaderCallbacks<Cursor>, OnItemClickListener
 {	
 	private Context mContext = SearchResultsActivity.this;
 	
@@ -51,6 +55,12 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
 	
 	private FoodDatabaseHelper myDbHelper;
 	
+	private ShelfLifeListViewHeader mHeader;
+	
+	private String HEADER_TITLE = "Search For Food";
+	private String HEADER_SUBTITLE_SEARCHING = "Searching...";
+	private String HEADER_SUBTITLE_RESULT = "Results for ";
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) 
     { 
@@ -62,11 +72,31 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
  
         listView = (ListView) findViewById(R.id.search_list_view);
         listView.setDividerHeight(0);
-        listView.addHeaderView(new ShelfLifeListViewHeader(mContext, "Search Results", "SEARCH GOES HERE"));
+        mHeader = new ShelfLifeListViewHeader(mContext, HEADER_TITLE, HEADER_SUBTITLE_SEARCHING);
+        listView.addHeaderView(mHeader);
+        listView.setOnItemClickListener(this);
         
 	    setUpDatabase();
 	    
 	    searchForItem();
+    }
+    
+    private String formatSearchString(String searchString)
+    {
+    	String toBeCapped = "";
+    	if (!"".equals(searchString))
+    	{
+    		String[] tokens = searchString.split("\\s");
+    		toBeCapped = "";
+
+    		for(int i = 0; i < tokens.length; i++)
+    		{
+    			char capLetter = Character.toUpperCase(tokens[i].charAt(0));
+    			toBeCapped +=  " " + capLetter + tokens[i].substring(1, tokens[i].length());
+    		}
+    	}
+    	
+    	return toBeCapped.trim();
     }
     
     private void searchForItem()
@@ -83,7 +113,6 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
         String searchString = data.getString(SEARCH_STRING);
         if (searchString != null)
         {
-        	Toast.makeText(this, searchString, Toast.LENGTH_LONG).show();
         	setUpLoader(searchString);
         }	
     }
@@ -109,7 +138,8 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
     
     private void setUpLoader(String searchText)
     {
-    	searchItem = searchText;
+    	searchItem = formatSearchString(searchText);
+    	mHeader.setTitles(HEADER_TITLE, HEADER_SUBTITLE_RESULT + searchText);
 	    this.m_foodAdapter = new FoodCursorAdapter(mContext, null, 0);
 	    getSupportLoaderManager().initLoader(LOADER_ID, null, this);
 	    listView.setAdapter(this.m_foodAdapter);
@@ -171,7 +201,7 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    	Toast.makeText(SearchResultsActivity.this, "MainONResult", Toast.LENGTH_LONG).show();
+    	//Toast.makeText(SearchResultsActivity.this, "MainONResult", Toast.LENGTH_LONG).show();
 		switch(requestCode) 
 		{
 			case SCAN_BARCODE:
@@ -194,7 +224,6 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
 				FoodTable.FOOD_KEY_TIPS};
 		
 		String uriText = "content://com.shelflifeapp.android.provider/food_table/byname/" + searchItem;
-		Toast.makeText(this, uriText, Toast.LENGTH_LONG).show();
 		Uri uri = Uri.parse(uriText);
 		return new CursorLoader(mContext, uri, projection, null, null, 
 				null);
@@ -234,5 +263,17 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
 		{
 			Toast.makeText(this, "Unable to look up UPC", Toast.LENGTH_LONG).show();
 		}
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> adapter, View v, int position, long id) 
+	{
+		if (position != 0)
+		{
+			Intent i = new Intent(mContext, FoodDetails.class);
+			i.putExtra("food", ((FoodListItem) v).getFood());
+			startActivity(i);
+		}
+		
 	}
 }

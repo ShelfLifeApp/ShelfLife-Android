@@ -53,7 +53,7 @@ public class WarningActivity extends SherlockActivity
 	{
 		Intent returnIntent = new Intent();
 		returnIntent.putExtra(FoodDetails.KEY_DATA_AGREE, true);
-		setResult(RESULT_CANCELED, returnIntent);        
+		setResult(RESULT_OK, returnIntent);        
 		finish();
 	}
 	
