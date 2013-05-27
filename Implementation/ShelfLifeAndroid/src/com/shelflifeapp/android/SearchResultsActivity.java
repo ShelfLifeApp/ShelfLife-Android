@@ -67,7 +67,6 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
 	    setUpDatabase();
 	    
 	    searchForItem();
-
     }
     
     private void searchForItem()
@@ -194,7 +193,9 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
 				FoodTable.FOOD_KEY_FREEZER_O,
 				FoodTable.FOOD_KEY_TIPS};
 		
-		Uri uri = Uri.parse("content://com.shelflifeapp.android.provider/food_table/byname/" + searchItem);
+		String uriText = "content://com.shelflifeapp.android.provider/food_table/byname/" + searchItem;
+		Toast.makeText(this, uriText, Toast.LENGTH_LONG).show();
+		Uri uri = Uri.parse(uriText);
 		return new CursorLoader(mContext, uri, projection, null, null, 
 				null);
 	}
