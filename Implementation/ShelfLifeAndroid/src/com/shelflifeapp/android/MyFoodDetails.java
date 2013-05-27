@@ -44,7 +44,7 @@ public class MyFoodDetails extends SherlockActivity
 	    if(foodBundle == null){
 			Log.d("shelflife", "Bundle is null");
 		}else{
-			m_myfood = foodBundle.getParcelable("food");
+			m_myfood = foodBundle.getParcelable("myfood");
 			if(m_myfood == null){
 				Log.d("shelflife", "food is null");
 			}			
@@ -71,11 +71,19 @@ public class MyFoodDetails extends SherlockActivity
 		    fridgeUnopened.setText("" + m_myfood.getExpirationData().getFridgeUnopened());
 		    freezerOpened.setText("" + m_myfood.getExpirationData().getFreezerOpened());
 		    freezerUnopened.setText("" + m_myfood.getExpirationData().getFreezerUnopened());
-		    purchased.setText("" + m_myfood.getPurchaseDate());
-		    opened.setText("" + m_myfood.getOpenDate());
+		    purchased.setText("" + m_myfood.getPurchaseDate().MONTH + "/" + 
+		    		m_myfood.getPurchaseDate().DAY_OF_MONTH + "/" + 
+		    		m_myfood.getPurchaseDate().YEAR);
+		    opened.setText("" + m_myfood.getOpenDate().MONTH + "/" + 
+		    		m_myfood.getOpenDate().DAY_OF_MONTH + "/" + 
+		    		m_myfood.getOpenDate().YEAR);
 		    quantity.setText("" + m_myfood.getQuantity());
 		    notes.setText("" + m_myfood.getNotes());
-		    daysLeft.setText("" + m_myfood.getExpirationDaysLeft());
+		    if(!"unknown".equals(m_myfood.getExpirationDaysLeft())){
+		    	daysLeft.setText("" + m_myfood.getExpirationDaysLeft());
+		    }else{
+		    	daysLeft.setText("");
+		    }
 	    }
 	    else{
 	    	Toast.makeText(this, "My Food is null", Toast.LENGTH_LONG).show();

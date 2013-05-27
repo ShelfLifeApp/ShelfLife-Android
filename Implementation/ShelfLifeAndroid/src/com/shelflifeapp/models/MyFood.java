@@ -170,8 +170,8 @@ public class MyFood extends Food
 	@Override
 	public void writeToParcel(Parcel arg0, int arg1) {
 		super.writeToParcel(arg0, arg1);
-		arg0.writeValue(purchaseDate);
-		arg0.writeValue(openDate);
+		arg0.writeSerializable(purchaseDate);
+		arg0.writeSerializable(openDate);
 		arg0.writeInt(quantity);
 		arg0.writeString(state);		
 	}
@@ -188,8 +188,8 @@ public class MyFood extends Food
     
     public MyFood(Parcel in) {
         super(in);
-        purchaseDate = (Calendar) in.readValue(Calendar.class.getClassLoader());
-        openDate = (Calendar) in.readValue(Calendar.class.getClassLoader());
+        purchaseDate = (Calendar) in.readSerializable();
+        openDate = (Calendar) in.readSerializable();
         quantity = in.readInt();
         notes = in.readString();
     }
