@@ -86,18 +86,37 @@
         
     />
     
-    <TextView android:id="@+id/myfood_notes_title_text"
+    <TextView android:id="@+id/myfood_tips_title_text"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_alignLeft="@+id/ExpirationTable"
        android:layout_below="@+id/ExpirationTable"
+       android:text="Tips"
+       android:textStyle="bold"
+       android:textColor="@color/orange"
+       android:layout_marginTop="10dp"
+       />
+    
+    <TextView android:id="@+id/myfood_tips_text"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignLeft="@+id/ExpirationTable"
+       android:layout_below="@+id/myfood_tips_title_text"
+       android:text="These are some great tips."      
+       />
+    
+    <TextView android:id="@+id/myfood_notes_title_text"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignLeft="@+id/ExpirationTable"
+       android:layout_below="@+id/myfood_tips_text"
        android:text="Notes"
        android:textStyle="bold"
        android:textColor="@color/orange"
        android:layout_marginTop="10dp"
        />
     
-    <TextView android:id="@+id/myfood_notes_text"
+    <EditText android:id="@+id/myfood_notes_text"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_alignLeft="@+id/ExpirationTable"

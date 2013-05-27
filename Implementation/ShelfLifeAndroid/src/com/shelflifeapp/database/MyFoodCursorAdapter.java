@@ -74,7 +74,8 @@ public class MyFoodCursorAdapter extends CursorAdapter{
 		
 		MyFood food = new MyFood(id, name, new Category(), 
 				new ExpirationData(1, 2, 3, 4, 5, 6), 
-				tips, MyFood.SHELF_UNOPENED, MyFood.convertStringToDate(purchased), MyFood.convertStringToDate(opened), quantity, notes, null);
+				tips, MyFood.SHELF_UNOPENED, MyFood.convertStringToDate(purchased), 
+				MyFood.convertStringToDate(opened), quantity, notes, null);
 		MyFoodListItem foodView = new MyFoodListItem(arg0, food);
 		return foodView;
 	}

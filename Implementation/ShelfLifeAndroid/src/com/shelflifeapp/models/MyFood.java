@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
+import android.widget.Toast;
 
 public class MyFood extends Food
 {
@@ -173,7 +174,7 @@ public class MyFood extends Food
 		arg0.writeSerializable(purchaseDate);
 		arg0.writeSerializable(openDate);
 		arg0.writeInt(quantity);
-		arg0.writeString(state);		
+		arg0.writeString(notes);		
 	}
 	
 	public static final Parcelable.Creator<MyFood> CREATOR = new Parcelable.Creator<MyFood>() {

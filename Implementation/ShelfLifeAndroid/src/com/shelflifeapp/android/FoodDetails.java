@@ -1,10 +1,15 @@
 package com.shelflifeapp.android;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,8 +23,12 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.shelflifeapp.database.MyFoodTable;
+import com.shelflifeapp.models.Category;
+import com.shelflifeapp.models.ExpirationData;
 import com.shelflifeapp.models.Food;
+import com.shelflifeapp.models.MyFood;
 import com.shelflifeapp.views.ExpirationTable;
+import com.shelflifeapp.views.FoodListItem;
 
 public class FoodDetails extends SherlockActivity
 {
@@ -89,16 +98,21 @@ public class FoodDetails extends SherlockActivity
 			{
 				if(m_food != null)
 				{
-					Uri uri = Uri.parse("content://com.shelflifeapp.android.provider/myfood_table/insert/" + 0);
+					/*Uri uri = Uri.parse("content://com.shelflifeapp.android.provider/myfood_table/insert/" + 0);
 					ContentValues cv = new ContentValues();
 					cv.put(MyFoodTable.FOOD_KEY_FOODID, m_food.getId());
-					cv.put(MyFoodTable.FOOD_KEY_PURCHASED, "2013-05-21");
 					Uri idUri = getContentResolver().insert(uri, cv);
-					Toast.makeText(FoodDetails.this, m_food.getName() + " Inserted", Toast.LENGTH_LONG).show();
+					Toast.makeText(FoodDetails.this, m_food.getName() + " Inserted", Toast.LENGTH_LONG).show();*/
+					Intent i = new Intent(FoodDetails.this, EditFoodActivity.class);
+					
+					MyFood myfood = new MyFood(m_food.getId(), m_food.getName(), m_food.getCategory(),
+							m_food.getExpirationData(), m_food.getTips(), null, null, null, 0, null, null);
+					i.putExtra("food", myfood);
+					startActivity(i);
 				}
 				else
 				{
-					Toast.makeText(FoodDetails.this, "Insert Failed", Toast.LENGTH_LONG).show();
+					Toast.makeText(FoodDetails.this, "fdkslfsd Failed", Toast.LENGTH_LONG).show();
 				}
 			}
         });

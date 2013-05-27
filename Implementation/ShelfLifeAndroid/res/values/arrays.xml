@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="state_list">
+        <item>@string/state_shelf</item>  
+        <item>@string/state_fridge</item>  
+        <item>@string/state_freezer</item>
+    </string-array>
+    
+</resources>

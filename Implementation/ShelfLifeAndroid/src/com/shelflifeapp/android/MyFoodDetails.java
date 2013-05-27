@@ -1,9 +1,12 @@
 package com.shelflifeapp.android;
 
+import java.text.SimpleDateFormat;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +21,9 @@ import com.shelflifeapp.models.MyFood;
 
 public class MyFoodDetails extends SherlockActivity 
 {
+	private static final String DATE_PURCHASED = "Purchased: ";
+	private static final String DATE_OPENED = "Opened: ";
+	
 	private MyFood m_myfood;
 	private TextView myFoodName;
 	private TextView purchased;
@@ -60,10 +66,13 @@ public class MyFoodDetails extends SherlockActivity
 	    purchased = (TextView) findViewById(R.id.myfood_purchased_text);
 	    opened = (TextView) findViewById(R.id.myfood_opened_text);
 	    quantity = (TextView) findViewById(R.id.myfood_quantity_text);
-	    notes = (TextView) findViewById(R.id.myfood_notes_text);
+	    notes = (EditText) findViewById(R.id.myfood_notes_text);
 	    daysLeft = (TextView) findViewById(R.id.myfood_days_left_num);
 	    
 	    if(m_myfood != null){
+	    	SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+	    	sdf.setLenient(false);
+	    	
 	    	myFoodName.setText(m_myfood.getName());
 	    	shelfOpened.setText("" + m_myfood.getExpirationData().getShelfOpened());
 		    shelfUnopened.setText("" + m_myfood.getExpirationData().getShelfUnopened());
@@ -71,12 +80,12 @@ public class MyFoodDetails extends SherlockActivity
 		    fridgeUnopened.setText("" + m_myfood.getExpirationData().getFridgeUnopened());
 		    freezerOpened.setText("" + m_myfood.getExpirationData().getFreezerOpened());
 		    freezerUnopened.setText("" + m_myfood.getExpirationData().getFreezerUnopened());
-		    purchased.setText("" + m_myfood.getPurchaseDate().MONTH + "/" + 
-		    		m_myfood.getPurchaseDate().DAY_OF_MONTH + "/" + 
-		    		m_myfood.getPurchaseDate().YEAR);
-		    opened.setText("" + m_myfood.getOpenDate().MONTH + "/" + 
-		    		m_myfood.getOpenDate().DAY_OF_MONTH + "/" + 
-		    		m_myfood.getOpenDate().YEAR);
+		    purchased.setText(DATE_PURCHASED + sdf.format(m_myfood.getPurchaseDate().getTime()));
+		    if(m_myfood.getOpenDate() != null){
+		    	opened.setText(DATE_OPENED + sdf.format(m_myfood.getOpenDate().getTime()));
+		    }else{
+		    	opened.setText(DATE_OPENED + "Unopened");
+		    }
 		    quantity.setText("" + m_myfood.getQuantity());
 		    notes.setText("" + m_myfood.getNotes());
 		    if(!"unknown".equals(m_myfood.getExpirationDaysLeft())){
