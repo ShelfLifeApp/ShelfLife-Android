@@ -1,21 +1,10 @@
 package com.shelflifeapp.android;
 
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.BasicResponseHandler;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,8 +19,6 @@ import com.actionbarsherlock.view.MenuItem;
 import com.shelflifeapp.database.MyFoodTable;
 import com.shelflifeapp.models.Food;
 import com.shelflifeapp.views.ExpirationTable;
-import com.slewson.simpleupc.SimpleUpcApi;
-import com.slewson.simpleupc.SimpleUpcResponse;
 
 public class FoodDetails extends SherlockActivity
 {
@@ -48,6 +35,15 @@ public class FoodDetails extends SherlockActivity
 	
 	private ImageView iconView;
 	
+	private final String PREF_KEY = "fooddetails";
+	private final String PREF_KEY_AGREE = "pref_key_agree";
+	public final static String KEY_DATA_AGREE = "key_data_agree";
+	private final int KEY_WARNING_AGREE = 0;
+	
+	private boolean hasAgreed = false;
+	
+	private SharedPreferences prefs;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) 
     {
@@ -56,6 +52,16 @@ public class FoodDetails extends SherlockActivity
         
         ActionBar actionBar = this.getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        
+        prefs = this.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE);
+        hasAgreed = prefs.getBoolean(PREF_KEY_AGREE, false);
+        
+        if (!hasAgreed)
+        {
+        	Intent agreeIntent = new Intent(this, WarningActivity.class);
+        	startActivityForResult(agreeIntent, KEY_WARNING_AGREE);
+        }
+        	
         
         Bundle foodBundle = this.getIntent().getExtras();
 	    if(foodBundle == null)
@@ -96,6 +102,27 @@ public class FoodDetails extends SherlockActivity
 			}
         });
     }
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		switch(requestCode) 
+		{
+			case KEY_WARNING_AGREE:
+			{
+				boolean agreed = data.getBooleanExtra(KEY_DATA_AGREE, false);
+				
+				if (agreed)
+				{
+					prefs.edit().putBoolean(PREF_KEY_AGREE, agreed).commit();
+				}
+				else
+				{
+					prefs.edit().putBoolean(PREF_KEY_AGREE, agreed).commit();
+					this.finish();
+				}
+			}
+		}
+	}
     
     @Override
 	public boolean onOptionsItemSelected(MenuItem item) {

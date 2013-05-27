@@ -78,6 +78,11 @@ private Context mContext;
 	  @Override
 	  public void onListItemClick(ListView l, View v, int position, long id) 
 	  {  
+		  if (position == 0)
+		  {
+			  return;
+		  }
+		  
 		  int category = ((CategoryListItem) v).getCategoryId();
 		  Log.d("SPOCK", "Callback with Category: " + category);
 		  mCallback.onCategorySelected(category);

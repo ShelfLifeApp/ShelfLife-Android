@@ -27,4 +27,11 @@
     <color name="exp_table_cell_dk_bkgd">#cdcdcd</color>
     <color name="exp_table_cell_bkgd">#f1f0f2</color>
     <color name="exp_table_text_loc">#ff8800</color>
+    
+    <color name="warning_button_agree_selected">#7eab27</color>
+    <color name="warning_button_disagree_selected">#ff0000</color>
+    <color name="warning_button_agree_unselected">#b4d478</color>
+    <color name="warning_button_disagree_unselected">#e96363</color>
+    <color name="warning_text_color">#FFFFFF</color>
+    
 </resources>

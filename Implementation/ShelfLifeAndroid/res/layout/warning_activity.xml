@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+     >
+    
+    <RelativeLayout
+        android:layout_weight="9"
+        android:id="@+id/warning_thing"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:layout_gravity="center"
+     >
+        
+        <ImageView
+        	android:id="@+id/warning_image"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:src="@drawable/plate_icon"
+        	android:layout_centerHorizontal="true"
+        />
+    
+    	<TextView
+        	android:id="@+id/warning_message"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_below="@+id/warning_image"
+        	android:layout_centerHorizontal="true"
+        	android:text="You agree that these are estimates"
+        />
+        
+    </RelativeLayout>
+	
+	<LinearLayout
+	    android:id="@+id/warning_buttons"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    android:gravity="bottom"
+	    >
+	    
+	    <Button 
+	        android:id="@+id/warning_button_disagree"
+	        android:layout_height="wrap_content"
+	        android:layout_width="fill_parent"
+	        android:layout_weight="1"
+	        android:background="@drawable/warning_button_disagree_background"
+	        android:textColor="@color/warning_text_color"
+	        android:textStyle="bold"
+	        android:text="I Disagree"
+	        />
+	   
+	    <Button
+	        android:id="@+id/warning_button_agree"
+	        android:layout_height="wrap_content"
+	        android:layout_width="fill_parent"
+	        android:layout_weight="1"
+	        android:background="@drawable/warning_button_agree_background"
+	        android:textStyle="bold"
+	        android:textColor="@color/warning_text_color"
+	        android:text="I Agree"
+	        />"
+	   
+	</LinearLayout>"
+    
+</LinearLayout>

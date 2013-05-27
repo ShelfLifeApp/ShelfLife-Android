@@ -35,6 +35,10 @@
             android:name="com.shelflifeapp.android.SearchResultsActivity"
             android:label="Search Results" >
         </activity>
+        <activity
+            android:name="com.shelflifeapp.android.WarningActivity"
+            android:label="Warning" >
+        </activity>
         <provider android:name="com.shelflifeapp.database.FoodContentProvider"
 		          android:authorities="com.shelflifeapp.android.provider">
 		</provider>

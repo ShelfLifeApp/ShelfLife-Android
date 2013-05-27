@@ -685,17 +685,17 @@ containing a value of this type.
         AppBaseTheme from res/values/styles.xml on API 11+ devices.
     
          */
-        public static final int YOUR_COLOR=0x7f050027;
+        public static final int YOUR_COLOR=0x7f05002c;
         public static final int abs__background_holo_dark=0x7f050009;
         public static final int abs__background_holo_light=0x7f05000a;
         public static final int abs__bright_foreground_disabled_holo_dark=0x7f05000d;
         public static final int abs__bright_foreground_disabled_holo_light=0x7f05000e;
         public static final int abs__bright_foreground_holo_dark=0x7f05000b;
         public static final int abs__bright_foreground_holo_light=0x7f05000c;
-        public static final int abs__primary_text_disable_only_holo_dark=0x7f050028;
-        public static final int abs__primary_text_disable_only_holo_light=0x7f050029;
-        public static final int abs__primary_text_holo_dark=0x7f05002a;
-        public static final int abs__primary_text_holo_light=0x7f05002b;
+        public static final int abs__primary_text_disable_only_holo_dark=0x7f05002d;
+        public static final int abs__primary_text_disable_only_holo_light=0x7f05002e;
+        public static final int abs__primary_text_holo_dark=0x7f05002f;
+        public static final int abs__primary_text_holo_light=0x7f050030;
         public static final int activity_background=0x7f050020;
         /**  <style name="Custom" parent="@style/Theme.Sherlock">
    			<item name="actionBarTabStyle">@style/Widget.Custom.TabView</item>
@@ -706,7 +706,7 @@ containing a value of this type.
     		<item name="android:background">@drawable/your_custom_selector</item>
 	</style> 
          */
-        public static final int custom_theme_color=0x7f050026;
+        public static final int custom_theme_color=0x7f05002b;
         public static final int exp_table_cell_bkgd=0x7f050022;
         public static final int exp_table_cell_border=0x7f05001f;
         public static final int exp_table_cell_dk_bkgd=0x7f050021;
@@ -725,10 +725,15 @@ containing a value of this type.
         public static final int listitem_myfood_text_name_color=0x7f050010;
         public static final int listitem_shade=0x7f050014;
         public static final int listitem_shade_selected=0x7f050015;
-        public static final int orange=0x7f050025;
+        public static final int orange=0x7f05002a;
         public static final int placemat_background=0x7f050019;
         public static final int placemat_divider=0x7f05001a;
-        public static final int pressed_shelflife=0x7f050024;
+        public static final int pressed_shelflife=0x7f050029;
+        public static final int warning_button_agree_selected=0x7f050024;
+        public static final int warning_button_agree_unselected=0x7f050026;
+        public static final int warning_button_disagree_selected=0x7f050025;
+        public static final int warning_button_disagree_unselected=0x7f050027;
+        public static final int warning_text_color=0x7f050028;
         public static final int zxinglib_possible_result_points=0x7f050006;
         public static final int zxinglib_result_image_border=0x7f050007;
         public static final int zxinglib_result_points=0x7f050008;
@@ -1011,7 +1016,9 @@ containing a value of this type.
         public static final int tab_unselected_pressed_shelflife=0x7f0200a2;
         public static final int tab_unselected_shelflife=0x7f0200a3;
         public static final int table_shape=0x7f0200a4;
-        public static final int zxinglib_icon=0x7f0200a5;
+        public static final int warning_button_agree_background=0x7f0200a5;
+        public static final int warning_button_disagree_background=0x7f0200a6;
+        public static final int zxinglib_icon=0x7f0200a7;
     }
     public static final class id {
         public static final int ExpirationTable=0x7f060050;
@@ -1054,7 +1061,7 @@ containing a value of this type.
         public static final int abs__textButton=0x7f060019;
         public static final int abs__title=0x7f060021;
         public static final int abs__up=0x7f060011;
-        public static final int action_settings=0x7f06006e;
+        public static final int action_settings=0x7f060074;
         public static final int add_food_button=0x7f060052;
         public static final int database_list=0x7f060055;
         public static final int disableHome=0x7f06000f;
@@ -1080,11 +1087,11 @@ containing a value of this type.
         public static final int listitem_myfood_state=0x7f06005b;
         public static final int listview_header_subtitle=0x7f06005f;
         public static final int listview_header_title=0x7f06005e;
-        public static final int menu_ab_barcode=0x7f060070;
-        public static final int menu_ab_search=0x7f06006f;
-        public static final int menu_ab_settings=0x7f060071;
-        public static final int menu_edit=0x7f060072;
-        public static final int menu_remove=0x7f06006d;
+        public static final int menu_ab_barcode=0x7f060076;
+        public static final int menu_ab_search=0x7f060075;
+        public static final int menu_ab_settings=0x7f060077;
+        public static final int menu_edit=0x7f060078;
+        public static final int menu_remove=0x7f060073;
         public static final int myfood_days_left_num=0x7f060065;
         public static final int myfood_days_left_num_layout=0x7f060064;
         public static final int myfood_days_left_text=0x7f060066;
@@ -1119,6 +1126,12 @@ containing a value of this type.
         public static final int tabMode=0x7f060009;
         public static final int textView1=0x7f060039;
         public static final int useLogo=0x7f06000a;
+        public static final int warning_button_agree=0x7f06006f;
+        public static final int warning_button_disagree=0x7f06006e;
+        public static final int warning_buttons=0x7f06006d;
+        public static final int warning_image=0x7f06006b;
+        public static final int warning_message=0x7f06006c;
+        public static final int warning_thing=0x7f06006a;
         public static final int wrap_content=0x7f060006;
         /**  Messages IDs 
          */
@@ -1126,11 +1139,11 @@ containing a value of this type.
         public static final int zxinglib_decode=0x7f060001;
         public static final int zxinglib_decode_failed=0x7f060002;
         public static final int zxinglib_decode_succeeded=0x7f060003;
-        public static final int zxinglib_preview_view=0x7f06006a;
+        public static final int zxinglib_preview_view=0x7f060070;
         public static final int zxinglib_quit=0x7f060004;
         public static final int zxinglib_return_scan_result=0x7f060005;
-        public static final int zxinglib_status_view=0x7f06006c;
-        public static final int zxinglib_viewfinder_view=0x7f06006b;
+        public static final int zxinglib_status_view=0x7f060072;
+        public static final int zxinglib_viewfinder_view=0x7f060071;
     }
     public static final class integer {
         public static final int abs__max_action_buttons=0x7f0a0000;
@@ -1169,7 +1182,8 @@ containing a value of this type.
         public static final int searchresults=0x7f03001e;
         public static final int sherlock_spinner_dropdown_item=0x7f03001f;
         public static final int sherlock_spinner_item=0x7f030020;
-        public static final int zxinglib_capture=0x7f030021;
+        public static final int warning_activity=0x7f030021;
+        public static final int zxinglib_capture=0x7f030022;
     }
     public static final class menu {
         public static final int context_action_menu=0x7f0c0000;
