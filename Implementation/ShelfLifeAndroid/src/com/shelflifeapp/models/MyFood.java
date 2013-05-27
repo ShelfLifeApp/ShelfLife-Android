@@ -86,51 +86,42 @@ public class MyFood extends Food
 		this.picture = picture;
 	}
 
-	public String getExpirationDaysLeft()
+	public int getExpirationDaysLeft()
 	{
 		int initialDays;
 		int daysLeft;
 		Calendar currentDate = Calendar.getInstance(); 
 		Calendar baseDate;
-		if(state == SHELF_UNOPENED){
+		
+		if(state != null && state.equals(SHELF_UNOPENED)){
 			initialDays = this.getExpirationData().getShelfUnopened();
 			baseDate = this.purchaseDate;
-		}else if(state == SHELF_OPENED){
+		}else if(state != null && state.equals(SHELF_OPENED)){
 			initialDays = this.getExpirationData().getShelfOpened();
 			baseDate = this.openDate;
-		}else if(state == FRIDGE_UNOPENED){
+		}else if(state != null && state.equals(FRIDGE_UNOPENED)){
 			initialDays = this.getExpirationData().getFridgeUnopened();
 			baseDate = this.purchaseDate;
-		}else if(state == FRIDGE_OPENED){
+		}else if(state != null && state.equals(FRIDGE_OPENED)){
 			initialDays = this.getExpirationData().getFridgeOpened();
 			baseDate = this.openDate;
-		}else if(state == FREEZER_UNOPENED){
+		}else if(state != null && state.equals(FREEZER_UNOPENED)){
 			initialDays = this.getExpirationData().getFreezerUnopened();
 			baseDate = this.purchaseDate;
-		}else if(state == FREEZER_OPENED){
+		}else if(state != null && state.equals(FREEZER_OPENED)){
 			initialDays = this.getExpirationData().getFreezerOpened();
 			baseDate = this.openDate;
 		}else{
-			return "unknown";
+			return -1;
 		}
 		
 		if(baseDate == null){
-			return "a million days"; 
+			return -1; 
 		}
-		
-		Log.d("mgrap", currentDate.toString());
-		Log.d("mgrap", baseDate.toString());
-		Log.d("mgrap", "diff: " + diff(currentDate, baseDate));
-		Log.d("mgrap", "initial: " + initialDays);
 		
 		daysLeft = initialDays - diff(currentDate, baseDate);
-		
-		if(daysLeft < 0){
-			return "Expired";
-		}else{
-			return daysLeft + " days left";
-		}
-		
+
+		return daysLeft;	
 	}
 	
 	public static Calendar convertStringToDate(String dateStr){
@@ -173,6 +164,7 @@ public class MyFood extends Food
 		super.writeToParcel(arg0, arg1);
 		arg0.writeSerializable(purchaseDate);
 		arg0.writeSerializable(openDate);
+		arg0.writeString(state);
 		arg0.writeInt(quantity);
 		arg0.writeString(notes);		
 	}
@@ -191,6 +183,7 @@ public class MyFood extends Food
         super(in);
         purchaseDate = (Calendar) in.readSerializable();
         openDate = (Calendar) in.readSerializable();
+        state = in.readString();
         quantity = in.readInt();
         notes = in.readString();
     }

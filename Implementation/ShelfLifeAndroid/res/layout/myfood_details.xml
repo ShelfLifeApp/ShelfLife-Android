@@ -1,9 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent" 
+    android:isScrollContainer="true">
+
+<LinearLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
    
+    <RelativeLayout
+        android:id="@+id/myfood_details_placemat"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:background="@drawable/placemat_background"
+        android:layout_marginBottom="0dp"
+        >
+        <RelativeLayout
+            android:id="@+id/myfood_details_plate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dip"
+            android:layout_centerInParent="true"
+            android:background="@drawable/plate_icon">
+       
+        	<ImageView
+    	   		android:id="@+id/myfood_details_plate_food"
+    	    	android:layout_width="wrap_content"
+    	    	android:layout_height="wrap_content"
+    	    	android:layout_centerInParent="true"
+    	    	/>
+            
+        </RelativeLayout>
+    </RelativeLayout>
+    
+	<RelativeLayout android:id="@+id/myfood_details_data_layout"
+    	android:layout_width="fill_parent"
+    	android:layout_height="0dp"
+    	android:layout_weight="7"
+    	android:layout_gravity="center"
+    	android:gravity="center"> 
+    	   
 	<TextView android:id="@+id/myfood_name_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,10 +70,19 @@
        android:textColor="#000000" 
        />
 	
-	<TextView android:id="@+id/myfood_quantity_text"
+	<TextView android:id="@+id/myfood_location_text"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_below="@+id/myfood_opened_text"
+       android:layout_alignLeft="@+id/ExpirationTable"
+       android:text="Location: "
+       android:textColor="#000000" 
+       />
+	
+	<TextView android:id="@+id/myfood_quantity_text"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/myfood_location_text"
        android:layout_alignLeft="@+id/ExpirationTable"
        android:text="Quantity: "
        android:textColor="#000000" 
@@ -121,8 +168,10 @@
        android:layout_height="wrap_content"
        android:layout_alignLeft="@+id/ExpirationTable"
        android:layout_below="@+id/myfood_notes_title_text"
-       android:text="These are some great notes."      
+       android:hint="Add some notes."      
        />
 
 	
 </RelativeLayout>
+</LinearLayout>
+</ScrollView>

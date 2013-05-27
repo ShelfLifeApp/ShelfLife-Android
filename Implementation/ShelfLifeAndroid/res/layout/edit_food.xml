@@ -36,7 +36,30 @@
 	        android:id="@+id/edit_purchase_date"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content" />"
-   
+   		
+   		<TextView android:id="@+id/edit_opened_question_text"
+	       android:layout_width="wrap_content"
+	       android:layout_height="wrap_content"
+	       android:text="Has this food been opened?"
+	       android:textStyle="bold"
+	       android:textColor="@color/orange"
+	       />
+   		
+   		<RadioGroup
+   		    android:id="@+id/edit_opened_group"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical">
+		    <RadioButton android:id="@+id/edit_opened_true"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Yes"/>
+		    <RadioButton android:id="@+id/edit_opened_false"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="No"/>
+		</RadioGroup>
+   		
 		<TextView android:id="@+id/edit_opened_title_text"
 	       android:layout_width="wrap_content"
 	       android:layout_height="wrap_content"

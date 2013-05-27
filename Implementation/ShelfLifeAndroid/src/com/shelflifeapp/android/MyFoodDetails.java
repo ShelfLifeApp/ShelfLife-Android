@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,14 +24,21 @@ public class MyFoodDetails extends SherlockActivity
 {
 	private static final String DATE_PURCHASED = "Purchased: ";
 	private static final String DATE_OPENED = "Opened: ";
+	private static final String LOCATION = "Location: ";
+	private static final String QUANTITY = "Quantity: ";
+	private static final String SHELF = "Shelf";
+	private static final String FRIDGE = "Shelf";
+	private static final String FREEZER = "Freezer";
 	
 	private MyFood m_myfood;
 	private TextView myFoodName;
 	private TextView purchased;
 	private TextView opened;
+	private TextView location;
 	private TextView quantity;
 	private TextView notes;
 	private TextView daysLeft;
+	private TextView daysText;
 	private TextView shelfOpened;
 	private TextView shelfUnopened;
 	private TextView fridgeOpened;
@@ -65,9 +73,11 @@ public class MyFoodDetails extends SherlockActivity
 	    freezerUnopened = (TextView) findViewById(R.id.row4_freezer_unopened);
 	    purchased = (TextView) findViewById(R.id.myfood_purchased_text);
 	    opened = (TextView) findViewById(R.id.myfood_opened_text);
+	    location = (TextView) findViewById(R.id.myfood_location_text);
 	    quantity = (TextView) findViewById(R.id.myfood_quantity_text);
 	    notes = (EditText) findViewById(R.id.myfood_notes_text);
 	    daysLeft = (TextView) findViewById(R.id.myfood_days_left_num);
+	    daysText = (TextView) findViewById(R.id.myfood_days_left_text);
 	    
 	    if(m_myfood != null){
 	    	SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
@@ -81,17 +91,37 @@ public class MyFoodDetails extends SherlockActivity
 		    freezerOpened.setText("" + m_myfood.getExpirationData().getFreezerOpened());
 		    freezerUnopened.setText("" + m_myfood.getExpirationData().getFreezerUnopened());
 		    purchased.setText(DATE_PURCHASED + sdf.format(m_myfood.getPurchaseDate().getTime()));
+		    
 		    if(m_myfood.getOpenDate() != null){
 		    	opened.setText(DATE_OPENED + sdf.format(m_myfood.getOpenDate().getTime()));
 		    }else{
 		    	opened.setText(DATE_OPENED + "Unopened");
 		    }
-		    quantity.setText("" + m_myfood.getQuantity());
-		    notes.setText("" + m_myfood.getNotes());
-		    if(!"unknown".equals(m_myfood.getExpirationDaysLeft())){
+		    
+		    if(MyFood.SHELF_UNOPENED.equals(m_myfood.getState()) || 
+		    		MyFood.SHELF_OPENED.equals(m_myfood.getState())){
+		    	location.setText(LOCATION + SHELF);
+		    }else if(MyFood.FRIDGE_UNOPENED.equals(m_myfood.getState()) || 
+		    		MyFood.FRIDGE_OPENED.equals(m_myfood.getState())){
+		    	location.setText(LOCATION + FRIDGE);
+		    }else if(MyFood.FREEZER_UNOPENED.equals(m_myfood.getState()) || 
+		    		MyFood.FREEZER_OPENED.equals(m_myfood.getState())){
+		    	location.setText(LOCATION + FREEZER);
+		    }
+		    quantity.setText(QUANTITY + m_myfood.getQuantity());
+		    
+		    if(m_myfood.getNotes() != null){
+		    	notes.setText("" + m_myfood.getNotes());
+		    }
+		    
+		    if(m_myfood.getExpirationDaysLeft() >= 0){
 		    	daysLeft.setText("" + m_myfood.getExpirationDaysLeft());
+		    	daysText.setVisibility(View.VISIBLE);
 		    }else{
-		    	daysLeft.setText("");
+		    	daysLeft.setTextColor(getResources().getColor(R.color.listitem_myfood_text_expire_color));
+		    	daysLeft.setText("Expired");
+		    	daysLeft.setTextSize(20);
+		    	daysText.setVisibility(View.GONE);
 		    }
 	    }
 	    else{
@@ -112,7 +142,9 @@ public class MyFoodDetails extends SherlockActivity
 	    switch (item.getItemId()) 
 	    {
 	        case R.id.menu_edit:
-	        	Toast.makeText(this, "Edit Selected", Toast.LENGTH_LONG).show();
+	        	Intent i = new Intent(MyFoodDetails.this, EditFoodActivity.class);
+				i.putExtra("food", m_myfood);
+				startActivity(i);
 	            return true;	
 	    	case android.R.id.home:
 	    		finish();
