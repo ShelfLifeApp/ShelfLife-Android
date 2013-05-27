@@ -14,7 +14,7 @@
 	       android:layout_height="wrap_content"
 	       android:text="Name: "
 	       android:textStyle="bold"
-	       android:textColor="@color/orange"
+	       android:textColor="#CCFFBB33"
 	       />
 	    
 	    <EditText
@@ -29,7 +29,7 @@
 	       android:layout_height="wrap_content"
 	       android:text="Date Purchased: "
 	       android:textStyle="bold"
-	       android:textColor="@color/orange"
+	       android:textColor="#CCFFBB33"
 	       />
 
 	    <DatePicker
@@ -42,7 +42,7 @@
 	       android:layout_height="wrap_content"
 	       android:text="Has this food been opened?"
 	       android:textStyle="bold"
-	       android:textColor="@color/orange"
+	       android:textColor="#CCFFBB33"
 	       />
    		
    		<RadioGroup
@@ -65,7 +65,7 @@
 	       android:layout_height="wrap_content"
 	       android:text="Date Opened: "
 	       android:textStyle="bold"
-	       android:textColor="@color/orange"
+	       android:textColor="#CCFFBB33"
 	       />
 		
 		<DatePicker
@@ -78,7 +78,7 @@
 	       android:layout_height="wrap_content"
 	       android:text="State: "
 	       android:textStyle="bold"
-	       android:textColor="@color/orange"
+	       android:textColor="#CCFFBB33"
 	       />
 		<Spinner  
 	        android:id="@+id/state_spinner"  
@@ -93,7 +93,7 @@
 	       android:layout_height="wrap_content"
 	       android:text="Quantity: "
 	       android:textStyle="bold"
-	       android:textColor="@color/orange"
+	       android:textColor="#CCFFBB33"
 	       />
 		
 		<EditText
@@ -108,7 +108,7 @@
 	       android:layout_height="wrap_content"
 	       android:text="Notes: "
 	       android:textStyle="bold"
-	       android:textColor="@color/orange"
+	       android:textColor="#CCFFBB33"
 	       />
 	    
 	    <EditText

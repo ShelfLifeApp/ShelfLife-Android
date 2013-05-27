@@ -18,6 +18,5 @@
 -->
 
 <resources>
-    <color name="pressed_shelflife">#CC99CC00</color>
-    <color name="orange">#ffbb33</color>
+    <color name="pressed_shelflife">#CCFFBB33</color>
 </resources>

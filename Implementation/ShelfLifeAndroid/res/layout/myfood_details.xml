@@ -105,7 +105,7 @@
 			    android:text="1"
 			    android:textSize="50sp"
 			    android:textStyle="bold"
-			    android:textColor="@color/orange"
+			    android:textColor="#CCFFBB33"
 			    android:layout_marginBottom="-15dip"
 			    />
 	
@@ -116,7 +116,7 @@
 		       android:layout_centerHorizontal="true"
 		       android:text="days"
 		       android:textStyle="bold"
-		       android:textColor="@color/orange"
+		       android:textColor="#CCFFBB33"
 		       />
 	    
 	</RelativeLayout>
@@ -144,7 +144,7 @@
        android:layout_below="@+id/ExpirationTable"
        android:text="Tips"
        android:textStyle="bold"
-       android:textColor="@color/orange"
+       android:textColor="#CCFFBB33"
        android:layout_marginTop="10dp"
        />
     
@@ -163,7 +163,7 @@
        android:layout_below="@+id/myfood_tips_text"
        android:text="Notes"
        android:textStyle="bold"
-       android:textColor="@color/orange"
+       android:textColor="#CCFFBB33"
        android:layout_marginTop="10dp"
        />
     
