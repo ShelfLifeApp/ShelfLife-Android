@@ -27,7 +27,7 @@ public class MyFoodDetails extends SherlockActivity
 	private static final String LOCATION = "Location: ";
 	private static final String QUANTITY = "Quantity: ";
 	private static final String SHELF = "Shelf";
-	private static final String FRIDGE = "Shelf";
+	private static final String FRIDGE = "Fridge";
 	private static final String FREEZER = "Freezer";
 	
 	private MyFood m_myfood;
@@ -138,7 +138,6 @@ public class MyFoodDetails extends SherlockActivity
     
     @Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-	    // Handle item selection
 	    switch (item.getItemId()) 
 	    {
 	        case R.id.menu_edit:

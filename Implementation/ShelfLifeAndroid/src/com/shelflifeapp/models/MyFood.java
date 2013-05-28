@@ -26,8 +26,9 @@ public class MyFood extends Food
 	private String state;
 	
 	public MyFood(int id, String name, Category category, 
-			ExpirationData expirationData, String tips, String state, Calendar purchaseDate,
-			Calendar openDate, int quantity, String notes, Drawable picture)
+			ExpirationData expirationData, String tips, String state, 
+			Calendar purchaseDate, Calendar openDate, int quantity, 
+			String notes, Drawable picture)
 	{
 		super(id, name, category, expirationData, tips);
 		this.setState(state);
@@ -89,38 +90,53 @@ public class MyFood extends Food
 	public int getExpirationDaysLeft()
 	{
 		int initialDays;
+		int openDays;
+		int unopenedDaysLeft;
 		int daysLeft;
 		Calendar currentDate = Calendar.getInstance(); 
 		Calendar baseDate;
 		
-		if(state != null && state.equals(SHELF_UNOPENED)){
+		if(state == null || purchaseDate == null){
+			return -1;
+		}
+		
+		if(state.equals(SHELF_UNOPENED)){
 			initialDays = this.getExpirationData().getShelfUnopened();
-			baseDate = this.purchaseDate;
-		}else if(state != null && state.equals(SHELF_OPENED)){
-			initialDays = this.getExpirationData().getShelfOpened();
-			baseDate = this.openDate;
-		}else if(state != null && state.equals(FRIDGE_UNOPENED)){
+			daysLeft = initialDays - diff(currentDate, purchaseDate);
+		}else if(state.equals(SHELF_OPENED)){
+			initialDays = this.getExpirationData().getShelfUnopened();
+			openDays = this.getExpirationData().getShelfOpened();			
+			unopenedDaysLeft = initialDays - diff(openDate, purchaseDate);
+			if(unopenedDaysLeft < openDays){
+				openDays = unopenedDaysLeft;
+			}
+			daysLeft = openDays - diff(currentDate, openDate);
+		}else if(state.equals(FRIDGE_UNOPENED)){
 			initialDays = this.getExpirationData().getFridgeUnopened();
-			baseDate = this.purchaseDate;
-		}else if(state != null && state.equals(FRIDGE_OPENED)){
-			initialDays = this.getExpirationData().getFridgeOpened();
-			baseDate = this.openDate;
-		}else if(state != null && state.equals(FREEZER_UNOPENED)){
+			daysLeft = initialDays - diff(currentDate, purchaseDate);
+		}else if(state.equals(FRIDGE_OPENED)){
+			initialDays = this.getExpirationData().getFridgeUnopened();
+			openDays = this.getExpirationData().getFridgeOpened();			
+			unopenedDaysLeft = initialDays - diff(openDate, purchaseDate);
+			if(unopenedDaysLeft < openDays){
+				openDays = unopenedDaysLeft;
+			}
+			daysLeft = openDays - diff(currentDate, openDate);
+		}else if(state.equals(FREEZER_UNOPENED)){
 			initialDays = this.getExpirationData().getFreezerUnopened();
-			baseDate = this.purchaseDate;
-		}else if(state != null && state.equals(FREEZER_OPENED)){
-			initialDays = this.getExpirationData().getFreezerOpened();
-			baseDate = this.openDate;
+			daysLeft = initialDays - diff(currentDate, purchaseDate);
+		}else if(state.equals(FREEZER_OPENED)){
+			initialDays = this.getExpirationData().getFreezerUnopened();
+			openDays = this.getExpirationData().getFreezerOpened();			
+			unopenedDaysLeft = initialDays - diff(openDate, purchaseDate);
+			if(unopenedDaysLeft < openDays){
+				openDays = unopenedDaysLeft;
+			}
+			daysLeft = openDays - diff(currentDate, openDate);
 		}else{
 			return -1;
 		}
 		
-		if(baseDate == null){
-			return -1; 
-		}
-		
-		daysLeft = initialDays - diff(currentDate, baseDate);
-
 		return daysLeft;	
 	}
 	
@@ -148,7 +164,8 @@ public class MyFood extends Food
 	}
 	
 	public static int julianDay(Calendar cal) {
-		return julianDay(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)); 
+		return julianDay(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), 
+				cal.get(Calendar.DAY_OF_MONTH)); 
 	}
 
 	public static int diff(Calendar cal1, Calendar cal2) {
@@ -169,7 +186,8 @@ public class MyFood extends Food
 		arg0.writeString(notes);		
 	}
 	
-	public static final Parcelable.Creator<MyFood> CREATOR = new Parcelable.Creator<MyFood>() {
+	public static final Parcelable.Creator<MyFood> CREATOR = 
+			new Parcelable.Creator<MyFood>() {
         public MyFood createFromParcel(Parcel in) {
             return new MyFood(in);
         }

@@ -1,14 +1,19 @@
 package com.shelflifeapp.android;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -40,13 +45,19 @@ public class EditFoodActivity extends SherlockActivity  {
 	private int operation;
 	
 	private EditText myFoodName;
-	private DatePicker purchased;
+	private Button purchasedButton;
 	private RadioGroup openedBool;
 	private TextView openedTitle;
-	private DatePicker opened;
+	private Button openedButton;
 	private Spinner state;
 	private EditText quantity;
 	private EditText notes;
+	
+	DateFormat formatDateTime = DateFormat.getDateInstance();
+	Calendar purchaseDate = Calendar.getInstance();
+	Calendar openDate = Calendar.getInstance();
+	private TextView purchaseDateLabel;
+	private TextView openDateLabel;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,14 +85,36 @@ public class EditFoodActivity extends SherlockActivity  {
 			}
 		}
         
+	    purchaseDateLabel = (TextView) findViewById(R.id.purchase_date_label);
+	    openDateLabel = (TextView) findViewById(R.id.open_date_label);
+        updateLabel();
+	    
 	    myFoodName = (EditText) findViewById(R.id.edit_name_text);
-	    purchased = (DatePicker) findViewById(R.id.edit_purchase_date);
+	    purchasedButton = (Button) findViewById(R.id.edit_purchase_button);
 	    openedBool = (RadioGroup) findViewById(R.id.edit_opened_group);
 	    openedTitle = (TextView) findViewById(R.id.edit_opened_title_text);
-	    opened = (DatePicker) findViewById(R.id.edit_open_date);
+	    openedButton = (Button) findViewById(R.id.edit_open_button);
 	    state = (Spinner) findViewById(R.id.state_spinner);
 	    quantity = (EditText) findViewById(R.id.edit_quantity_text);
 	    notes = (EditText) findViewById(R.id.edit_notes_text);
+	    
+	    purchasedButton.setOnClickListener(new Button.OnClickListener() 
+        {  
+			@Override
+			public void onClick(View arg0) 
+			{
+				chooseDate(purchaseDate, p);
+			}
+        });
+	    
+	    openedButton.setOnClickListener(new Button.OnClickListener() 
+        {  
+			@Override
+			public void onClick(View arg0) 
+			{
+				chooseDate(openDate, o);
+			}
+        });
 	    
 	    openedBool.setOnCheckedChangeListener(
             new RadioGroup.OnCheckedChangeListener() {
@@ -90,11 +123,11 @@ public class EditFoodActivity extends SherlockActivity  {
                 switch(checkedId) {
                     case R.id.edit_opened_true:
                     	openedTitle.setVisibility(View.VISIBLE);
-                    	opened.setVisibility(View.VISIBLE);
+                    	openedButton.setVisibility(View.VISIBLE);
                         break;
                     case R.id.edit_opened_false:
                     	openedTitle.setVisibility(View.GONE);
-                    	opened.setVisibility(View.GONE);                    
+                    	openedButton.setVisibility(View.GONE);
                         break;
                 }
             }
@@ -105,21 +138,23 @@ public class EditFoodActivity extends SherlockActivity  {
 	    		myFoodName.setText(m_myfood.getName());
 	    	}
 	    	if(m_myfood.getPurchaseDate() != null){
-	    		purchased.updateDate(m_myfood.getPurchaseDate().get(Calendar.YEAR), 
-	    				m_myfood.getPurchaseDate().get(Calendar.MONTH), 
-	    				m_myfood.getPurchaseDate().get(Calendar.DAY_OF_MONTH));
+	    		purchaseDate.set(Calendar.YEAR, m_myfood.getPurchaseDate().get(Calendar.YEAR));
+				purchaseDate.set(Calendar.MONTH, m_myfood.getPurchaseDate().get(Calendar.MONTH));
+				purchaseDate.set(Calendar.DAY_OF_MONTH, m_myfood.getPurchaseDate().get(Calendar.DAY_OF_MONTH));
+				updateLabel();
 	    	}
 	    	if(m_myfood.getOpenDate() != null){
 	    		openedBool.check(R.id.edit_opened_true);
 	    		openedTitle.setVisibility(View.VISIBLE);
-	    		opened.setVisibility(View.VISIBLE);
-	    		opened.updateDate(m_myfood.getOpenDate().get(Calendar.YEAR), 
-	    				m_myfood.getOpenDate().get(Calendar.MONTH), 
-	    				m_myfood.getOpenDate().get(Calendar.DAY_OF_MONTH));
+				openedButton.setVisibility(View.VISIBLE);
+				openDate.set(Calendar.YEAR, m_myfood.getOpenDate().get(Calendar.YEAR));
+				openDate.set(Calendar.MONTH, m_myfood.getOpenDate().get(Calendar.MONTH));
+				openDate.set(Calendar.DAY_OF_MONTH, m_myfood.getOpenDate().get(Calendar.DAY_OF_MONTH));
+	    				updateLabel();
 	    	}else{
 	    		openedBool.check(R.id.edit_opened_false);
 	    		openedTitle.setVisibility(View.GONE);
-	    		opened.setVisibility(View.GONE);
+	    		openedButton.setVisibility(View.GONE);
 	    	}
 	    	if(m_myfood.getState() != null){
 	    		String[] states = this.getResources().getStringArray(R.array.state_list);
@@ -151,21 +186,15 @@ public class EditFoodActivity extends SherlockActivity  {
 		return true;
     }
     
+    
+    
     @Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-	    // Handle item selection
 	    switch (item.getItemId()) 
 	    {
 	        case R.id.menu_done:
 	        	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     	    	sdf.setLenient(false);
-	        	
-	        	Calendar purchasedCal = Calendar.getInstance();
-	        	Calendar openedCal = null;
-	        	int purchaseDay = purchased.getDayOfMonth();
-	        	int purchaseMonth = purchased.getMonth();
-	        	int purchaseYear = purchased.getYear();
-	        	purchasedCal.set(purchaseYear, purchaseMonth, purchaseDay);
 	        	
 	        	if(myFoodName.getText() != null){
 	        		m_myfood.setName(myFoodName.getText().toString());
@@ -173,21 +202,26 @@ public class EditFoodActivity extends SherlockActivity  {
 	        		Toast.makeText(this, "Food name must be specified.", 
         					Toast.LENGTH_LONG).show();
         			return false;
-	        	}
-	        	m_myfood.setPurchaseDate(purchasedCal);
+	        	}        	
 	        	
 	        	if(openedBool.getCheckedRadioButtonId() == R.id.edit_opened_true){
-	        		openedCal = Calendar.getInstance();
-		        	int openedDay = opened.getDayOfMonth();
-		        	int openedMonth = opened.getMonth();
-		        	int openedYear = opened.getYear();
-		        	openedCal.set(openedYear, openedMonth, openedDay);
-	        		if(purchasedCal.compareTo(openedCal) > 0){
+	        		if(purchaseDate.compareTo(openDate) > 0){
 	        			Toast.makeText(this, "Open date must be on or after purchase date.", 
 	        					Toast.LENGTH_LONG).show();
 	        			return false;
 	        		}
-		        	m_myfood.setOpenDate(openedCal);
+	        		if(purchaseDate.compareTo(Calendar.getInstance()) > 0){
+	        			Toast.makeText(this, "Purchase date is later than current date.", 
+	        					Toast.LENGTH_LONG).show();
+	        			return false;
+	        		}
+	        		if(openDate.compareTo(Calendar.getInstance()) > 0){
+	        			Toast.makeText(this, "Open date is later than current date.", 
+	        					Toast.LENGTH_LONG).show();
+	        			return false;
+	        		}
+	        		m_myfood.setPurchaseDate(purchaseDate);
+		        	m_myfood.setOpenDate(openDate);
 	        		
 	        		if(state.getSelectedItemPosition() == SHELF){
 	        			m_myfood.setState(MyFood.SHELF_OPENED);
@@ -221,15 +255,13 @@ public class EditFoodActivity extends SherlockActivity  {
 	        	}
 	        	
 	        	/* put food in database */
-	        	if(operation == ADD){
-	        		
-	    	    	
+	        	if(operation == ADD){    	    	
 		        	Uri uri = Uri.parse("content://com.shelflifeapp.android.provider/myfood_table/insert/" + 0);
 					ContentValues cv = new ContentValues();
 					cv.put(MyFoodTable.FOOD_KEY_NAME, m_myfood.getName());
 					cv.put(MyFoodTable.FOOD_KEY_FOODID, foodid);
 					cv.put(MyFoodTable.FOOD_KEY_PURCHASED, sdf.format(m_myfood.getPurchaseDate().getTime()));
-					if(openedCal != null){
+					if(m_myfood.getOpenDate() != null){
 						cv.put(MyFoodTable.FOOD_KEY_OPENED, sdf.format(m_myfood.getOpenDate().getTime()));
 					}
 					cv.put(MyFoodTable.FOOD_KEY_STATE, m_myfood.getState());
@@ -244,7 +276,7 @@ public class EditFoodActivity extends SherlockActivity  {
 					ContentValues cv = new ContentValues();
 					cv.put(MyFoodTable.FOOD_KEY_NAME, m_myfood.getName());
 					cv.put(MyFoodTable.FOOD_KEY_PURCHASED, sdf.format(m_myfood.getPurchaseDate().getTime()));
-					if(openedCal != null){
+					if(m_myfood.getOpenDate() != null){
 						cv.put(MyFoodTable.FOOD_KEY_OPENED, sdf.format(m_myfood.getOpenDate().getTime()));
 					}
 					cv.put(MyFoodTable.FOOD_KEY_STATE, m_myfood.getState());
@@ -266,5 +298,35 @@ public class EditFoodActivity extends SherlockActivity  {
 	    }
 	}
     
-    
+    public void chooseDate(Calendar date, DatePickerDialog.OnDateSetListener listener){
+    	new DatePickerDialog(EditFoodActivity.this, listener, 
+    			date.get(Calendar.YEAR),
+    			date.get(Calendar.MONTH), 
+    			date.get(Calendar.DAY_OF_MONTH)).show();
+    }
+
+    DatePickerDialog.OnDateSetListener p = new DatePickerDialog.OnDateSetListener() {
+		@Override
+		public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+			purchaseDate.set(Calendar.YEAR,year);
+			purchaseDate.set(Calendar.MONTH, monthOfYear);
+			purchaseDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+			updateLabel();
+		}
+	};
+	
+	DatePickerDialog.OnDateSetListener o = new DatePickerDialog.OnDateSetListener() {
+		@Override
+		public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+			openDate.set(Calendar.YEAR,year);
+			openDate.set(Calendar.MONTH, monthOfYear);
+			openDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+			updateLabel();
+		}
+	};
+
+	private void updateLabel() {
+		purchaseDateLabel.setText(formatDateTime.format(purchaseDate.getTime()));
+		openDateLabel.setText(formatDateTime.format(openDate.getTime()));
+	}
 }
