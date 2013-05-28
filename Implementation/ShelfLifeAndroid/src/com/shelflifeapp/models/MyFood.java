@@ -38,7 +38,7 @@ public class MyFood extends Food
 		this.setNotes(notes);
 		this.setPicture(picture);
 	}
-
+		
 	public String getState() {
 		return state;
 	}
@@ -93,8 +93,7 @@ public class MyFood extends Food
 		int openDays;
 		int unopenedDaysLeft;
 		int daysLeft;
-		Calendar currentDate = Calendar.getInstance(); 
-		Calendar baseDate;
+		Calendar currentDate = Calendar.getInstance();
 		
 		if(state == null || purchaseDate == null){
 			return -1;

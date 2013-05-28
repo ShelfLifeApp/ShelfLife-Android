@@ -272,9 +272,8 @@ public class EditFoodActivity extends SherlockActivity  {
 					cv.put(MyFoodTable.FOOD_KEY_QUANTITY, m_myfood.getQuantity());
 					cv.put(MyFoodTable.FOOD_KEY_NOTES, m_myfood.getNotes());
 					Uri idUri = getContentResolver().insert(uri, cv);
-					Toast.makeText(this, m_myfood.getName() + " Inserted", Toast.LENGTH_LONG).show();
-					Log.d("id", "id: " + m_myfood.getId());
-					Log.d("id", "uri: " + idUri);
+					String id = idUri.getLastPathSegment();
+					m_myfood.setId(Integer.parseInt(id));
 	        	}else{
 	        		Uri uri = Uri.parse("content://com.shelflifeapp.android.provider/myfood_table/edit/" + m_myfood.getId());
 					ContentValues cv = new ContentValues();

@@ -1,16 +1,12 @@
 package com.shelflifeapp.android;
 
-import java.io.File;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,14 +16,13 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.widget.SearchView;
+import com.shelflifeapp.models.Food;
 import com.shelflifeapp.models.MyFood;
 import com.shelflifeapp.views.ExpirationTable;
 
 public class MyFoodDetails extends SherlockActivity 
 {
-	private static final int PICTURE_REQUEST_CODE = 2;
-	private static String timestamp;
-	
 	private static final String DATE_PURCHASED = "Purchased: ";
 	private static final String DATE_OPENED = "Opened: ";
 	private static final String LOCATION = "Location: ";
@@ -93,6 +88,14 @@ public class MyFoodDetails extends SherlockActivity
 	    	myFoodName.setText(m_myfood.getName());
 	    	expirationTable.setExpirationData(m_myfood.getExpirationData());
 
+		    purchased.setText(DATE_PURCHASED + sdf.format(m_myfood.getPurchaseDate().getTime()));
+		    
+		    if(m_myfood.getOpenDate() != null){
+		    	opened.setText(DATE_OPENED + sdf.format(m_myfood.getOpenDate().getTime()));
+		    }else{
+		    	opened.setText(DATE_OPENED + "Unopened");
+		    }
+		    
 		    if(MyFood.SHELF_UNOPENED.equals(m_myfood.getState()) || 
 		    		MyFood.SHELF_OPENED.equals(m_myfood.getState())){
 		    	location.setText(LOCATION + SHELF);
@@ -142,64 +145,11 @@ public class MyFoodDetails extends SherlockActivity
 				i.putExtra("foodid", m_myfood.getId());
 				startActivity(i);
 	            return true;	
-	        case R.id.menu_take_picture:
-				Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-				Uri pic = getOutputMediaFileUri(PICTURE_REQUEST_CODE);
-				takePicture.putExtra(MediaStore.EXTRA_OUTPUT, pic);
-				startActivityForResult(takePicture, PICTURE_REQUEST_CODE);
-				return true;
 	    	case android.R.id.home:
 	    		finish();
 	    		return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
-	}
-    
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) 
-	{
-		if (requestCode == PICTURE_REQUEST_CODE)
-		{
-			if (resultCode == RESULT_OK)
-			{
-			}
-			else if (resultCode == RESULT_CANCELED)
-			{
-			}
-		}
-		
-		super.onActivityResult(requestCode, resultCode, data);
-	}
-    
-	private static File getOutputMediaFile(int format)
-	{
-		File mediaFile = null;
-		File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "WalkAbout");
-	
-		if (!mediaStorageDir.exists())
-		{
-			mediaStorageDir.mkdir();
-			if (!mediaStorageDir.exists())
-			{
-				Log.d("SHELFLIFE", "mediaStorageDir couldn't be created");
-				return null;
-			}
-		}
-		
-		timestamp = DateFormat.getDateTimeInstance().format(System.currentTimeMillis());
-		
-		if (format == PICTURE_REQUEST_CODE)
-		{
-			mediaFile = new File(mediaStorageDir.getPath()+ File.separator + "IMG_" + timestamp + ".jpg");
-		}
-		
-		return mediaFile;
-	}
-	
-	private static Uri getOutputMediaFileUri(int format)
-	{
-		File file = getOutputMediaFile(format);
-		return Uri.fromFile(file);
 	}
 }

@@ -42,6 +42,10 @@ public class Food implements Parcelable
 		return this.id;
 	}
 	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public Category getCategory()
 	{
 		return this.category;
