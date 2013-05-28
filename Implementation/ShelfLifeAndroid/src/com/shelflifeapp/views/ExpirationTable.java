@@ -88,7 +88,9 @@ public class ExpirationTable extends LinearLayout
 	
 	private String formatData(int days)
 	{
-		if (days == 0)
+		if (days == -1)
+			return "-";
+		else if (days == 0)
 			return "<1 day";
 		else if (days == 1)
 			return "1 day";
