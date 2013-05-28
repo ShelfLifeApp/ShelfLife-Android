@@ -124,10 +124,12 @@ public class EditFoodActivity extends SherlockActivity  {
                     case R.id.edit_opened_true:
                     	openedTitle.setVisibility(View.VISIBLE);
                     	openedButton.setVisibility(View.VISIBLE);
+                    	openDateLabel.setVisibility(View.VISIBLE);
                         break;
                     case R.id.edit_opened_false:
                     	openedTitle.setVisibility(View.GONE);
                     	openedButton.setVisibility(View.GONE);
+                    	openDateLabel.setVisibility(View.GONE);
                         break;
                 }
             }
@@ -147,6 +149,7 @@ public class EditFoodActivity extends SherlockActivity  {
 	    		openedBool.check(R.id.edit_opened_true);
 	    		openedTitle.setVisibility(View.VISIBLE);
 				openedButton.setVisibility(View.VISIBLE);
+				openDateLabel.setVisibility(View.VISIBLE);
 				openDate.set(Calendar.YEAR, m_myfood.getOpenDate().get(Calendar.YEAR));
 				openDate.set(Calendar.MONTH, m_myfood.getOpenDate().get(Calendar.MONTH));
 				openDate.set(Calendar.DAY_OF_MONTH, m_myfood.getOpenDate().get(Calendar.DAY_OF_MONTH));
@@ -155,6 +158,7 @@ public class EditFoodActivity extends SherlockActivity  {
 	    		openedBool.check(R.id.edit_opened_false);
 	    		openedTitle.setVisibility(View.GONE);
 	    		openedButton.setVisibility(View.GONE);
+	    		openDateLabel.setVisibility(View.GONE);
 	    	}
 	    	if(m_myfood.getState() != null){
 	    		String[] states = this.getResources().getStringArray(R.array.state_list);
