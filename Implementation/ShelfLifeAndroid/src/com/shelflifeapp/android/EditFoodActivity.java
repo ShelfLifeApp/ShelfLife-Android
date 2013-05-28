@@ -207,24 +207,24 @@ public class EditFoodActivity extends SherlockActivity  {
         					Toast.LENGTH_LONG).show();
         			return false;
 	        	}        	
-	        	
+	        	if(purchaseDate.compareTo(Calendar.getInstance()) > 0){
+	        			Toast.makeText(this, "Purchase date is later than current date.", 
+	        					Toast.LENGTH_LONG).show();
+	        			return false;
+	        	}
+	        	m_myfood.setPurchaseDate(purchaseDate);
 	        	if(openedBool.getCheckedRadioButtonId() == R.id.edit_opened_true){
 	        		if(purchaseDate.compareTo(openDate) > 0){
 	        			Toast.makeText(this, "Open date must be on or after purchase date.", 
 	        					Toast.LENGTH_LONG).show();
 	        			return false;
 	        		}
-	        		if(purchaseDate.compareTo(Calendar.getInstance()) > 0){
-	        			Toast.makeText(this, "Purchase date is later than current date.", 
-	        					Toast.LENGTH_LONG).show();
-	        			return false;
-	        		}
+	        		
 	        		if(openDate.compareTo(Calendar.getInstance()) > 0){
 	        			Toast.makeText(this, "Open date is later than current date.", 
 	        					Toast.LENGTH_LONG).show();
 	        			return false;
-	        		}
-	        		m_myfood.setPurchaseDate(purchaseDate);
+	        		}	        		
 		        	m_myfood.setOpenDate(openDate);
 	        		
 	        		if(state.getSelectedItemPosition() == SHELF){

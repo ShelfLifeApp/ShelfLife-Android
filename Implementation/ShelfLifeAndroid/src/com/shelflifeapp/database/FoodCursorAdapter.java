@@ -30,7 +30,9 @@ public class FoodCursorAdapter extends CursorAdapter {
 		int freezer_o = arg2.getInt(FoodTable.FOOD_COL_FREEZER_O);
 		String tips = arg2.getString(FoodTable.FOOD_COL_TIPS);
 
-		Food food = new Food(id, name, new Category(), new ExpirationData(5, 5, 2, 2, 2, 2), tips);		
+		Food food = new Food(id, name, new Category(), 
+				new ExpirationData(shelf_o, shelf_u, fridge_o, fridge_u, 
+						freezer_o, freezer_u), tips);		
 		FoodListItem listItem = (FoodListItem) arg0;
 		listItem.setFood(food);		
 	}
@@ -48,7 +50,9 @@ public class FoodCursorAdapter extends CursorAdapter {
 		int freezer_o = arg1.getInt(FoodTable.FOOD_COL_FREEZER_O);
 		String tips = arg1.getString(FoodTable.FOOD_COL_TIPS);
 		
-		Food food = new Food(id, name, new Category(), new ExpirationData(5, 5, 2, 2, 2, 2), tips);
+		Food food = new Food(id, name, new Category(), 
+				new ExpirationData(shelf_o, shelf_u, fridge_o, fridge_u, 
+						freezer_o, freezer_u), tips);	
 		FoodListItem foodView = new FoodListItem(arg0, food);
 		return foodView;
 	}

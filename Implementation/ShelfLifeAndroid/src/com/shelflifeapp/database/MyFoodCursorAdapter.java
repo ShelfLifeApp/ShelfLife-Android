@@ -42,8 +42,10 @@ public class MyFoodCursorAdapter extends CursorAdapter{
 		String notes  = arg2.getString(MyFoodTable.FOOD_COL_NOTES + FoodTable.FOOD_COL_TIPS + 1);
 		
 		MyFood food = new MyFood(id, name, new Category(), 
-				new ExpirationData(1, 1, 3, 4, 5, 6), 
-				tips, state, MyFood.convertStringToDate(purchased), MyFood.convertStringToDate(opened), quantity, notes, null);		
+				new ExpirationData(shelf_o, shelf_u, fridge_o, fridge_u, 
+						freezer_o, freezer_u), 
+				tips, state, MyFood.convertStringToDate(purchased), 
+				MyFood.convertStringToDate(opened), quantity, notes, null);		
 		MyFoodListItem listItem = (MyFoodListItem) arg0;
 		listItem.setMyFood(food);		
 	}
@@ -70,7 +72,8 @@ public class MyFoodCursorAdapter extends CursorAdapter{
 		String notes  = arg1.getString(MyFoodTable.FOOD_COL_NOTES + FoodTable.FOOD_COL_TIPS + 1);
 		
 		MyFood food = new MyFood(id, name, new Category(), 
-				new ExpirationData(1, 2, 3, 4, 5, 6), 
+				new ExpirationData(shelf_o, shelf_u, fridge_o, fridge_u, 
+						freezer_o, freezer_u), 
 				tips, state, MyFood.convertStringToDate(purchased), 
 				MyFood.convertStringToDate(opened), quantity, notes, null);
 		MyFoodListItem foodView = new MyFoodListItem(arg0, food);

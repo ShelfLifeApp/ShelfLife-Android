@@ -19,6 +19,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.widget.SearchView;
 import com.shelflifeapp.models.Food;
 import com.shelflifeapp.models.MyFood;
+import com.shelflifeapp.views.ExpirationTable;
 
 public class MyFoodDetails extends SherlockActivity 
 {
@@ -64,6 +65,7 @@ public class MyFoodDetails extends SherlockActivity
 			}			
 		}
         
+	    ExpirationTable expirationTable = (ExpirationTable) findViewById(R.id.ExpirationTable);
 	    myFoodName = (TextView) findViewById(R.id.myfood_name_text);
 	    shelfOpened = (TextView) findViewById(R.id.row2_shelf_opened);
 	    shelfUnopened = (TextView) findViewById(R.id.row2_shelf_unopened);
@@ -84,20 +86,8 @@ public class MyFoodDetails extends SherlockActivity
 	    	sdf.setLenient(false);
 	    	
 	    	myFoodName.setText(m_myfood.getName());
-	    	shelfOpened.setText("" + m_myfood.getExpirationData().getShelfOpened());
-		    shelfUnopened.setText("" + m_myfood.getExpirationData().getShelfUnopened());
-		    fridgeOpened.setText("" + m_myfood.getExpirationData().getFridgeOpened());
-		    fridgeUnopened.setText("" + m_myfood.getExpirationData().getFridgeUnopened());
-		    freezerOpened.setText("" + m_myfood.getExpirationData().getFreezerOpened());
-		    freezerUnopened.setText("" + m_myfood.getExpirationData().getFreezerUnopened());
-		    purchased.setText(DATE_PURCHASED + sdf.format(m_myfood.getPurchaseDate().getTime()));
-		    
-		    if(m_myfood.getOpenDate() != null){
-		    	opened.setText(DATE_OPENED + sdf.format(m_myfood.getOpenDate().getTime()));
-		    }else{
-		    	opened.setText(DATE_OPENED + "Unopened");
-		    }
-		    
+	    	expirationTable.setExpirationData(m_myfood.getExpirationData());
+
 		    if(MyFood.SHELF_UNOPENED.equals(m_myfood.getState()) || 
 		    		MyFood.SHELF_OPENED.equals(m_myfood.getState())){
 		    	location.setText(LOCATION + SHELF);
