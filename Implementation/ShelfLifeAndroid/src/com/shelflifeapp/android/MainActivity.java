@@ -1,5 +1,6 @@
 package com.shelflifeapp.android;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -115,13 +116,15 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
 		{
 			case SCAN_BARCODE:
 			{
+				if (resultCode == Activity.RESULT_OK)
+				{
+		            String contents = data.getStringExtra("SCAN_RESULT");
+		            String format = data.getStringExtra("SCAN_RESULT_FORMAT");
 
-	            String contents = data.getStringExtra("SCAN_RESULT");
-	            String format = data.getStringExtra("SCAN_RESULT_FORMAT");
-
-				Intent searchResults = new Intent(mContext, SearchResultsActivity.class);
-				searchResults.putExtra(SearchResultsActivity.SEARCH_UPC, contents);
-				startActivity(searchResults);
+					Intent searchResults = new Intent(mContext, SearchResultsActivity.class);
+					searchResults.putExtra(SearchResultsActivity.SEARCH_UPC, contents);
+					startActivity(searchResults);
+				}
 			}
 		}
 	}

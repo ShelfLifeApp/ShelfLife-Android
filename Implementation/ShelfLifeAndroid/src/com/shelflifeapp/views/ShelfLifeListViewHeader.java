@@ -2,12 +2,12 @@ package com.shelflifeapp.views;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.shelflifeapp.android.R;
 
-public class ShelfLifeListViewHeader extends LinearLayout 
+public class ShelfLifeListViewHeader extends RelativeLayout 
 {
 	private TextView m_vwTitle;
 	private TextView m_vwSubtitle;

@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="@drawable/list_header_background"
     android:layout_marginBottom="5dip"
     >
     <LinearLayout
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:orientation="vertical"
         android:paddingTop="5dip"
 		android:paddingLeft="10dip"
-		android:paddingBottom="13dip">
+		android:paddingBottom="13dip"
+		android:layout_centerVertical="true"
+		android:layout_alignParentLeft="true">
 	    <TextView
 	        android:id="@+id/listview_header_title"
 	        android:layout_width="wrap_content"
@@ -32,5 +33,16 @@
 	        android:textColor="@color/list_header_subtitle_color"
 	    />
     </LinearLayout>
+    
+    <ImageView
+        android:id="@+id/listview_header_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="13dp"
+    />
 
-</LinearLayout>
+</RelativeLayout>
