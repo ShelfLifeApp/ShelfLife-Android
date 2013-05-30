@@ -24,5 +24,11 @@
     <string name="myfood_notes_hint">Add some notes.</string>
     <string name="myfood_tips_none">None.</string>
     <string name="myfood_picture">Picture of My Food</string>
+    <string name="food_title">Food</string>
+    <string name="food_average_life">Average Life</string>
+    <string name="food_add_button">Add</string>
+    <string name="food_tips_title">Tips</string>
+    <string name="food_tips_none">None.</string>
+    <string name="food_picture">Picture of Food</string>
 
 </resources>

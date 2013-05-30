@@ -38,5 +38,9 @@
     <color name="myfood_tips_title">#CCFFBB33</color>
     <color name="myfood_notes_title">#CCFFBB33</color>
     <color name="myfood_title">#a5cb5d</color>
+    <color name="food_add_button_text">#FFFFFF</color>
+    <color name="food_add_button_background">#a5cb5d</color>
+    <color name="food_title">#a5cb5d</color>
+    <color name="food_tips_title">#CCFFBB33</color>
     
 </resources>
