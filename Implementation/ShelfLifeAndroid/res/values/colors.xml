@@ -34,5 +34,9 @@
     <color name="warning_button_disagree_unselected">#e96363</color>
     <color name="warning_text_color">#FFFFFF</color>
     <color name="warning_text_title_color">#ff8800</color>
+    <color name="myfood_days_left">#CCFFBB33</color>
+    <color name="myfood_tips_title">#CCFFBB33</color>
+    <color name="myfood_notes_title">#CCFFBB33</color>
+    <color name="myfood_title">#a5cb5d</color>
     
 </resources>
