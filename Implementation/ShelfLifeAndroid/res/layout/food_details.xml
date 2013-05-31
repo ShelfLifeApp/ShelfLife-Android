@@ -13,8 +13,8 @@
 	    <RelativeLayout
 	        android:id="@+id/food_details_placemat"
 	        android:layout_width="fill_parent"
-	        android:layout_height="0dp"
-	        android:layout_weight="4"
+	        android:layout_height="200dp"
+	        android:layout_weight="6"
 	        android:background="@drawable/placemat_background"
 	        android:layout_marginBottom="0dp"
 	        >
@@ -42,7 +42,7 @@
 	        android:id="@+id/food_details_data_layout"
 	    	android:layout_width="fill_parent"
 	    	android:layout_height="0dp"
-	    	android:layout_weight="6"
+	    	android:layout_weight="4"
 	    	android:layout_gravity="center"
 	    	android:gravity="center"
 	    	>

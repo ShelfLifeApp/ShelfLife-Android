@@ -43,6 +43,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="13dp"
+        android:src="@drawable/addfood_icon"
     />
 
 </RelativeLayout>
