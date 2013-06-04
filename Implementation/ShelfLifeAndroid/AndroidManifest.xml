@@ -51,6 +51,11 @@
             android:screenOrientation="portrait"
             android:label="Edit My Food" >
         </activity>
+        <activity
+            android:name=".UserPreferences"
+            android:screenOrientation="portrait"
+            android:label="UserPreferences" >
+        </activity>
         <provider android:name="com.shelflifeapp.database.FoodContentProvider"
 		          android:authorities="com.shelflifeapp.android.provider">
 		</provider>

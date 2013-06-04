@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
+    <color name="listitem_myfood_text_not_expired_color">#ffbb33</color>
     <color name="listitem_myfood_text_expire_color">#f03e3e</color>
     <color name="listitem_myfood_text_name_color">#000000</color>
     <color name="listitem_myfood_text_category_color">#929292</color>
@@ -34,10 +35,13 @@
     <color name="warning_button_disagree_unselected">#e96363</color>
     <color name="warning_text_color">#FFFFFF</color>
     <color name="warning_text_title_color">#ff8800</color>
+    
+    
     <color name="myfood_days_left">#CCFFBB33</color>
     <color name="myfood_tips_title">#CCFFBB33</color>
     <color name="myfood_notes_title">#CCFFBB33</color>
     <color name="myfood_title">#a5cb5d</color>
+    
     <color name="food_add_button_text">#FFFFFF</color>
     <color name="food_add_button_background">#a5cb5d</color>
     <color name="food_title">#a5cb5d</color>

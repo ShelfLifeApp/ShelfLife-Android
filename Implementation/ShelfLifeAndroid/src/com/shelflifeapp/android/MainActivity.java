@@ -31,6 +31,7 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
 	private SearchView mSearchView;
 
 	private final int SCAN_BARCODE = 0;
+	private final int RESULT_SETTINGS = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) 
@@ -99,7 +100,11 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
 	        	startActivityForResult(intent, SCAN_BARCODE);
 	            return true;
 	        case R.id.menu_ab_search:	        		           
-	        	return true;	        
+	        	return true;	      
+	        case R.id.menu_ab_settings:
+	        	Intent i = new Intent(MainActivity.this, UserPreferences.class);
+	        	startActivityForResult(i, RESULT_SETTINGS);
+	        	return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
@@ -123,6 +128,12 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
 					searchResults.putExtra(SearchResultsActivity.SEARCH_UPC, contents);
 					startActivity(searchResults);
 				}
+				break;
+			}
+			case RESULT_SETTINGS:
+			{
+				// something with settigns
+				break;
 			}
 		}
 	}
