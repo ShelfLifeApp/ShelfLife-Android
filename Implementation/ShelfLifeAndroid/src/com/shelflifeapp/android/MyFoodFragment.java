@@ -132,6 +132,10 @@ public class MyFoodFragment extends SherlockListFragment
 
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
+		 if (position == 0)
+		 {
+		    return;
+		 }
 		Intent i = new Intent(mContext, MyFoodDetails.class);
 		i.putExtra("myfood", ((MyFoodListItem) v).getMyFood());
 		startActivity(i);

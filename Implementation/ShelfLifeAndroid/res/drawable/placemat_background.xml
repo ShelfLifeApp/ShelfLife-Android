@@ -2,14 +2,16 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <!-- CREATE A RECTANGLE WITH YOUR BORDER COLOR -->
-    <item>
+    
+    <!-- <item>
         <shape android:shape="rectangle" >
             <solid android:color="@color/placemat_divider"/>
         </shape>
     </item>
+     -->
 
     <!-- NOW DEFINE THE NORMAL COLOR-->
-    <item android:bottom="7dp">
+    <item>
         <shape android:shape="rectangle" >
             <solid android:color="@color/placemat_background"/>
         </shape>
