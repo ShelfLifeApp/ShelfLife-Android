@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -49,7 +50,7 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
 	public final static String SEARCH_UPC = "SEARCH_UPC";
 	public final static String SEARCH_STRING = "SEARCH_STRING";
 	
-	private String searchItem = "beef";
+	private String searchItem[];
 	
 	private FoodCursorAdapter m_foodAdapter;
 	
@@ -71,6 +72,7 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
         actionBar.setDisplayHomeAsUpEnabled(true);
  
         listView = (ListView) findViewById(R.id.search_list_view);
+        listView.setBackgroundColor(getResources().getColor(R.color.activity_background));
         listView.setDividerHeight(0);
         mHeader = new ShelfLifeListViewHeader(mContext, HEADER_TITLE, HEADER_SUBTITLE_SEARCHING);
         listView.addHeaderView(mHeader);
@@ -97,6 +99,15 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
     	}
     	
     	return toBeCapped.trim();
+    }
+    
+    private String[] getQueries(String search)
+    {
+    	String[] temp = formatSearchString(search).split("\\s");
+    	for (int i = 0; i < temp.length; i++)
+    		temp[i] = "%" + temp[i] + "%";
+    	
+    	return temp;
     }
     
     private void searchForItem()
@@ -138,7 +149,7 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
     
     private void setUpLoader(String searchText)
     {
-    	searchItem = formatSearchString(searchText);
+    	searchItem = getQueries(searchText);
     	mHeader.setTitles(HEADER_TITLE, HEADER_SUBTITLE_RESULT + searchText);
 	    this.m_foodAdapter = new FoodCursorAdapter(mContext, null, 0);
 	    getSupportLoaderManager().initLoader(LOADER_ID, null, this);
@@ -223,9 +234,19 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
 				FoodTable.FOOD_KEY_FREEZER_O,
 				FoodTable.FOOD_KEY_TIPS};
 		
-		String uriText = "content://com.shelflifeapp.android.provider/food_table/byname/" + searchItem;
+		String selection = "name LIKE ? ";
+		String temp = searchItem[0];
+		for(int i = 1; i < searchItem.length; i++){
+			selection += " OR name LIKE ? ";
+			temp += " " + searchItem[i];
+		}
+		String hardcode = "name LIKE '%Beef%' OR name LIKE '%Apple%'";
+		
+		Log.d("mgrap", temp);
+		Log.d("mgrap", "Selection: " + selection);
+		String uriText = "content://com.shelflifeapp.android.provider/food_table/byname/";
 		Uri uri = Uri.parse(uriText);
-		return new CursorLoader(mContext, uri, projection, null, null, 
+		return new CursorLoader(mContext, uri, projection, selection, searchItem, 
 				null);
 	}
 
