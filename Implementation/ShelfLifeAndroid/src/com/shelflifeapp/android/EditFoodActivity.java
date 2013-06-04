@@ -1,5 +1,7 @@
 package com.shelflifeapp.android;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -8,14 +10,17 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -39,6 +44,8 @@ public class EditFoodActivity extends SherlockActivity  {
 
 	public final static int ADD = 3;
 	public final static int EDIT = 4;
+	
+	private static final int PICTURE_REQUEST_CODE = 2;
 
 	private MyFood m_myfood;
 	private int foodid;
@@ -52,6 +59,8 @@ public class EditFoodActivity extends SherlockActivity  {
 	private Spinner state;
 	private EditText quantity;
 	private EditText notes;
+	private ImageView pictureView;
+	private Bitmap photo;
 
 	DateFormat formatDateTime = DateFormat.getDateInstance();
 	Calendar purchaseDate = Calendar.getInstance();
@@ -97,6 +106,7 @@ public class EditFoodActivity extends SherlockActivity  {
 	    state = (Spinner) findViewById(R.id.state_spinner);
 	    quantity = (EditText) findViewById(R.id.edit_quantity_text);
 	    notes = (EditText) findViewById(R.id.edit_notes_text);
+	    pictureView = (ImageView) findViewById(R.id.edit_picture);
 
 	    purchasedButton.setOnClickListener(new Button.OnClickListener() 
         {  
@@ -176,6 +186,10 @@ public class EditFoodActivity extends SherlockActivity  {
 	    	quantity.setText("" + m_myfood.getQuantity());
 	    	if(m_myfood.getNotes() != null){
 	    		notes.setText(m_myfood.getNotes());
+	    	}
+	    	
+	    	if(m_myfood.getPicture() != null){
+	    		pictureView.setImageBitmap(m_myfood.getPicture());
 	    	}
 	    }
 	    else{
@@ -257,6 +271,8 @@ public class EditFoodActivity extends SherlockActivity  {
 	        	}else{
 	        		m_myfood.setNotes(null);
 	        	}
+	        	Log.d("mgrap", "Photo 1" + photo);
+	        	m_myfood.setPicture(photo);
 
 	        	/* put food in database */
 	        	if(operation == ADD){    	    	
@@ -271,6 +287,11 @@ public class EditFoodActivity extends SherlockActivity  {
 					cv.put(MyFoodTable.FOOD_KEY_STATE, m_myfood.getState());
 					cv.put(MyFoodTable.FOOD_KEY_QUANTITY, m_myfood.getQuantity());
 					cv.put(MyFoodTable.FOOD_KEY_NOTES, m_myfood.getNotes());
+					if(m_myfood.getPicture() != null){
+						cv.put(MyFoodTable.FOOD_KEY_PICTURE, m_myfood.setPictureToByteArray(m_myfood.getPicture()));
+					}else{
+						cv.putNull(MyFoodTable.FOOD_KEY_PICTURE);
+					}
 					Uri idUri = getContentResolver().insert(uri, cv);
 					String id = idUri.getLastPathSegment();
 					m_myfood.setId(Integer.parseInt(id));
@@ -285,6 +306,11 @@ public class EditFoodActivity extends SherlockActivity  {
 					cv.put(MyFoodTable.FOOD_KEY_STATE, m_myfood.getState());
 					cv.put(MyFoodTable.FOOD_KEY_QUANTITY, m_myfood.getQuantity());
 					cv.put(MyFoodTable.FOOD_KEY_NOTES, m_myfood.getNotes());
+					if(m_myfood.getPicture() != null){
+						cv.put(MyFoodTable.FOOD_KEY_PICTURE, m_myfood.setPictureToByteArray(m_myfood.getPicture()));
+					}else{
+						cv.putNull(MyFoodTable.FOOD_KEY_PICTURE);
+					}
 					getContentResolver().update(uri, cv, null, null);
 					Toast.makeText(this, m_myfood.getName() + " Edited", Toast.LENGTH_LONG).show();
 	        	}
@@ -293,6 +319,10 @@ public class EditFoodActivity extends SherlockActivity  {
 	    		i.putExtra("myfood", m_myfood);
 	    		startActivity(i);
 	            return true;	
+	    	case R.id.menu_take_picture:
+	    		Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE); 
+                startActivityForResult(cameraIntent, PICTURE_REQUEST_CODE); 
+	    		return true;
 	    	case android.R.id.home:
 	    		finish();
 	    		return true;
@@ -300,6 +330,13 @@ public class EditFoodActivity extends SherlockActivity  {
 	            return super.onOptionsItemSelected(item);
 	    }
 	}
+    
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
+        if (requestCode == PICTURE_REQUEST_CODE) {  
+            photo = (Bitmap) data.getExtras().get("data");
+            pictureView.setImageBitmap(photo);
+        }       
+    }
     
     public void chooseDate(Calendar date, DatePickerDialog.OnDateSetListener listener){
     	new DatePickerDialog(EditFoodActivity.this, listener, 
@@ -332,4 +369,6 @@ public class EditFoodActivity extends SherlockActivity  {
 		purchaseDateLabel.setText(formatDateTime.format(purchaseDate.getTime()));
 		openDateLabel.setText(formatDateTime.format(openDate.getTime()));
 	}
+	
+	
 }

@@ -1,8 +1,12 @@
 package com.shelflifeapp.models;
 
+import java.io.ByteArrayOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -22,13 +26,13 @@ public class MyFood extends Food
 	private Calendar openDate;
 	private int quantity;
 	private String notes;
-	private Drawable picture;
+	private Bitmap picture;
 	private String state;
 	
 	public MyFood(int id, String name, Category category, 
 			ExpirationData expirationData, String tips, String state, 
 			Calendar purchaseDate, Calendar openDate, int quantity, 
-			String notes, Drawable picture)
+			String notes, Bitmap picture)
 	{
 		super(id, name, category, expirationData, tips);
 		this.setState(state);
@@ -79,11 +83,11 @@ public class MyFood extends Food
 		this.notes = notes;
 	}
 
-	public Drawable getPicture() {
+	public Bitmap getPicture() {
 		return picture;
 	}
 
-	public void setPicture(Drawable picture) {
+	public void setPicture(Bitmap picture) {
 		this.picture = picture;
 	}
 
@@ -175,14 +179,32 @@ public class MyFood extends Food
 	  return julianDay(y1, m1, d1) - julianDay(y2, m2, d2);
 	}
 	
+	public byte[] setPictureToByteArray(Bitmap photo){
+		if(photo != null){
+			ByteArrayOutputStream stream = new ByteArrayOutputStream();
+	        photo.compress(Bitmap.CompressFormat.PNG, 100, stream);
+	        byte[] byteArray = stream.toByteArray();
+	        return byteArray;
+		}
+		return null;
+	}
+	
 	@Override
 	public void writeToParcel(Parcel arg0, int arg1) {
 		super.writeToParcel(arg0, arg1);
+		byte[] byte_array = setPictureToByteArray(this.picture);
+		int length = 0;
+		if(byte_array != null){
+			length = byte_array.length;
+		}
+		Log.d("mgrap", "Byte Array: " + byte_array);
 		arg0.writeSerializable(purchaseDate);
 		arg0.writeSerializable(openDate);
 		arg0.writeString(state);
 		arg0.writeInt(quantity);
-		arg0.writeString(notes);		
+		arg0.writeString(notes);
+		arg0.writeInt(length);
+		arg0.writeByteArray(byte_array);
 	}
 	
 	public static final Parcelable.Creator<MyFood> CREATOR = 
@@ -198,11 +220,26 @@ public class MyFood extends Food
     
     public MyFood(Parcel in) {
         super(in);
+        int length = 0;
+        
         purchaseDate = (Calendar) in.readSerializable();
         openDate = (Calendar) in.readSerializable();
         state = in.readString();
         quantity = in.readInt();
         notes = in.readString();
+        length = in.readInt();
+        if(length > 0){
+	        byte[] _byte = new byte[length];
+	        Log.d("mgrap", "length: " + length);
+	        Log.d("mgrap", "New Byte Array: " + _byte);
+	        in.readByteArray(_byte);
+	        if(_byte != null){
+	        	picture = BitmapFactory.decodeByteArray(_byte, 0, length);
+	        }
+	        Log.d("mgrap", "New Picture: " + picture);
+        }
+        
+        
     }
 	
 }

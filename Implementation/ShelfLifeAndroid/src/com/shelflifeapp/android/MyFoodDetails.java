@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +47,7 @@ public class MyFoodDetails extends SherlockActivity
 	private TextView fridgeUnopened;
 	private TextView freezerOpened;
 	private TextView freezerUnopened;
+	private ImageView picture;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +82,7 @@ public class MyFoodDetails extends SherlockActivity
 	    notes = (EditText) findViewById(R.id.myfood_notes_text);
 	    daysLeft = (TextView) findViewById(R.id.myfood_days_left_num);
 	    daysText = (TextView) findViewById(R.id.myfood_days_left_text);
+	    picture = (ImageView) findViewById(R.id.myfood_details_plate_food);
 	    
 	    if(m_myfood != null){
 	    	SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
@@ -129,6 +132,9 @@ public class MyFoodDetails extends SherlockActivity
 	    }
 	    else{
 	    	Toast.makeText(this, "My Food is null", Toast.LENGTH_LONG).show();
+	    }
+	    if(m_myfood.getPicture() != null){
+	    	picture.setImageBitmap(m_myfood.getPicture());
 	    }
     }
     
