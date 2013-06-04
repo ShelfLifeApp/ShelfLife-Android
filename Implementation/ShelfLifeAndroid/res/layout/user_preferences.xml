@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="Preferences">
+
+  <PreferenceCategory
+     android:title="@string/PREF_CAT_NOTIFY_ENABLE">
+
+     <CheckBoxPreference
+       android:key="@string/KEY_NOTIF_ENABLED"
+       android:title="@string/PREF_CB_NOTIFY_ENABLE_TITLE"
+       android:summary="@string/PREF_CB_NOTIFY_ENABLE_SUM"
+       android:defaultValue="false"
+       />
+     
+  </PreferenceCategory>
+
+  <PreferenceCategory
+     android:title="@string/PREF_CAT_NOTIFY_OPTIONS">
+      
+    <ListPreference
+        android:key="@string/KEY_NOTIF_RATE"
+        android:title="@string/PREF_LIST_NOTIFY_RATE_TITLE"
+        android:summary="@string/PREF_LIST_NOTIFY_RATE_SUM"
+        android:entries="@array/pref_notif_options"
+        android:entryValues="@array/pref_notif_options"
+        android:defaultValue="0"
+        />
+     
+  </PreferenceCategory>
+   
+</PreferenceScreen>
