@@ -57,8 +57,12 @@ public class MyFoodListItem extends LinearLayout
 			m_vwIcon.setImageResource(myFood.getId());
 			m_vwIndicator.setImageResource(ICON_INDICATOR);
 			m_vwState.setText(myFood.getState().toString());
-			if(myFood.getExpirationDaysLeft() >= 0){
+			if(myFood.getExpirationDaysLeft() > 1){
 				m_vwExpiration.setText(myFood.getExpirationDaysLeft() + " days left");
+			}else if(myFood.getExpirationDaysLeft() == 1){
+				m_vwExpiration.setText(myFood.getExpirationDaysLeft() + " day left");
+			}else if(myFood.getExpirationDaysLeft() == 0){
+				m_vwExpiration.setText("< 1 day left");
 			}else{
 				m_vwExpiration.setTextColor(getResources().getColor(R.color.listitem_myfood_text_expire_color));
 				m_vwExpiration.setText("Expired");

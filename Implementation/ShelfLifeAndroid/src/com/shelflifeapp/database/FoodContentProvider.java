@@ -24,7 +24,7 @@ public class FoodContentProvider extends ContentProvider {
 	private static final int MYFOOD_DELETE = 6;
 	private static final int MYFOOD_INSERT = 7;
 	private static final int MYFOOD_EDIT = 8;
-	private static final int FOOD_BYNAME = 9;
+	private static final int FOOD_BY_KEYWORD = 9;
 	
 	private static final String AUTHORITY = "com.shelflifeapp.android.provider";
 	
@@ -52,7 +52,7 @@ public class FoodContentProvider extends ContentProvider {
 		sURIMatcher.addURI(AUTHORITY, MYFOOD_TABLE + "/delete/#", MYFOOD_DELETE);
 		sURIMatcher.addURI(AUTHORITY, MYFOOD_TABLE + "/insert/#", MYFOOD_INSERT);
 		sURIMatcher.addURI(AUTHORITY, MYFOOD_TABLE + "/edit/#", MYFOOD_EDIT);
-		sURIMatcher.addURI(AUTHORITY, FOOD_TABLE + "/byname/", FOOD_BYNAME);
+		sURIMatcher.addURI(AUTHORITY, FOOD_TABLE + "/by_keyword", FOOD_BY_KEYWORD);
 	}
 	
 	@Override
@@ -110,15 +110,10 @@ public class FoodContentProvider extends ContentProvider {
 					queryBuilder.appendWhere(FoodTable.FOOD_KEY_CATEGORY + "=" + CategoryTable.FOOD_KEY_ID);
 				}
 				break;
-			case FOOD_BYNAME:
+			case FOOD_BY_KEYWORD:
 				checkFoodColumns(projection);
 				queryBuilder.setTables(FoodTable.DATABASE_TABLE_FOOD);
 				orderBy = FoodTable.FOOD_KEY_NAME + " ASC";
-				//String name = uri.getLastPathSegment();
-				/*if(name != null){
-					queryBuilder.appendWhere(FoodTable.FOOD_KEY_NAME + " = " 
-							+ "'" + name + "'");
-				}*/
 				break;
 			default:
 				throw new IllegalArgumentException("Unknown URI: " + uri);

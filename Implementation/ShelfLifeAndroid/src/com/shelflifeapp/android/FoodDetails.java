@@ -99,11 +99,6 @@ public class FoodDetails extends SherlockActivity
 			{
 				if(m_food != null)
 				{
-					/*Uri uri = Uri.parse("content://com.shelflifeapp.android.provider/myfood_table/insert/" + 0);
-					ContentValues cv = new ContentValues();
-					cv.put(MyFoodTable.FOOD_KEY_FOODID, m_food.getId());
-					Uri idUri = getContentResolver().insert(uri, cv);
-					Toast.makeText(FoodDetails.this, m_food.getName() + " Inserted", Toast.LENGTH_LONG).show();*/
 					Intent i = new Intent(FoodDetails.this, EditFoodActivity.class);
 					
 					MyFood myfood = new MyFood(0, m_food.getName(), m_food.getCategory(),

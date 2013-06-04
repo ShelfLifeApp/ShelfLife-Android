@@ -112,14 +112,19 @@ public class MyFoodDetails extends SherlockActivity
 		    	notes.setText("" + m_myfood.getNotes());
 		    }
 		    
-		    if(m_myfood.getExpirationDaysLeft() >= 0){
-		    	daysLeft.setText("" + m_myfood.getExpirationDaysLeft());
-		    	daysText.setVisibility(View.VISIBLE);
-		    }else{
+		    if(m_myfood.getExpirationDaysLeft() < 0){
 		    	daysLeft.setTextColor(getResources().getColor(R.color.listitem_myfood_text_expire_color));
 		    	daysLeft.setText("Expired");
 		    	daysLeft.setTextSize(20);
-		    	daysText.setVisibility(View.GONE);
+		    	daysText.setVisibility(View.GONE);		    	
+		    }else if(m_myfood.getExpirationDaysLeft() == 1){
+		    	daysLeft.setText("" + m_myfood.getExpirationDaysLeft());
+		    	daysText.setText("day");
+		    	daysText.setVisibility(View.VISIBLE);
+		    }else{
+		    	daysLeft.setText("" + m_myfood.getExpirationDaysLeft());
+		    	daysText.setText("days");
+		    	daysText.setVisibility(View.VISIBLE);
 		    }
 	    }
 	    else{

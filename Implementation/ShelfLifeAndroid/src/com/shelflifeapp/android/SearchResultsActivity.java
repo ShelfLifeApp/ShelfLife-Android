@@ -24,6 +24,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.widget.SearchView;
+import com.shelflifeapp.database.CategoryTable;
 import com.shelflifeapp.database.FoodCursorAdapter;
 import com.shelflifeapp.database.FoodDatabaseHelper;
 import com.shelflifeapp.database.FoodTable;
@@ -234,17 +235,11 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
 				FoodTable.FOOD_KEY_FREEZER_O,
 				FoodTable.FOOD_KEY_TIPS};
 		
-		String selection = "name LIKE ? ";
-		String temp = searchItem[0];
+		String selection = "name LIKE ?";
 		for(int i = 1; i < searchItem.length; i++){
-			selection += " OR name LIKE ? ";
-			temp += " " + searchItem[i];
+			selection += " OR name LIKE ?";
 		}
-		String hardcode = "name LIKE '%Beef%' OR name LIKE '%Apple%'";
-		
-		Log.d("mgrap", temp);
-		Log.d("mgrap", "Selection: " + selection);
-		String uriText = "content://com.shelflifeapp.android.provider/food_table/byname/";
+		String uriText = "content://com.shelflifeapp.android.provider/food_table/by_keyword";
 		Uri uri = Uri.parse(uriText);
 		return new CursorLoader(mContext, uri, projection, selection, searchItem, 
 				null);
