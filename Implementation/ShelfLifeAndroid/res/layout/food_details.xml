@@ -17,11 +17,21 @@
 	        android:layout_weight="4"
 	        android:background="@drawable/placemat_background"
 	        >
+	        <ImageView
+	            android:layout_width="60dp"
+	            android:layout_height="120dp"
+				android:src="@drawable/knife"
+				android:layout_toRightOf="@+id/food_details_plate"
+				android:layout_centerVertical="true"
+				/>
+	                
 	        <RelativeLayout
 	            android:id="@+id/food_details_plate"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_centerInParent="true"
+	            android:layout_marginTop="15dp"
+	            android:layout_marginBottom="15dp"
 	            android:background="@drawable/plate_icon_centered">
 	       
 	        	<ImageView
@@ -34,6 +44,14 @@
 	    	    	/>
 	            
 	        </RelativeLayout>
+	        
+	    	<ImageView
+	            android:layout_width="60dp"
+	            android:layout_height="120dp"
+				android:src="@drawable/fork"
+				android:layout_toLeftOf="@+id/food_details_plate"
+				android:layout_centerVertical="true"
+				/>
 	        
 	    </RelativeLayout>
 	    
