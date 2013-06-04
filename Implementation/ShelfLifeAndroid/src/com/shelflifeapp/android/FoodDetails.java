@@ -95,7 +95,9 @@ public class FoodDetails extends SherlockActivity
 	    if(m_food != null){
 	    	foodName.setText(m_food.getName());
 	    	expirationTable.setExpirationData(m_food.getExpirationData());
-	    	tips.setText(m_food.getTips());
+	    	if(m_food.getTips() != null && !"".equals(m_food.getTips())){
+	    		tips.setText(m_food.getTips());
+	    	}
 	    }
 	    
         addButton = (Button) findViewById(R.id.add_food_button);
