@@ -43,7 +43,6 @@ public class FoodDetails extends SherlockActivity
 	private TextView freezerOpened;
 	private TextView freezerUnopened;
 	private TextView tips;
-	
 	private ImageView iconView;
 	
 	private final String PREF_KEY = "fooddetails";
@@ -64,16 +63,8 @@ public class FoodDetails extends SherlockActivity
         ActionBar actionBar = this.getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         
-        prefs = this.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE);
-        hasAgreed = prefs.getBoolean(PREF_KEY_AGREE, false);
-        
-        if (!hasAgreed)
-        {
-        	Intent agreeIntent = new Intent(this, WarningActivity.class);
-        	startActivityForResult(agreeIntent, KEY_WARNING_AGREE);
-        }
+        checkIfAgreed();
         	
-        
         Bundle foodBundle = this.getIntent().getExtras();
 	    if(foodBundle == null)
 	    {
@@ -136,13 +127,11 @@ public class FoodDetails extends SherlockActivity
 			{
 				if (resultCode == Activity.RESULT_CANCELED)
 				{
-					//Toast.makeText(this, "CANCELLED", Toast.LENGTH_LONG).show();
 					prefs.edit().putBoolean(PREF_KEY_AGREE, false).commit();
 					this.finish();
 				}
 				else if (resultCode == Activity.RESULT_OK)
 				{
-					//Toast.makeText(this, "OKAY", Toast.LENGTH_LONG).show();
 					boolean agreed = data.getBooleanExtra(KEY_DATA_AGREE, false);
 					
 					if (agreed)
@@ -159,9 +148,20 @@ public class FoodDetails extends SherlockActivity
 		}
 	}
     
+    private void checkIfAgreed()
+    {
+        prefs = this.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE);
+        hasAgreed = prefs.getBoolean(PREF_KEY_AGREE, false);
+        
+        if (!hasAgreed)
+        {
+        	Intent agreeIntent = new Intent(this, WarningActivity.class);
+        	startActivityForResult(agreeIntent, KEY_WARNING_AGREE);
+        }
+    }
+    
     @Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-	    // Handle item selection
 	    switch (item.getItemId()) 
 	    {
 	    	case android.R.id.home:

@@ -1,5 +1,8 @@
 package com.shelflifeapp.android;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -7,7 +10,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-import android.widget.Toast;
+import android.widget.ViewSwitcher;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
@@ -30,21 +33,17 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
 	private final int SCAN_BARCODE = 0;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        
-    	super.onCreate(savedInstanceState);       
-        setContentView(R.layout.activity_main);
+    protected void onCreate(Bundle savedInstanceState) 
+    {   	
+    	super.onCreate(savedInstanceState);
+    	setContentView(R.layout.activity_main);
         
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        //actionBar.setDisplayShowTitleEnabled(false);
-        //actionBar.setDisplayUseLogoEnabled(true);
-        //actionBar.setLogo(R.drawable.logo_name);
-        
+
         ActionBar.Tab databaseTab = actionBar.newTab().setText("All Foods");
         ActionBar.Tab myFoodTab = actionBar.newTab().setText("My Food");
-        
-        
+              
         Fragment databaseFragment = new DatabaseFragment();
         Fragment myFoodFragment = new MyFoodFragment();
         Fragment categoryFragment = new CategoryFragment();
@@ -53,8 +52,7 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
         myFoodTab.setTabListener(new MyFoodTabListener(myFoodFragment));
         
         actionBar.addTab(databaseTab);
-        actionBar.addTab(myFoodTab); 
-              
+        actionBar.addTab(myFoodTab);               
     }
 
     @Override
