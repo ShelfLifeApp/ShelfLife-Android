@@ -16,16 +16,13 @@
 	        android:layout_height="0dp"
 	        android:layout_weight="4"
 	        android:background="@drawable/placemat_background"
-	        android:layout_marginBottom="0dp"
 	        >
 	        <RelativeLayout
 	            android:id="@+id/food_details_plate"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:layout_margin="10dip"
 	            android:layout_centerInParent="true"
-	            android:padding="20dp"
-	            android:background="@drawable/plate_icon">
+	            android:background="@drawable/plate_icon_centered">
 	       
 	        	<ImageView
 	    	   		android:id="@+id/food_details_plate_food"
@@ -39,6 +36,12 @@
 	        </RelativeLayout>
 	        
 	    </RelativeLayout>
+	    
+	    <View
+	        android:layout_width="wrap_content"
+	        android:layout_height="7dp"
+	        android:background="@color/placemat_divider"
+	        />
 	    
 	    <RelativeLayout
 	        android:layout_marginTop="25dip"
