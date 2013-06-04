@@ -28,7 +28,7 @@
 	            android:layout_height="match_parent"
 	            android:gravity="center_horizontal"
 	            android:padding="10dp"
-	            android:text="Location"
+	            android:text="@string/table_location"
 	            android:textStyle="bold"/>
 	        
 	        <TextView
@@ -39,7 +39,7 @@
 	            android:layout_height="match_parent"
 	            android:gravity="center_horizontal"
 	            android:padding="10dp"
-	            android:text=" Opened "
+	            android:text="@string/table_opened"
 	            android:textStyle="bold"/>
 	        
 	        <TextView
@@ -50,7 +50,7 @@
 	            android:layout_height="match_parent"
 	            android:gravity="center_horizontal"
 	            android:padding="10dp"
-	            android:text="Unopened"
+	            android:text="@string/table_unopened"
 	            android:textStyle="bold"/>
 	        
 	        </TableRow>
@@ -72,7 +72,7 @@
 	            android:padding="10dp"
 	            android:textColor="@color/exp_table_text_loc"
 	            android:textStyle="bold"
-	            android:text="Shelf"/>
+	            android:text="@string/table_shelf"/>
 	        
 	        <TextView
 	            android:layout_weight="2.5"
@@ -81,7 +81,7 @@
 	            android:layout_width="match_parent"
 	            android:layout_height="match_parent"
 	            android:padding="10dp"
-	            android:text="-"
+	            android:text="@string/table_null"
 	            android:gravity="center_horizontal"/>
 	        
 	        <TextView
@@ -92,7 +92,7 @@
 	            android:background="@drawable/cell_shape"
 	            android:gravity="center_horizontal"
 	            android:padding="10dp"
-	            android:text="-" />
+	            android:text="@string/table_null" />
 	        
 	        </TableRow>
 	        
@@ -112,7 +112,7 @@
 	            android:padding="10dp"
 	            android:textColor="@color/exp_table_text_loc"
 	            android:textStyle="bold"
-	            android:text="Fridge"/>
+	            android:text="@string/table_fridge"/>
 	        
 	        <TextView
 	            android:layout_weight="2.5"
@@ -121,7 +121,7 @@
 	            android:layout_width="match_parent"
 	            android:layout_height="match_parent"
 	            android:padding="10dp"
-	            android:text="-"
+	            android:text="@string/table_null"
 	            android:gravity="center_horizontal"/>
 	        
 	        <TextView
@@ -131,7 +131,7 @@
 	            android:layout_width="match_parent"
 	            android:layout_height="match_parent"
 	            android:padding="10dp"
-	            android:text="-"
+	            android:text="@string/table_null"
 	            android:gravity="center_horizontal"/>
 	        
 	        </TableRow>
@@ -152,7 +152,7 @@
 	            android:padding="10dp"
 	            android:textColor="@color/exp_table_text_loc"
 	            android:textStyle="bold"
-	            android:text="Freezer"/>
+	            android:text="@string/table_freezer"/>
 	        
 	        <TextView
 	            android:layout_weight="2.5"
@@ -161,7 +161,7 @@
 	            android:layout_width="match_parent"
 	            android:layout_height="match_parent"
 	            android:padding="10dp"
-	            android:text="-"
+	            android:text="@string/table_null"
 	            android:gravity="center_horizontal"/>
 	        
 	        <TextView
@@ -171,7 +171,7 @@
 	            android:layout_width="match_parent"
 	            android:layout_height="match_parent"
 	            android:padding="10dp"
-	            android:text="-"
+	            android:text="@string/table_null"
 	            android:gravity="center_horizontal"/>
 	        
 	        </TableRow>
