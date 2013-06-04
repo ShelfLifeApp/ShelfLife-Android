@@ -58,5 +58,38 @@
      	<item>1</item>
      	<item>7</item>
     </string-array>
+    <string name="warning_title">WARNING!</string>
+    <string name="warning_content_description">Warning Image Cannot Be Displayed</string>
+    <string name="warning_agree">I Agree</string>
+    <string name="warning_disagree">I Disagree</string>
+    <string name="list_header_title">Title</string>
+    <string name="list_header_subtitle">Subtitle</string>
+    <string name="list_header_image_desc">Image Cannot be Displayed</string>
+    <string name="myfood_listitem_days">2 days</string>
+    <string name="myfood_listitem_image_desc">Image Cannot be Displayed</string>
+    <string name="myfood_listitem_icon_desc">Icon Cannot be Displayed</string>
+    <string name="table_location">Location</string>
+    <string name="table_opened">Opened</string>
+    <string name="table_unopened">Unopened</string>
+    <string name="table_shelf">Shelf</string>
+    <string name="table_fridge">Fridge</string>
+    <string name="table_freezer">Freezer</string>
+    <string name="table_null">-</string>
+    <string name="edit_name">Name: </string>
+    <string name="edit_name_hint">Food Name</string>
+    <string name="edit_purchase_date">Date Purchased: </string>
+    <string name="edit_opened_date">Date Opened: </string>
+    <string name="edit_purchase_button">Set Purchase Date</string>
+    <string name="edit_opened_button">Set Open Date</string>
+    <string name="edit_opened_question">Has this food been opened?</string>
+    <string name="edit_opened_yes">Yes</string>
+    <string name="edit_opened_no">No</string>
+    <string name="edit_state">State: </string>
+    <string name="edit_quantity">Quantity: </string>
+    <string name="edit_notes">Notes: </string>
+    <string name="edit_notes_hint">Add some notes.</string>
+    <string name="edit_quantity_hint">How many?</string>
+    <string name="edit_picture">No Picture</string>
+    <string name="barcode_text">Barcode Here</string>
 
 </resources>

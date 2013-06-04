@@ -20,6 +20,7 @@
         	android:layout_height="wrap_content"
         	android:src="@drawable/warning_icon_smaller"
         	android:layout_centerHorizontal="true"
+        	android:contentDescription="@string/warning_content_description"
         />
         
         <TextView
@@ -28,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/warning_image"
             android:layout_centerHorizontal="true"
-            android:text="WARNING!"
+            android:text="@string/warning_title"
             android:textColor="@color/warning_text_title_color"
             android:textStyle="bold"
             android:textSize="20sp"
@@ -66,7 +67,7 @@
 	        android:background="@drawable/warning_button_disagree_background"
 	        android:textColor="@color/warning_text_color"
 	        android:textStyle="bold"
-	        android:text="I Disagree"
+	        android:text="@string/warning_disagree"
 	        />
 	   
 	    <Button
@@ -77,9 +78,9 @@
 	        android:background="@drawable/warning_button_agree_background"
 	        android:textStyle="bold"
 	        android:textColor="@color/warning_text_color"
-	        android:text="I Agree"
-	        />"
+	        android:text="@string/warning_agree"
+	        />
 	   
-	</LinearLayout>"
+	</LinearLayout>
     
 </LinearLayout>
