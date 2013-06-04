@@ -32,18 +32,18 @@ import com.shelflifeapp.models.MyFood;
 import com.shelflifeapp.views.MyFoodListItem;
 
 public class EditFoodActivity extends SherlockActivity  {
-	
+
 	private final static int SHELF = 0;
 	private final static int FRIDGE = 1;
 	private final static int FREEZER = 2;
-	
+
 	public final static int ADD = 3;
 	public final static int EDIT = 4;
-	
+
 	private MyFood m_myfood;
 	private int foodid;
 	private int operation;
-	
+
 	private EditText myFoodName;
 	private Button purchasedButton;
 	private RadioGroup openedBool;
@@ -52,13 +52,13 @@ public class EditFoodActivity extends SherlockActivity  {
 	private Spinner state;
 	private EditText quantity;
 	private EditText notes;
-	
+
 	DateFormat formatDateTime = DateFormat.getDateInstance();
 	Calendar purchaseDate = Calendar.getInstance();
 	Calendar openDate = Calendar.getInstance();
 	private TextView purchaseDateLabel;
 	private TextView openDateLabel;
-	
+
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +88,7 @@ public class EditFoodActivity extends SherlockActivity  {
 	    purchaseDateLabel = (TextView) findViewById(R.id.purchase_date_label);
 	    openDateLabel = (TextView) findViewById(R.id.open_date_label);
         updateLabel();
-	    
+
 	    myFoodName = (EditText) findViewById(R.id.edit_name_text);
 	    purchasedButton = (Button) findViewById(R.id.edit_purchase_button);
 	    openedBool = (RadioGroup) findViewById(R.id.edit_opened_group);
@@ -97,7 +97,7 @@ public class EditFoodActivity extends SherlockActivity  {
 	    state = (Spinner) findViewById(R.id.state_spinner);
 	    quantity = (EditText) findViewById(R.id.edit_quantity_text);
 	    notes = (EditText) findViewById(R.id.edit_notes_text);
-	    
+
 	    purchasedButton.setOnClickListener(new Button.OnClickListener() 
         {  
 			@Override
@@ -106,7 +106,7 @@ public class EditFoodActivity extends SherlockActivity  {
 				chooseDate(purchaseDate, p);
 			}
         });
-	    
+
 	    openedButton.setOnClickListener(new Button.OnClickListener() 
         {  
 			@Override
@@ -115,7 +115,7 @@ public class EditFoodActivity extends SherlockActivity  {
 				chooseDate(openDate, o);
 			}
         });
-	    
+
 	    openedBool.setOnCheckedChangeListener(
             new RadioGroup.OnCheckedChangeListener() {
 
@@ -134,7 +134,7 @@ public class EditFoodActivity extends SherlockActivity  {
                 }
             }
         });
-	    
+
 	    if(m_myfood != null){   	
 	    	if(m_myfood.getName() != null){
 	    		myFoodName.setText(m_myfood.getName());
@@ -199,7 +199,7 @@ public class EditFoodActivity extends SherlockActivity  {
 	        case R.id.menu_done:
 	        	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     	    	sdf.setLenient(false);
-	        	
+
 	        	if(myFoodName.getText() != null){
 	        		m_myfood.setName(myFoodName.getText().toString());
 	        	}else{
@@ -219,14 +219,14 @@ public class EditFoodActivity extends SherlockActivity  {
 	        					Toast.LENGTH_LONG).show();
 	        			return false;
 	        		}
-	        		
+
 	        		if(openDate.compareTo(Calendar.getInstance()) > 0){
 	        			Toast.makeText(this, "Open date is later than current date.", 
 	        					Toast.LENGTH_LONG).show();
 	        			return false;
 	        		}	        		
 		        	m_myfood.setOpenDate(openDate);
-	        		
+
 	        		if(state.getSelectedItemPosition() == SHELF){
 	        			m_myfood.setState(MyFood.SHELF_OPENED);
 	        		}else if(state.getSelectedItemPosition() == FRIDGE){
@@ -244,7 +244,7 @@ public class EditFoodActivity extends SherlockActivity  {
 	        			m_myfood.setState(MyFood.FREEZER_UNOPENED);
 	        		}
 	        	}
-	        	
+
 	        	if(quantity.getText() != null){
 	        		m_myfood.setQuantity(Integer.parseInt(quantity.getText().toString()));
 	        	}else{
@@ -257,7 +257,7 @@ public class EditFoodActivity extends SherlockActivity  {
 	        	}else{
 	        		m_myfood.setNotes(null);
 	        	}
-	        	
+
 	        	/* put food in database */
 	        	if(operation == ADD){    	    	
 		        	Uri uri = Uri.parse("content://com.shelflifeapp.android.provider/myfood_table/insert/" + 0);
@@ -288,7 +288,7 @@ public class EditFoodActivity extends SherlockActivity  {
 					getContentResolver().update(uri, cv, null, null);
 					Toast.makeText(this, m_myfood.getName() + " Edited", Toast.LENGTH_LONG).show();
 	        	}
-	        	
+
 	        	Intent i = new Intent(this, MyFoodDetails.class);
 	    		i.putExtra("myfood", m_myfood);
 	    		startActivity(i);
@@ -317,7 +317,7 @@ public class EditFoodActivity extends SherlockActivity  {
 			updateLabel();
 		}
 	};
-	
+
 	DatePickerDialog.OnDateSetListener o = new DatePickerDialog.OnDateSetListener() {
 		@Override
 		public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {

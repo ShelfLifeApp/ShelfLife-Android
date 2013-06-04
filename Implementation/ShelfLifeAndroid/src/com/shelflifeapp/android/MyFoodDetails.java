@@ -143,8 +143,11 @@ public class MyFoodDetails extends SherlockActivity
 				i.putExtra("myfood", m_myfood);
 				i.putExtra("operation", EditFoodActivity.EDIT);
 				i.putExtra("foodid", m_myfood.getId());
+				finish();
+				
 				startActivity(i);
 	            return true;	
+	        
 	    	case android.R.id.home:
 	    		finish();
 	    		return true;
