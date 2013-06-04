@@ -93,7 +93,7 @@ public class MyFoodDetails extends SherlockActivity
 		    if(m_myfood.getOpenDate() != null){
 		    	opened.setText(DATE_OPENED + sdf.format(m_myfood.getOpenDate().getTime()));
 		    }else{
-		    	opened.setText(DATE_OPENED + "Unopened");
+		    	opened.setText(DATE_OPENED + "No");
 		    }
 		    
 		    if(MyFood.SHELF_UNOPENED.equals(m_myfood.getState()) || 
