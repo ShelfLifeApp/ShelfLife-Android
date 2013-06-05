@@ -91,5 +91,6 @@
     <string name="edit_quantity_hint">How many?</string>
     <string name="edit_picture">No Picture</string>
     <string name="barcode_text">Barcode Here</string>
+    <string name="myfood_notes_none">None.</string>
 
 </resources>

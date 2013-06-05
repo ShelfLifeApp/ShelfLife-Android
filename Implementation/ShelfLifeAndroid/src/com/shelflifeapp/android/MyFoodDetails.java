@@ -3,6 +3,11 @@ package com.shelflifeapp.android;
 import java.text.SimpleDateFormat;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Shader.TileMode;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -79,7 +84,7 @@ public class MyFoodDetails extends SherlockActivity
 	    opened = (TextView) findViewById(R.id.myfood_opened_text);
 	    location = (TextView) findViewById(R.id.myfood_location_text);
 	    quantity = (TextView) findViewById(R.id.myfood_quantity_text);
-	    notes = (EditText) findViewById(R.id.myfood_notes_text);
+	    notes = (TextView) findViewById(R.id.myfood_notes_text);
 	    daysLeft = (TextView) findViewById(R.id.myfood_days_left_num);
 	    daysText = (TextView) findViewById(R.id.myfood_days_left_text);
 	    picture = (ImageView) findViewById(R.id.myfood_details_plate_food);
@@ -111,8 +116,8 @@ public class MyFoodDetails extends SherlockActivity
 		    }
 		    quantity.setText(QUANTITY + m_myfood.getQuantity());
 		    
-		    if(m_myfood.getNotes() != null){
-		    	notes.setText("" + m_myfood.getNotes());
+		    if(m_myfood.getNotes() != null && !"".equals(m_myfood.getNotes())){
+		    	notes.setText(m_myfood.getNotes());
 		    }
 		    
 		    if(m_myfood.getExpirationDaysLeft() < 0){
@@ -134,7 +139,15 @@ public class MyFoodDetails extends SherlockActivity
 	    	Toast.makeText(this, "My Food is null", Toast.LENGTH_LONG).show();
 	    }
 	    if(m_myfood.getPicture() != null){
-	    	picture.setImageBitmap(m_myfood.getPicture());
+	    	Bitmap pictureBitmap = m_myfood.getPicture();
+	    	Bitmap circleBitmap = Bitmap.createBitmap(pictureBitmap.getWidth(),
+	    			pictureBitmap.getHeight(), Bitmap.Config.ARGB_8888);
+	    	BitmapShader shader = new BitmapShader (pictureBitmap,  TileMode.CLAMP, TileMode.CLAMP);
+	    	Paint paint = new Paint();
+	    	        paint.setShader(shader);
+	        Canvas c = new Canvas(circleBitmap);
+	        c.drawCircle(pictureBitmap.getWidth()/2, pictureBitmap.getHeight()/2, pictureBitmap.getWidth()/2, paint);
+	    	picture.setImageBitmap(circleBitmap);
 	    }
     }
     
