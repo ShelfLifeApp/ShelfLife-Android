@@ -15,6 +15,8 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="0dp"
 	        android:layout_weight="4"
+	        android:paddingTop="10dp"
+	        android:paddingBottom="10dp"
 	        android:background="@drawable/placemat_background"
 	        >
 	        <ImageView
@@ -30,8 +32,8 @@
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_centerInParent="true"
-	            android:layout_marginTop="15dp"
-	            android:layout_marginBottom="15dp"
+	            android:paddingTop="15dp"
+	            android:paddingBottom="15dp"
 	            android:background="@drawable/plate_icon_centered">
 	       
 	        	<ImageView
@@ -187,14 +189,14 @@
 		       android:layout_marginTop="10dp"
 		       />
 
-		    <EditText android:id="@+id/myfood_notes_text"
+		    <TextView android:id="@+id/myfood_notes_text"
 		       android:layout_width="wrap_content"
 		       android:layout_height="wrap_content"
 		       android:layout_alignLeft="@+id/ExpirationTable"
 		       android:layout_alignRight="@+id/ExpirationTable"
 		       android:layout_below="@+id/myfood_notes_title_text"
-		       android:hint="@string/myfood_notes_hint" 
-		       android:layout_marginBottom="10dp"     
+		       android:text="@string/myfood_notes_none" 
+		       android:paddingBottom="10dp"     
 		       />	
 
 		</RelativeLayout>

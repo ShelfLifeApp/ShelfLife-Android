@@ -47,7 +47,7 @@ public class MyFoodCursorAdapter extends CursorAdapter{
 		
 		Bitmap bitMap = null;		
 		if(picture != null){
-			bitMap = BitmapFactory.decodeByteArray(picture, 0, 0);
+			bitMap = BitmapFactory.decodeByteArray(picture, 0, picture.length);
 		}
 		
 		MyFood food = new MyFood(id, name, new Category(), 
@@ -84,7 +84,7 @@ public class MyFoodCursorAdapter extends CursorAdapter{
 		
 		Bitmap bitMap = null;		
 		if(picture != null){
-			bitMap = BitmapFactory.decodeByteArray(picture, 0, 0);
+			bitMap = BitmapFactory.decodeByteArray(picture, 0, picture.length);
 		} 
 		
 		MyFood food = new MyFood(id, name, new Category(), 

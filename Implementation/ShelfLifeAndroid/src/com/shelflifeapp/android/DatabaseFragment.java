@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.ViewSwitcher;
 
 import com.actionbarsherlock.view.MenuItem;
 import com.shelflifeapp.database.CategoryCursorAdapter;
@@ -51,7 +52,6 @@ public class DatabaseFragment extends ListFragment
 	    super.onActivityCreated(savedInstanceState);
 	    mContext = this.getActivity();
 	    this.getListView().setBackgroundColor(getResources().getColor(R.color.activity_background));
-	    
 	    Bundle catIdBundle = this.getArguments();
 	    if(catIdBundle == null){
 			Log.d("shelflife", "Bundle is null");
@@ -84,7 +84,8 @@ public class DatabaseFragment extends ListFragment
 
 	    this.m_foodAdapter = new FoodCursorAdapter(mContext, null, 0);
 	    getLoaderManager().initLoader(LOADER_ID, null, this);
-	    this.getListView().setAdapter(this.m_foodAdapter);	    
+	    this.getListView().setAdapter(this.m_foodAdapter);	
+	    
 	  }
 	  
 	   @Override
@@ -108,7 +109,7 @@ public class DatabaseFragment extends ListFragment
 
 	  @Override
 		public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
-			String[] projection = {FoodTable.DATABASE_TABLE_FOOD + "." + FoodTable.FOOD_KEY_ID, 
+		  String[] projection = {FoodTable.DATABASE_TABLE_FOOD + "." + FoodTable.FOOD_KEY_ID, 
 					FoodTable.DATABASE_TABLE_FOOD + "." + FoodTable.FOOD_KEY_NAME,
 					FoodTable.FOOD_KEY_CATEGORY,
 					FoodTable.FOOD_KEY_SHELF_U,
