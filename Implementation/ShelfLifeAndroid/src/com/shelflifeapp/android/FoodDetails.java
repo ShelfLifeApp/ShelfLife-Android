@@ -105,7 +105,7 @@ public class FoodDetails extends SherlockActivity
 							m_food.getExpirationData(), m_food.getTips(), null, null, null, 0, null, null);
 					i.putExtra("myfood", myfood);
 					i.putExtra("foodid", m_food.getId());
-					i.putExtra("operation", EditFoodActivity.ADD);
+					i.putExtra("operation", EditFoodActivity.OP_ADD_FOOD);
 					startActivity(i);
 				}
 				else

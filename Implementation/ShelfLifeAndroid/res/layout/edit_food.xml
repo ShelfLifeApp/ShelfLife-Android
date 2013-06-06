@@ -26,7 +26,7 @@
 				android:layout_centerVertical="true"
 				android:layout_alignParentLeft="true">
 			    <TextView
-			        android:id="@+id/listview_header_title"
+			        android:id="@+id/edit_header_title"
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
 			        android:textSize="17sp"
@@ -35,7 +35,7 @@
 			        android:textColor="@color/list_header_title_color"
 			    />
 			    <TextView
-			        android:id="@+id/listview_header_subtitle"
+			        android:id="@+id/edit_header_subtitle"
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
 			        android:text="Set the location, opened, and quantity"
@@ -150,13 +150,13 @@
 		            >
 		            
 		            <RadioButton
-		                android:id="@+id/edit_open_shelf"
+		                android:id="@+id/edit_open_yes"
 		                android:layout_width="wrap_content"
 		                android:layout_height="wrap_content"
 		                android:text="Yes"/>
 		            
 		            <RadioButton
-		                android:id="@+id/edit_open_fridge"
+		                android:id="@+id/edit_open_no"
 		                android:layout_width="wrap_content"
 		                android:layout_height="wrap_content"
 		                android:text="No"/>
@@ -214,6 +214,7 @@
 	            <EditText
 	                android:id="@+id/edit_table_purchased_entry"
 	                android:editable="false"
+	                android:focusable="false"
 	                android:layout_width="0dp"
 	                android:layout_weight="2"
 	                android:layout_height="wrap_content"
@@ -262,6 +263,7 @@
 	                android:editable="false"
 	                android:layout_width="0dp"
 	                android:layout_weight="2"
+	                android:focusable="false"
 	                android:layout_height="wrap_content"
 	            	/>	            
 	        </TableRow>
