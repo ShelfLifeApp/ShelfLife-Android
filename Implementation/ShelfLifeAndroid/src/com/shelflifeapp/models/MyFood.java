@@ -22,12 +22,46 @@ public class MyFood extends Food
 	public static final String FREEZER_UNOPENED = "Freezer, Unopened";
 	public static final String FREEZER_OPENED = "Freezer, Opened";
 	
+	public static final String LOC_NONE = "none";
+	public static final String LOC_FREEZER = "Freezer";
+	public static final String LOC_FRIDGE = "Fridge";
+	public static final String LOC_SHELF = "Shelf";
+	
+	public static final String STATE_OPENED = "Opened";
+	public static final String STATE_UNOPENED = "Unopened";
+	
 	private Calendar purchaseDate;
 	private Calendar openDate;
 	private int quantity;
 	private String notes;
 	private Bitmap picture;
 	private String state;
+	private String state_opened = STATE_UNOPENED;
+	private String loc = LOC_SHELF;
+	
+	public MyFood(int id, 
+			String name, 
+			Category category, 
+			ExpirationData expirationData, 
+			String tips, 
+			String loc, 
+			String state_op, 
+			Calendar purchaseDate,
+			Calendar openDate,
+			int quantity,
+			String notes,
+			Bitmap picture)
+	{
+		super(id, name, category, expirationData, tips);
+		this.setState_opened(state_op);
+		this.setLoc(loc);
+		this.setStateFromStateLoc(state_op, loc);
+		this.setPurchaseDate(purchaseDate);
+		this.setOpenDate(openDate);
+		this.setQuantity(quantity);
+		this.setNotes(notes);
+		this.setPicture(picture);
+	}
 	
 	public MyFood(int id, String name, Category category, 
 			ExpirationData expirationData, String tips, String state, 
@@ -41,14 +75,58 @@ public class MyFood extends Food
 		this.setQuantity(quantity);
 		this.setNotes(notes);
 		this.setPicture(picture);
+		setLocState(state);
 	}
 		
+	private void setLocState(String state)
+	{
+		if (state == null)
+			return;
+		
+		if (state.equals(SHELF_OPENED))
+		{
+			loc = LOC_SHELF;
+			state_opened = STATE_OPENED;
+		}
+		else if (state.equals(SHELF_UNOPENED))
+		{
+			loc = LOC_SHELF;
+			state_opened = STATE_UNOPENED;
+		}
+		else if (state.equals(FRIDGE_OPENED))
+		{
+			loc = LOC_FRIDGE;
+			state_opened = STATE_OPENED;
+		}
+		else if (state.equals(FRIDGE_UNOPENED))
+		{
+			loc = LOC_FRIDGE;
+			state_opened = STATE_UNOPENED;
+		}
+		else if (state.equals(FREEZER_OPENED))
+		{
+			loc = LOC_FREEZER;
+			state_opened = STATE_OPENED;
+		}
+		else if (state.equals(FREEZER_UNOPENED))
+		{
+			loc = LOC_FREEZER;
+			state_opened = STATE_UNOPENED;
+		}
+	}
+	
 	public String getState() {
 		return state;
 	}
 
 	public void setState(String state) {
 		this.state = state;
+		setLocState(state);
+	}
+	
+	public void setStateFromStateLoc(String state_op, String loc)
+	{
+		state = (loc + ", " + state_op);
 	}
 
 	public Calendar getPurchaseDate() {
@@ -98,6 +176,8 @@ public class MyFood extends Food
 		int unopenedDaysLeft;
 		int daysLeft;
 		Calendar currentDate = Calendar.getInstance();
+		
+		Log.d("MY_FOOD", "State: " + state + ", PurchaseDate: " + (purchaseDate == null));
 		
 		if(state == null || purchaseDate == null){
 			return -1;
@@ -201,6 +281,8 @@ public class MyFood extends Food
 		arg0.writeSerializable(purchaseDate);
 		arg0.writeSerializable(openDate);
 		arg0.writeString(state);
+		arg0.writeString(loc);
+		arg0.writeString(state_opened);
 		arg0.writeInt(quantity);
 		arg0.writeString(notes);
 		arg0.writeInt(length);
@@ -225,21 +307,47 @@ public class MyFood extends Food
         purchaseDate = (Calendar) in.readSerializable();
         openDate = (Calendar) in.readSerializable();
         state = in.readString();
+        loc = in.readString();
+        state_opened = in.readString();
         quantity = in.readInt();
         notes = in.readString();
         length = in.readInt();
         if(length > 0){
 	        byte[] _byte = new byte[length];
-	        Log.d("mgrap", "length: " + length);
-	        Log.d("mgrap", "New Byte Array: " + _byte);
 	        in.readByteArray(_byte);
 	        if(_byte != null){
 	        	picture = BitmapFactory.decodeByteArray(_byte, 0, length);
 	        }
-	        Log.d("mgrap", "New Picture: " + picture);
         }
         
         
     }
+
+	public void setState_opened(String state_opened) {
+		this.state_opened = state_opened;
+		setStateFromStateLoc(state_opened, loc);
+	}
+
+	public String getState_opened() {
+		return state_opened;
+	}
+
+	public void setLoc(String loc) {
+		this.loc = loc;
+		setStateFromStateLoc(state_opened, loc);
+	}
+
+	public String getLoc() {
+		return loc;
+	}
 	
+	public static MyFood getEmptyFoodFromMyFood(MyFood m)
+	{
+		return new MyFood(m.getId(), 
+				m.getName(), 
+				m.getCategory(), 
+				m.getExpirationData(), 
+				m.getTips(),
+				LOC_NONE, STATE_UNOPENED, Calendar.getInstance(), null, 0, "", null);
+	}
 }
