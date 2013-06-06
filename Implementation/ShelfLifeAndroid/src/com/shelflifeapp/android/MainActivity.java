@@ -1,15 +1,30 @@
 package com.shelflifeapp.android;
 
+import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
 import com.actionbarsherlock.app.ActionBar;
@@ -19,6 +34,11 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.widget.SearchView;
+import com.shelflifeapp.database.FoodTable;
+import com.shelflifeapp.database.MyFoodTable;
+import com.shelflifeapp.models.Category;
+import com.shelflifeapp.models.ExpirationData;
+import com.shelflifeapp.models.MyFood;
 
 public class MainActivity extends SherlockFragmentActivity implements CategoryFragment.CategoryFragmentSelectedListener{
 
@@ -32,6 +52,7 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
 
 	private final int SCAN_BARCODE = 0;
 	private final int RESULT_SETTINGS = 1;
+	private AlarmBroadcastReceiver alarm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) 
@@ -53,7 +74,17 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
         myFoodTab.setTabListener(new MyFoodTabListener(myFoodFragment));
         
         actionBar.addTab(databaseTab);
-        actionBar.addTab(myFoodTab);               
+        actionBar.addTab(myFoodTab);  
+        
+        // Alarm Stuff
+        alarm = new AlarmBroadcastReceiver();
+        Context context = this.getApplicationContext();
+        if(alarm != null){
+        	alarm.SetAlarm(context);
+        }else{
+        	Toast.makeText(context, "Alarm is null", Toast.LENGTH_SHORT).show();
+        	Log.d("mgrap", "alarm is null");
+        }
     }
 
     @Override
@@ -210,5 +241,5 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
 
         // Commit the transaction
         transaction.commit();
-	}    
+	} 
 }

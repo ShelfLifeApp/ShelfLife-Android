@@ -59,6 +59,8 @@
         <provider android:name="com.shelflifeapp.database.FoodContentProvider"
 		          android:authorities="com.shelflifeapp.android.provider">
 		</provider>
+		<receiver android:name="com.shelflifeapp.android.AlarmBroadcastReceiver">
+        </receiver>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" /> 

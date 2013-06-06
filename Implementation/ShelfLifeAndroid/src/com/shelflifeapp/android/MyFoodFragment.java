@@ -2,15 +2,26 @@ package com.shelflifeapp.android;
 
 import java.io.IOException;
 
+import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.view.View;
@@ -18,6 +29,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.Toast;
 
 import com.actionbarsherlock.view.ActionMode;
 import com.actionbarsherlock.view.ActionMode.Callback;
@@ -29,6 +41,8 @@ import com.shelflifeapp.database.FoodDatabaseHelper;
 import com.shelflifeapp.database.FoodTable;
 import com.shelflifeapp.database.MyFoodCursorAdapter;
 import com.shelflifeapp.database.MyFoodTable;
+import com.shelflifeapp.models.Category;
+import com.shelflifeapp.models.ExpirationData;
 import com.shelflifeapp.models.MyFood;
 import com.shelflifeapp.views.FoodListItem;
 import com.shelflifeapp.views.MyFoodListItem;
@@ -59,6 +73,7 @@ public class MyFoodFragment extends SherlockListFragment
 	public void onActivityCreated(Bundle savedInstanceState) {
 	    super.onActivityCreated(savedInstanceState);
 	    mContext = this.getActivity();
+	    setHasOptionsMenu(true);
 	    this.getListView().setBackgroundColor(getResources().getColor(R.color.activity_background));
 	    
 	    this.getListView().setDividerHeight(0);
@@ -129,7 +144,44 @@ public class MyFoodFragment extends SherlockListFragment
 	    getLoaderManager().initLoader(LOADER_ID, null, this);
 	    this.getListView().setAdapter(this.m_myfoodAdapter);
 	}
+	
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) 
+	{			
+	    inflater.inflate(R.menu.myfood_list_actionbar, menu);
+	    
+	    //super.onCreateOptionsMenu(menu, inflater);
+	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	   // handle item selection
+	   switch (item.getItemId()) {
+	      case R.id.menu_delete_all:
+	    	 removeAllFood();
+	         return true;
+	      case R.id.menu_delete_expired:
+		      Cursor c = this.myDbHelper.fetchMyFood();
+		      if(c.moveToFirst()){
+					do {
+						MyFood checkFood = this.myDbHelper.cursorToMyFood(c);
+						if(checkFood.getExpirationDaysLeft() < 0){
+							this.removeFood(checkFood);
+						}
+					}while(c.moveToNext());
+		      }
+	    	  return true;
+	      default:
+	         return super.onOptionsItemSelected(item);
+	   }
+	}
+	
+	@Override
+    public void onResume() {
+    	super.onResume();
+    	fillData();
+    }
+	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		 if (position == 0)
@@ -139,12 +191,6 @@ public class MyFoodFragment extends SherlockListFragment
 		Intent i = new Intent(mContext, MyFoodDetails.class);
 		i.putExtra("myfood", ((MyFoodListItem) v).getMyFood());
 		startActivity(i);
-	}
-	
-	@Override
-	public void onResume(){
-		super.onResume();
-		fillData();
 	}
 	
 	@Override
@@ -203,8 +249,15 @@ public class MyFoodFragment extends SherlockListFragment
 		fillData();
 	}
 	
+	protected void removeAllFood()
+	{
+		Uri uri = Uri.parse("content://com.shelflifeapp.android.provider/myfood_table/delete_all");
+		this.getSherlockActivity().getContentResolver().delete(uri, null, null);
+		fillData();
+	}
+	
 	protected void fillData(){
 		this.getSherlockActivity().getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
 		this.getListView().setAdapter(m_myfoodAdapter);
-	}
+	}		
 }

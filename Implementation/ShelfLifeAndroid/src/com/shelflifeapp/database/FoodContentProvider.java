@@ -25,6 +25,7 @@ public class FoodContentProvider extends ContentProvider {
 	private static final int MYFOOD_INSERT = 7;
 	private static final int MYFOOD_EDIT = 8;
 	private static final int FOOD_BY_KEYWORD = 9;
+	private static final int MYFOOD_DELETE_ALL = 10;
 	
 	private static final String AUTHORITY = "com.shelflifeapp.android.provider";
 	
@@ -50,6 +51,7 @@ public class FoodContentProvider extends ContentProvider {
 		sURIMatcher.addURI(AUTHORITY, FOOD_TABLE + "/bycat/#", FOOD_BYCAT);
 		sURIMatcher.addURI(AUTHORITY, MYFOOD_TABLE + "/bycat/#", MYFOOD_BYCAT);
 		sURIMatcher.addURI(AUTHORITY, MYFOOD_TABLE + "/delete/#", MYFOOD_DELETE);
+		sURIMatcher.addURI(AUTHORITY, MYFOOD_TABLE + "/delete_all", MYFOOD_DELETE_ALL);
 		sURIMatcher.addURI(AUTHORITY, MYFOOD_TABLE + "/insert/#", MYFOOD_INSERT);
 		sURIMatcher.addURI(AUTHORITY, MYFOOD_TABLE + "/edit/#", MYFOOD_EDIT);
 		sURIMatcher.addURI(AUTHORITY, FOOD_TABLE + "/by_keyword", FOOD_BY_KEYWORD);
@@ -152,14 +154,32 @@ public class FoodContentProvider extends ContentProvider {
 	public int delete(Uri uri, String selection, String[] selectionArgs) {
 		SQLiteDatabase sqlDB = this.database.getWritableDatabase();
 		int rowsDeleted = 0;
-		if(sURIMatcher.match(uri) == MYFOOD_DELETE){
+		/*if(sURIMatcher.match(uri) == MYFOOD_DELETE){
 			String id = uri.getLastPathSegment();
 			rowsDeleted = sqlDB.delete(MyFoodTable.DATABASE_TABLE_MYFOOD, 
 					MyFoodTable.FOOD_KEY_ID + "=" + id, null);
 			if(rowsDeleted > 0){
 				getContext().getContentResolver().notifyChange(uri, null);
 			}
+		}*/		
+		int uriType = sURIMatcher.match(uri);
+		String orderBy = null;
+		String where = null;
+		switch(uriType) {
+			case MYFOOD_DELETE:
+				String id = uri.getLastPathSegment();
+				where = MyFoodTable.FOOD_KEY_ID + "=" + id;
+				break;
+			case MYFOOD_DELETE_ALL:
+				break;
+			default:
+				throw new IllegalArgumentException("Unknown URI: " + uri);
 		}
+		rowsDeleted = sqlDB.delete(MyFoodTable.DATABASE_TABLE_MYFOOD, 
+				where, null);
+		if(rowsDeleted > 0){
+			getContext().getContentResolver().notifyChange(uri, null);
+		}		
 		return rowsDeleted;
 	}
 

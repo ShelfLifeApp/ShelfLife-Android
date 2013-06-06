@@ -1,5 +1,7 @@
 package com.shelflifeapp.android;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.actionbarsherlock.app.ActionBar;

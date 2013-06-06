@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import com.shelflifeapp.models.Category;
+import com.shelflifeapp.models.ExpirationData;
+import com.shelflifeapp.models.MyFood;
+
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.Cursor;
@@ -14,6 +18,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.util.Log;
 
 public class FoodDatabaseHelper extends SQLiteOpenHelper {
@@ -155,5 +162,65 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
 			myDataBase.close();
 		}
 		super.close();	 
-	}		
+	}	
+	
+	public Cursor fetchMyFood(){
+		String[] projection = {FoodTable.DATABASE_TABLE_FOOD + "." 
+				+ FoodTable.FOOD_KEY_ID, 
+				FoodTable.DATABASE_TABLE_FOOD + "." 
+				+ FoodTable.FOOD_KEY_NAME,
+				FoodTable.FOOD_KEY_CATEGORY,
+				FoodTable.FOOD_KEY_SHELF_U,
+				FoodTable.FOOD_KEY_SHELF_O,
+				FoodTable.FOOD_KEY_FRIDGE_U,
+				FoodTable.FOOD_KEY_FRIDGE_O,
+				FoodTable.FOOD_KEY_FREEZER_U,
+				FoodTable.FOOD_KEY_FREEZER_O,
+				FoodTable.FOOD_KEY_TIPS,
+				MyFoodTable.DATABASE_TABLE_MYFOOD + "." + MyFoodTable.FOOD_KEY_ID,
+				MyFoodTable.DATABASE_TABLE_MYFOOD + "." + MyFoodTable.FOOD_KEY_NAME,
+				MyFoodTable.FOOD_KEY_FOODID,
+				MyFoodTable.FOOD_KEY_PURCHASED,
+				MyFoodTable.FOOD_KEY_OPENED,
+				MyFoodTable.FOOD_KEY_STATE,
+				MyFoodTable.FOOD_KEY_QUANTITY,
+				MyFoodTable.FOOD_KEY_PICTURE,
+				MyFoodTable.FOOD_KEY_NOTES};
+		Uri uri = Uri.parse("content://com.shelflifeapp.android.provider/myfood_table/all");
+		Cursor c = myContext.getContentResolver().query(uri, projection, null, null, null);
+		
+		return c;
+	}
+	
+	public MyFood cursorToMyFood(Cursor c){
+		int catId = c.getInt(FoodTable.FOOD_COL_CATEGORY);
+		int shelf_u = c.getInt(FoodTable.FOOD_COL_SHELF_U);
+		int shelf_o = c.getInt(FoodTable.FOOD_COL_SHELF_O);
+		int fridge_u = c.getInt(FoodTable.FOOD_COL_FRIDGE_U);
+		int fridge_o = c.getInt(FoodTable.FOOD_COL_FRIDGE_O);
+		int freezer_u = c.getInt(FoodTable.FOOD_COL_FREEZER_U);
+		int freezer_o = c.getInt(FoodTable.FOOD_COL_FREEZER_O);
+		String tips = c.getString(FoodTable.FOOD_COL_TIPS);
+		int id = c.getInt(MyFoodTable.FOOD_COL_ID + FoodTable.FOOD_COL_TIPS + 1);
+		String name = c.getString(MyFoodTable.FOOD_COL_NAME + FoodTable.FOOD_COL_TIPS + 1);
+		int foodid  = c.getInt(MyFoodTable.FOOD_COL_FOODID + FoodTable.FOOD_COL_TIPS + 1);
+		String purchased  = c.getString(MyFoodTable.FOOD_COL_PURCHASED + FoodTable.FOOD_COL_TIPS + 1);
+		String opened  = c.getString(MyFoodTable.FOOD_COL_OPENED + FoodTable.FOOD_COL_TIPS + 1);
+		String state  = c.getString(MyFoodTable.FOOD_COL_STATE + FoodTable.FOOD_COL_TIPS + 1);
+		int quantity  = c.getInt(MyFoodTable.FOOD_COL_QUANTITY + FoodTable.FOOD_COL_TIPS + 1);
+		byte[] picture = c.getBlob(MyFoodTable.FOOD_COL_PICTURE + FoodTable.FOOD_COL_TIPS + 1);
+		String notes  = c.getString(MyFoodTable.FOOD_COL_NOTES + FoodTable.FOOD_COL_TIPS + 1);
+		
+		Bitmap bitMap = null;		
+		if(picture != null){
+			bitMap = BitmapFactory.decodeByteArray(picture, 0, picture.length);
+		}
+		
+		MyFood food = new MyFood(id, name, new Category(), 
+				new ExpirationData(shelf_o, shelf_u, fridge_o, fridge_u, 
+						freezer_o, freezer_u), 
+				tips, state, MyFood.convertStringToDate(purchased), 
+				MyFood.convertStringToDate(opened), quantity, notes, bitMap);
+		return food;
+	}
 }

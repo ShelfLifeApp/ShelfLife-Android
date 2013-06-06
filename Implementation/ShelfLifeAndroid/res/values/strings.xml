@@ -92,5 +92,12 @@
     <string name="edit_picture">No Picture</string>
     <string name="barcode_text">Barcode Here</string>
     <string name="myfood_notes_none">None.</string>
+    <string name="notification_title">Shelflife</string>
+    <string name="notification_ticker">Foods Exipiring!</string>
+    <string name="notification_text_0_days">You have food expiring today!</string>
+    <string name="notification_text_1_days">You have food expiring in 1 day!</string>
+    <string name="notification_text_7_days">You have food expiring in 7 days!</string>
+    <string name="myfood_list_delete_all">Delete All</string>
+    <string name="myfood_list_delete_expired">Delete Expired</string>
 
 </resources>
