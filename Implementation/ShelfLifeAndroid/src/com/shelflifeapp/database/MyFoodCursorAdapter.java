@@ -50,7 +50,7 @@ public class MyFoodCursorAdapter extends CursorAdapter{
 			bitMap = BitmapFactory.decodeByteArray(picture, 0, picture.length);
 		}
 		
-		MyFood food = new MyFood(id, name, new Category(), 
+		MyFood food = new MyFood(id, name, new Category(catId), 
 				new ExpirationData(shelf_o, shelf_u, fridge_o, fridge_u, 
 						freezer_o, freezer_u), 
 				tips, state, MyFood.convertStringToDate(purchased), 
@@ -87,7 +87,7 @@ public class MyFoodCursorAdapter extends CursorAdapter{
 			bitMap = BitmapFactory.decodeByteArray(picture, 0, picture.length);
 		} 
 		
-		MyFood food = new MyFood(id, name, new Category(), 
+		MyFood food = new MyFood(id, name, new Category(catId), 
 				new ExpirationData(shelf_o, shelf_u, fridge_o, fridge_u, 
 						freezer_o, freezer_u), 
 				tips, state, MyFood.convertStringToDate(purchased), 

@@ -46,7 +46,7 @@ public class CategoryListItem extends LinearLayout{
 		if (category != null)
 		{
 			m_vwCategory.setText(category.getName());
-			m_vwIcon.setImageResource(category.getId());
+			m_vwIcon.setImageResource(category.getIconId());
 			m_vwIndicator.setImageResource(ICON_INDICATOR);
 		}
 	}

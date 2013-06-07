@@ -1,5 +1,7 @@
 package com.shelflifeapp.models;
 
+import com.shelflifeapp.database.DbIcons;
+
 import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -8,6 +10,8 @@ public class Category implements Parcelable{
 	private int id;
 	private String name;
 	private Drawable icon;
+	private int iconId;
+	private int plateIconId;
 	
 	public Category(){
 		this.id = 0;
@@ -15,10 +19,21 @@ public class Category implements Parcelable{
 		this.icon = null;
 	}
 	
+	public Category(int id)
+	{
+		this.id = id;
+		this.name = "";
+		this.icon = null;
+		this.iconId = DbIcons.getIcon(id);
+		this.plateIconId = DbIcons.getPlateIcon(id);
+	}
+	
 	public Category(int id, String name, Drawable icon){
 		this.id = id;
 		this.name = name;
 		this.icon = icon;
+		this.iconId = DbIcons.getIcon(id);
+		this.plateIconId = DbIcons.getPlateIcon(id);
 	}
 	
 	public String getName()
@@ -45,6 +60,8 @@ public class Category implements Parcelable{
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeInt(id);
 		dest.writeString(name);
+		dest.writeInt(iconId);
+		dest.writeInt(plateIconId);
 		//dest.writeParcelable(icon, 0);
 		// write Drawable ???
 	}
@@ -62,5 +79,17 @@ public class Category implements Parcelable{
     private Category(Parcel in) {
         id = in.readInt();
         name = in.readString();
+        iconId = in.readInt();
+        plateIconId = in.readInt();
     }
+
+	public int getIconId() 
+	{
+		return iconId;
+	}
+	
+	public int getPlateIconId()
+	{
+		return plateIconId;
+	}
 }

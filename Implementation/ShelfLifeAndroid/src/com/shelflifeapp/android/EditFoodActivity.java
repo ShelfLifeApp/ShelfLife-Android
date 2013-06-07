@@ -3,6 +3,7 @@ package com.shelflifeapp.android;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
@@ -21,6 +22,7 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -70,6 +72,8 @@ public class EditFoodActivity extends SherlockActivity
         setContentView(R.layout.edit_food);
         mContext = EditFoodActivity.this;
         
+        ActionBar actionBar = this.getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
                 
         Bundle foodBundle = getIntent().getExtras();
         m_myFood = foodBundle.getParcelable("myfood");
@@ -94,13 +98,14 @@ public class EditFoodActivity extends SherlockActivity
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
-		if (requestCode == PICTURE_REQUEST_CODE)
+		if (requestCode == PICTURE_REQUEST_CODE && resultCode == Activity.RESULT_OK)
 		{
 			Bitmap picture = (Bitmap)data.getExtras().get("data");
 			m_myFood.setPicture(picture);
 			updateDisplay();
 		}
 	}
+	
 	
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) 
@@ -123,6 +128,17 @@ public class EditFoodActivity extends SherlockActivity
 	        	}
 	        	return true;
 	        }
+	        case R.id.menu_take_picture:
+	        {
+				Intent camera = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+				startActivityForResult(camera, PICTURE_REQUEST_CODE);
+				return true;
+	        }
+	    	case android.R.id.home:
+	    	{
+	    		finish();
+	    		return true;
+	    	}
 	    }
 	    
 	    return super.onOptionsItemSelected(item);
@@ -397,7 +413,9 @@ public class EditFoodActivity extends SherlockActivity
     	}
 
     	Intent i = new Intent(this, MyFoodDetails.class);
+    	i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 		i.putExtra("myfood", m_myfood);
+		finish();
 		startActivity(i);
 	}
 }

@@ -153,6 +153,10 @@ public class MyFoodDetails extends SherlockActivity
 	        c.drawCircle(pictureBitmap.getWidth()/2, pictureBitmap.getHeight()/2, pictureBitmap.getWidth()/2, paint);
 	    	picture.setImageBitmap(circleBitmap);
 	    }
+	    else
+	    {
+	    	picture.setImageResource(m_myfood.getCategory().getPlateIconId());
+	    }
     }
     
     @Override
@@ -180,7 +184,11 @@ public class MyFoodDetails extends SherlockActivity
 	            return true;	
 	        
 	    	case android.R.id.home:
+	        	Intent h = new Intent(this, MainActivity.class);
+	        	h.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 	    		finish();
+	    		startActivity(h);
+
 	    		return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
