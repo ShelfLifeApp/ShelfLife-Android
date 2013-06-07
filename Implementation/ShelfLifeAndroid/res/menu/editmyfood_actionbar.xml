@@ -10,4 +10,8 @@
 	    android:showAsAction="always"
 	    android:icon="@drawable/done_icon"
 	    />
+	<item android:id="@+id/menu_remove"
+	    android:title="Remove"
+	    android:showAsAction="never"
+	    />
 </menu>

@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
+import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,11 +26,14 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.ActionMode;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.ActionMode.Callback;
 import com.shelflifeapp.database.MyFoodTable;
 import com.shelflifeapp.models.MyFood;
+import com.shelflifeapp.views.MyFoodListItem;
 
 public class EditFoodActivity extends SherlockActivity  
 {
@@ -61,9 +66,15 @@ public class EditFoodActivity extends SherlockActivity
 	private EditText details_notes_entry;
 	
 	private MyFood m_myFood;
+	private Bitmap picture;
+	Calendar purchaseDate = Calendar.getInstance();
+	Calendar openDate = Calendar.getInstance();
 	
 	private Context mContext;
 	private int operation;
+	
+	private Callback mActionModeCallback;
+	private ActionMode mActionMode;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) 
@@ -77,21 +88,11 @@ public class EditFoodActivity extends SherlockActivity
                 
         Bundle foodBundle = getIntent().getExtras();
         m_myFood = foodBundle.getParcelable("myfood");
-        Log.d("EDIT", "Before Loc: " + m_myFood.getLoc());
-        Log.d("EDIT", "Before State op: " + m_myFood.getState_opened());
-        Log.d("EDIT", "Before State: " + m_myFood.getState());
-        
-        if (m_myFood.getPurchaseDate() == null)
-        {
-        	m_myFood.setPurchaseDate(Calendar.getInstance());
-        }
         
         operation = foodBundle.getInt("operation");
         m_myFood.setId(foodBundle.getInt("foodid"));
         
         initializeViews();
-
-        updateDisplay(m_myFood);
         
 	}
 	
@@ -100,9 +101,8 @@ public class EditFoodActivity extends SherlockActivity
 	{
 		if (requestCode == PICTURE_REQUEST_CODE && resultCode == Activity.RESULT_OK)
 		{
-			Bitmap picture = (Bitmap)data.getExtras().get("data");
-			m_myFood.setPicture(picture);
-			updateDisplay();
+			picture = (Bitmap)data.getExtras().get("data");
+			details_photo.setImageBitmap(picture);
 		}
 	}
 	
@@ -134,6 +134,11 @@ public class EditFoodActivity extends SherlockActivity
 				startActivityForResult(camera, PICTURE_REQUEST_CODE);
 				return true;
 	        }
+	        case R.id.menu_remove:
+	        {
+				removePicture();
+				return true;
+	        }
 	    	case android.R.id.home:
 	    	{
 	    		finish();
@@ -158,32 +163,52 @@ public class EditFoodActivity extends SherlockActivity
 		details_openDate_entry = (EditText) findViewById(R.id.edit_table_opened_entry);
 		details_notes_entry = (EditText) findViewById(R.id.edit_notes_entry);
 		details_photo = (ImageView) findViewById(R.id.edit_picture);
+		
+		if(m_myFood.getName() != null){
+			details_name_entry.setText(m_myFood.getName());
+		}
+		if(m_myFood.getPurchaseDate() != null){
+			purchaseDate = m_myFood.getPurchaseDate();
+			details_purDate_entry.setText(formatCalendarString(purchaseDate));
+		}else{
+			details_purDate_entry.setText(formatCalendarString(purchaseDate));
+		}
+		if(m_myFood.getOpenDate() != null){
+			conditions_opened_rgroup.check(R.id.edit_open_yes);
+			openDate = m_myFood.getOpenDate();
+			details_openDate_entry.setText(formatCalendarString(openDate));
+		}else{
+			conditions_opened_rgroup.check(R.id.edit_open_no);
+			details_openDate_entry.setText("Unopened");
+		}
+		if(m_myFood.getState() != null){
+			String[] states = this.getResources().getStringArray(R.array.state_list);
+			if(MyFood.SHELF_UNOPENED.equals(m_myFood.getState()) ||
+				MyFood.SHELF_OPENED.equals(m_myFood.getState())){
+				conditions_loc_rgroup.check(R.id.edit_loc_shelf);
+			}else if(MyFood.FRIDGE_UNOPENED.equals(m_myFood.getState()) ||
+				MyFood.FRIDGE_OPENED.equals(m_myFood.getState())){
+				conditions_loc_rgroup.check(R.id.edit_loc_fridge);
+			}else if(MyFood.FREEZER_UNOPENED.equals(m_myFood.getState()) ||
+				MyFood.FREEZER_OPENED.equals(m_myFood.getState())){
+				conditions_loc_rgroup.check(R.id.edit_loc_freezer);
+			}
+		}else{
+			conditions_loc_rgroup.check(R.id.edit_loc_shelf);
+		}
+		details_quantity_entry.setText("" + m_myFood.getQuantity());
+		if(m_myFood.getNotes() != null){
+			details_notes_entry.setText(m_myFood.getNotes());
+		}
+
+		if(m_myFood.getPicture() != null){
+			details_photo.setImageBitmap(m_myFood.getPicture());
+		}
 		intializeListeners();
 	}
 	
 	private void intializeListeners()
-	{
-		conditions_loc_rgroup.setOnCheckedChangeListener(new OnCheckedChangeListener()
-		{
-			@Override
-			public void onCheckedChanged(RadioGroup rg, int checkId) {
-				switch(checkId)
-				{
-					case R.id.edit_loc_shelf:
-						m_myFood.setLoc(MyFood.LOC_SHELF);
-						return;
-						
-					case R.id.edit_loc_fridge:
-						m_myFood.setLoc(MyFood.LOC_FRIDGE);
-						return;
-					case R.id.edit_loc_freezer:
-						m_myFood.setLoc(MyFood.LOC_FREEZER);
-						return;
-				}
-				return;
-			}
-		});
-		
+	{		
 		conditions_opened_rgroup.setOnCheckedChangeListener(new OnCheckedChangeListener()
 		{
 			@Override
@@ -192,13 +217,9 @@ public class EditFoodActivity extends SherlockActivity
 				switch (checkedId)
 				{
 					case R.id.edit_open_yes:
-						m_myFood.setState_opened(MyFood.STATE_OPENED);
-						if (m_myFood.getOpenDate() == null)
-							details_openDate_entry.setText("Set open date");
+						details_openDate_entry.setText(formatCalendarString(openDate));
 						return;
 					case R.id.edit_open_no:
-						m_myFood.setState_opened(MyFood.STATE_UNOPENED);
-						m_myFood.setOpenDate(null);
 						details_openDate_entry.setText("Unopened");
 						return;
 				}
@@ -217,15 +238,12 @@ public class EditFoodActivity extends SherlockActivity
 					{
 						Calendar c = Calendar.getInstance();
 						c.set(year, monthOfYear, dayOfMonth);
-						m_myFood.setPurchaseDate(c);
-						updateDisplay();
+						details_purDate_entry.setText(formatCalendarString(c));
+						purchaseDate = c;
 					}
 				};
 				
-				if (m_myFood.getPurchaseDate() != null)
-					chooseDate(m_myFood.getPurchaseDate(), purDate_listener);
-				else
-					chooseDate(Calendar.getInstance(), purDate_listener);
+				chooseDate(purchaseDate, purDate_listener);
 			}	
 		});
 		
@@ -234,7 +252,7 @@ public class EditFoodActivity extends SherlockActivity
 			@Override
 			public void onClick(View arg0) 
 			{
-				if (m_myFood.getState_opened().equals(MyFood.STATE_OPENED))
+				if (conditions_opened_rgroup.getCheckedRadioButtonId() == R.id.edit_open_yes)
 				{
 					DatePickerDialog.OnDateSetListener openDate_listener = new DatePickerDialog.OnDateSetListener() 
 					{
@@ -243,15 +261,12 @@ public class EditFoodActivity extends SherlockActivity
 						{
 							Calendar c = Calendar.getInstance();
 							c.set(year, monthOfYear, dayOfMonth);
-							m_myFood.setOpenDate(c);
-							updateDisplay();
+							details_openDate_entry.setText(formatCalendarString(c));
+							openDate = c;
 						}
 					};
 					
-					if (m_myFood.getOpenDate() != null)
-						chooseDate(m_myFood.getOpenDate(), openDate_listener);
-					else 
-						chooseDate(Calendar.getInstance(), openDate_listener);
+					chooseDate(openDate, openDate_listener);
 				}
 			}	
 		});
@@ -265,7 +280,6 @@ public class EditFoodActivity extends SherlockActivity
 				startActivityForResult(camera, PICTURE_REQUEST_CODE);
 			}	
 		});
-	
 	}
 	
 	private void chooseDate(Calendar date, DatePickerDialog.OnDateSetListener listener)
@@ -275,47 +289,7 @@ public class EditFoodActivity extends SherlockActivity
 				date.get(Calendar.MONTH),
 				date.get(Calendar.DAY_OF_MONTH)).show();
 	}
-	
-	private void updateDisplay()
-	{
-		updateDisplay(m_myFood);
-	}
-	
-	private void updateDisplay(MyFood mf)
-	{
-		details_name_entry.setText(mf.getName());
-		details_quantity_entry.setText(mf.getQuantity() + "");
-	
-		if (mf.getOpenDate() != null)
-			details_openDate_entry.setText(formatCalendarString(mf.getOpenDate()));
-		
-		if (mf.getPurchaseDate() != null)
-			details_purDate_entry.setText(formatCalendarString(mf.getPurchaseDate()));
-		else
-			details_purDate_entry.setText(formatCalendarString(Calendar.getInstance()));
-	
-		
-		String loc = mf.getLoc();
-		Log.d("EDIT", "Location: " + loc);
-		if (loc.equals(MyFood.LOC_SHELF))
-			conditions_loc_rgroup.check(R.id.edit_loc_shelf);
-		else if (loc.equals(MyFood.LOC_FRIDGE))
-			conditions_loc_rgroup.check(R.id.edit_loc_fridge);
-		else if (loc.equals(MyFood.LOC_FREEZER))
-			conditions_loc_rgroup.check(R.id.edit_loc_freezer);
-		
-		String state = mf.getState_opened();
-		Log.d("EDIT", "State: " + state);
-		if (state.equals(MyFood.STATE_OPENED))
-			conditions_opened_rgroup.check(R.id.edit_open_yes);
-		else if (state.equals(MyFood.STATE_UNOPENED))
-			conditions_opened_rgroup.check(R.id.edit_open_no);
-		
-		
-		if (mf.getPicture() != null)
-			details_photo.setImageBitmap(mf.getPicture());
-	}
-	
+
 	private String formatCalendarString(Calendar c)
 	{
 		SimpleDateFormat format = new SimpleDateFormat("EEE\', \'MMM\' \'d\', \'yyyy ");
@@ -323,53 +297,72 @@ public class EditFoodActivity extends SherlockActivity
 	}
 	
 	private boolean fillInMyFood()
-	{
-		if (m_myFood.getState_opened().equals(MyFood.STATE_OPENED) && m_myFood.getOpenDate() == null)
-		{	
-			Toast.makeText(mContext, "Open Date Invalid", Toast.LENGTH_SHORT).show();
-			return false;
-		}
-		
-		if (m_myFood.getPurchaseDate() == null)
-		{
-			Toast.makeText(mContext, "Purchase Date Invalid", Toast.LENGTH_SHORT).show();
-			return false;
-		}
-		
-		String name = details_name_entry.getText().toString();
-		if (!"".equals(name))
-		{
-			m_myFood.setName(name);
-		}
-		else
-		{
-			Toast.makeText(mContext, "Invalid Name", Toast.LENGTH_LONG).show();
-			return false;
-		}
-		
-		try
-		{
-			int quantity = Integer.parseInt(details_quantity_entry.getText().toString());
-			if (quantity >= 0)
-			{
-				m_myFood.setQuantity(quantity);
+	{		
+		if(details_name_entry.getText() != null && !"".equals(details_name_entry.getText().toString())){
+			m_myFood.setName(details_name_entry.getText().toString());
+			}else{
+				Toast.makeText(this, "Food name must be specified.",
+		        Toast.LENGTH_LONG).show();
+		        return false;
 			}
-			else
-			{
-				Toast.makeText(mContext, "Invalid Quantity 1", Toast.LENGTH_LONG).show();					
+			if(purchaseDate.compareTo(Calendar.getInstance()) > 0){
+				Toast.makeText(this, "Purchase date is later than current date.",
+				Toast.LENGTH_LONG).show();
 				return false;
-			}	
-		}
-		catch (Exception e)
-		{
-			Toast.makeText(mContext, "Invalid Quantity 2", Toast.LENGTH_LONG).show();	
-			return false;
-		}
-		
-		String notes = details_notes_entry.getText().toString();
-		m_myFood.setNotes(notes);
-		
-		return true;
+			}
+			m_myFood.setPurchaseDate(purchaseDate);
+			if(conditions_opened_rgroup.getCheckedRadioButtonId() == R.id.edit_open_yes){
+				if(openDate == null){
+					Toast.makeText(this, "Open date needs to be set.",
+					Toast.LENGTH_LONG).show();
+					return false;
+				}
+				
+				if(purchaseDate.compareTo(openDate) > 0){
+					Toast.makeText(this, "Open date must be on or after purchase date.",
+					Toast.LENGTH_LONG).show();
+					return false;
+				}
+
+				if(openDate.compareTo(Calendar.getInstance()) > 0){
+					Toast.makeText(this, "Open date is later than current date.",
+					Toast.LENGTH_LONG).show();
+					return false;
+				}	
+				m_myFood.setOpenDate(openDate);
+
+				if(conditions_loc_rgroup.getCheckedRadioButtonId() == R.id.edit_loc_shelf){
+					m_myFood.setState(MyFood.SHELF_OPENED);
+				}else if(conditions_loc_rgroup.getCheckedRadioButtonId() == R.id.edit_loc_fridge){
+					m_myFood.setState(MyFood.FRIDGE_OPENED);
+				}else if(conditions_loc_rgroup.getCheckedRadioButtonId() == R.id.edit_loc_freezer){
+					m_myFood.setState(MyFood.FREEZER_OPENED);
+			}
+			}else{
+				m_myFood.setOpenDate(null);
+				if(conditions_loc_rgroup.getCheckedRadioButtonId() == R.id.edit_loc_shelf){
+					m_myFood.setState(MyFood.SHELF_UNOPENED);
+				}else if(conditions_loc_rgroup.getCheckedRadioButtonId() == R.id.edit_loc_fridge){
+					m_myFood.setState(MyFood.FRIDGE_UNOPENED);
+				}else if(conditions_loc_rgroup.getCheckedRadioButtonId() == R.id.edit_loc_freezer){
+					m_myFood.setState(MyFood.FREEZER_UNOPENED);
+				}
+			}
+
+			if(details_quantity_entry.getText() != null){
+				m_myFood.setQuantity(Integer.parseInt(details_quantity_entry.getText().toString()));
+			}else{
+				Toast.makeText(this, "Quantity must be specified.",
+			         Toast.LENGTH_LONG).show();
+			         return false;
+			}
+			if(details_notes_entry.getText() != null){
+				m_myFood.setNotes(details_notes_entry.getText().toString());
+			}else{
+				m_myFood.setNotes(null);
+			}
+			m_myFood.setPicture(picture);
+			return true;
 	}
 	
 	private void saveToDatabase(MyFood m_myfood)
@@ -418,4 +411,9 @@ public class EditFoodActivity extends SherlockActivity
 		finish();
 		startActivity(i);
 	}
+	
+	private void removePicture(){
+		picture = null;
+		this.details_photo.setImageResource(R.drawable.empty_pic_selector);
+	} 
 }

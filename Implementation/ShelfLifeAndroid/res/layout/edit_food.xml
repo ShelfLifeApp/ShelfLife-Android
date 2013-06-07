@@ -237,10 +237,10 @@
 	                />
 	            <EditText
 	                android:id="@+id/edit_table_quantity_entry"
-	                android:editable="true"
 	                android:layout_width="0dp"
 	                android:layout_weight="2"
 	                android:layout_height="wrap_content"
+	                android:inputType="number"
 	            	/>	            
 	        </TableRow>
 	        

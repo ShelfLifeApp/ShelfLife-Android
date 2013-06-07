@@ -42,14 +42,14 @@ public class AlarmBroadcastReceiver extends BroadcastReceiver {
 	        PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
 	        // Notifications sent at 1:00am each day
 	        Calendar calendar = Calendar.getInstance();
-	        calendar.set(Calendar.HOUR_OF_DAY, 01);
+	        calendar.set(Calendar.HOUR_OF_DAY, 07);
 	        calendar.set(Calendar.MINUTE, 00);
 	        calendar.set(Calendar.SECOND, 00);
 	        
 	        // To test notifications, use System.currentTimeMillis() and 10*1000
 	        // instead of calendar.getTimeInMillis() and 24*60*60*1000
 	        // Alarm repeats every 24 hours 24*60*60*1000
-	        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 30*1000 , pi);
+	        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 24*60*60*1000 , pi);
 	    }
 	 
 	    public void CancelAlarm(Context context)
