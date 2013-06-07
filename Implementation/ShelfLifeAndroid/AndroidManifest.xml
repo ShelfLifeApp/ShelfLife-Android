@@ -48,6 +48,7 @@
         </activity>
         <activity
             android:name=".EditFoodActivity"
+            android:windowSoftInputMode="stateHidden"
             android:screenOrientation="portrait"
             android:label="Edit My Food" >
         </activity>
