@@ -156,6 +156,7 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
 
 	            // Commit the transaction
 	            transaction.commit();
+	            actionBar.setDisplayHomeAsUpEnabled(false);
 	            return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
@@ -207,12 +208,25 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
     	@Override
     	public void onTabSelected(Tab tab, FragmentTransaction ft) 
     	{
+    		if (tab == databaseTab)
+    		{
+    			actionBar.setDisplayHomeAsUpEnabled(false);
+    		}
+    		else
+    		{
+    			actionBar.setDisplayHomeAsUpEnabled(true);	
+    		}
     		ft.replace(R.id.fragment_container, fragment);
     	}
     	 
     	@Override
     	public void onTabUnselected(Tab tab, FragmentTransaction ft) 
     	{
+    		//if (tab == databaseTab || tab == myFoodTab)
+    		//{
+    			actionBar.setDisplayHomeAsUpEnabled(false);
+    		//}
+    		
     		
     		ft.remove(fragment);
     	}  	 
@@ -235,24 +249,13 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
     	@Override
     	public void onTabSelected(Tab tab, FragmentTransaction ft) 
     	{
-    		if (tab == databaseTab)
-    		{
-    			actionBar.setHomeButtonEnabled(false);
-    		}
-    		else
-    		{
-    			actionBar.setHomeButtonEnabled(true);	
-    		}
+    		actionBar.setDisplayHomeAsUpEnabled(false);
     		ft.replace(R.id.fragment_container, fragment);
     	}
     	 
     	@Override
     	public void onTabUnselected(Tab tab, FragmentTransaction ft) 
     	{
-    		if (tab == databaseTab)
-    		{
-    			actionBar.setHomeButtonEnabled(false);
-    		}
    
     		ft.remove(fragment);
     	}  	 
