@@ -80,19 +80,19 @@ public class AlarmBroadcastReceiver extends BroadcastReceiver {
 						new Intent(), 0);
 				if(notificationRate == 7){
 					ncb = new NotificationCompat.Builder(context)
-						.setSmallIcon(R.drawable.icon_shelflife)
+						.setSmallIcon(R.drawable.icon_notif)
 				        .setContentTitle(resources.getString(R.string.notification_title))
 				        .setContentText(resources.getString(R.string.notification_text_7_days) + numExpiring)
 				        .setTicker(resources.getString(R.string.notification_ticker));
 				}else if(notificationRate == 1){
 					ncb = new NotificationCompat.Builder(context)
-					.setSmallIcon(R.drawable.icon_shelflife)
+					.setSmallIcon(R.drawable.icon_notif)
 			        .setContentTitle(resources.getString(R.string.notification_title))
 			        .setContentText(resources.getString(R.string.notification_text_1_days) + numExpiring)
 			        .setTicker(resources.getString(R.string.notification_ticker));
 				}else{
 					ncb = new NotificationCompat.Builder(context)
-					.setSmallIcon(R.drawable.icon_shelflife)
+					.setSmallIcon(R.drawable.icon_notif)
 			        .setContentTitle(resources.getString(R.string.notification_title))
 			        .setContentText(resources.getString(R.string.notification_text_0_days) + numExpiring)
 			        .setTicker(resources.getString(R.string.notification_ticker));
