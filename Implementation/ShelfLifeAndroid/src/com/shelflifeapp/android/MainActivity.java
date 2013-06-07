@@ -93,7 +93,7 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
         	alarm.SetAlarm(context);
         }else{
         	Toast.makeText(context, "Alarm is null", Toast.LENGTH_SHORT).show();
-        	Log.d("mgrap", "alarm is null");
+        	//Log.d("mgrap", "alarm is null");
         }
     }
 
@@ -265,7 +265,7 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
 	public void onCategorySelected(int category) 
 	{
 		actionBar.setDisplayHomeAsUpEnabled(true);
-		Log.d("SPOCK", "onCategorySelected: " + category);
+		//Log.d("SPOCK", "onCategorySelected: " + category);
         DatabaseFragment dbFrag = new DatabaseFragment();
         Bundle args = new Bundle();
         args.putInt(DatabaseFragment.CATEGORY_KEY, category);

@@ -84,7 +84,7 @@ private Context mContext;
 		  }
 		  
 		  int category = ((CategoryListItem) v).getCategoryId();
-		  Log.d("SPOCK", "Callback with Category: " + category);
+		  //Log.d("SPOCK", "Callback with Category: " + category);
 		  mCallback.onCategorySelected(category);
 	  }
 

@@ -69,14 +69,14 @@ public class FoodDetails extends SherlockActivity
         Bundle foodBundle = this.getIntent().getExtras();
 	    if(foodBundle == null)
 	    {
-			Log.d("shelflife", "Bundle is null");
+			//Log.d("shelflife", "Bundle is null");
 		}
 	    else
 	    {
 			m_food = foodBundle.getParcelable("food");
 			if(m_food == null)
 			{
-				Log.d("shelflife", "food is null");
+				//Log.d("shelflife", "food is null");
 			}			
 		}
         

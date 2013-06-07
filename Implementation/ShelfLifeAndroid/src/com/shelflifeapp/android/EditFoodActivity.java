@@ -87,8 +87,7 @@ public class EditFoodActivity extends SherlockActivity
         actionBar.setDisplayHomeAsUpEnabled(true);
                 
         Bundle foodBundle = getIntent().getExtras();
-        m_myFood = foodBundle.getParcelable("myfood");
-        
+        m_myFood = foodBundle.getParcelable("myfood");        
         operation = foodBundle.getInt("operation");
         m_myFood.setId(foodBundle.getInt("foodid"));
         
@@ -163,6 +162,8 @@ public class EditFoodActivity extends SherlockActivity
 		details_openDate_entry = (EditText) findViewById(R.id.edit_table_opened_entry);
 		details_notes_entry = (EditText) findViewById(R.id.edit_notes_entry);
 		details_photo = (ImageView) findViewById(R.id.edit_picture);
+		
+		header_title.setText("Edit your " + m_myFood.getName());
 		
 		if(m_myFood.getName() != null){
 			details_name_entry.setText(m_myFood.getName());
