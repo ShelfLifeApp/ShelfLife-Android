@@ -55,7 +55,7 @@ public class DatabaseFragment extends ListFragment
 	    this.getListView().setBackgroundColor(getResources().getColor(R.color.activity_background));
 	    Bundle catIdBundle = this.getArguments();
 	    if(catIdBundle == null){
-			Log.d("shelflife", "Bundle is null");
+			//Log.d("shelflife", "Bundle is null");
 		}else{
 			catId = catIdBundle.getInt(CATEGORY_KEY, -1);
 			Log.d("SPOCK", "DatabaseFragment Category: " + catId);

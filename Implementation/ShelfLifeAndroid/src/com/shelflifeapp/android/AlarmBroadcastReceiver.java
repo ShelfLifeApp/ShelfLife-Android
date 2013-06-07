@@ -70,9 +70,9 @@ public class AlarmBroadcastReceiver extends BroadcastReceiver {
 			int numExpiring = getNumExpiring(context, notificationRate);
 			NotificationCompat.Builder ncb;
 			
-			Log.d("mgrap", "Notifications: " + notificationsEnabled);
-			Log.d("mgrap", "Rate: " + notificationRate);
-			Log.d("mgrap", "Num Expiring: " + numExpiring);
+			//Log.d("mgrap", "Notifications: " + notificationsEnabled);
+			//Log.d("mgrap", "Rate: " + notificationRate);
+			//Log.d("mgrap", "Num Expiring: " + numExpiring);
 			
 			if(numExpiring > 0 && notificationsEnabled){
 				Resources resources = context.getResources();

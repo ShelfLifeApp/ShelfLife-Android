@@ -64,17 +64,17 @@ public class MyFoodDetails extends SherlockActivity
         
         Bundle foodBundle = this.getIntent().getExtras();
 	    if(foodBundle == null){
-			Log.d("shelflife", "Bundle is null");
+			//Log.d("shelflife", "Bundle is null");
 		}else{
 			m_myfood = foodBundle.getParcelable("myfood");
 			if(m_myfood == null){
-				Log.d("shelflife", "food is null");
+				//Log.d("shelflife", "food is null");
 			}			
 		}
 	    
-	    Log.d("EDIT", "DETAILS BEFORE: " + m_myfood.getLoc());
-	    Log.d("EDIT", "DETAILS BEFORE op: " + m_myfood.getState_opened());
-	    Log.d("EDIT", "DETAILS BEFORE: " + m_myfood.getState());
+	    //Log.d("EDIT", "DETAILS BEFORE: " + m_myfood.getLoc());
+	    //Log.d("EDIT", "DETAILS BEFORE op: " + m_myfood.getState_opened());
+	    //Log.d("EDIT", "DETAILS BEFORE: " + m_myfood.getState());
         
 	    ExpirationTable expirationTable = (ExpirationTable) findViewById(R.id.ExpirationTable);
 	    myFoodName = (TextView) findViewById(R.id.myfood_name_text);
@@ -173,9 +173,9 @@ public class MyFoodDetails extends SherlockActivity
 	        case R.id.menu_edit:
 	        	Intent i = new Intent(MyFoodDetails.this, EditFoodActivity.class);
 				i.putExtra("myfood", m_myfood);
-				Log.d("EDIT", "Details Loc: " + m_myfood.getLoc());
-				Log.d("EDIT", "Details State op: " + m_myfood.getState_opened());
-				Log.d("EDIT", "Details State: " + m_myfood.getState());
+				//Log.d("EDIT", "Details Loc: " + m_myfood.getLoc());
+				//Log.d("EDIT", "Details State op: " + m_myfood.getState_opened());
+				//Log.d("EDIT", "Details State: " + m_myfood.getState());
 				i.putExtra("operation", EditFoodActivity.OP_EDIT_FOOD);
 				i.putExtra("foodid", m_myfood.getId());
 				finish();

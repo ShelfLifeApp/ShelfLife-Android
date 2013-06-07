@@ -77,9 +77,9 @@ public class EditFoodActivity extends SherlockActivity
                 
         Bundle foodBundle = getIntent().getExtras();
         m_myFood = foodBundle.getParcelable("myfood");
-        Log.d("EDIT", "Before Loc: " + m_myFood.getLoc());
-        Log.d("EDIT", "Before State op: " + m_myFood.getState_opened());
-        Log.d("EDIT", "Before State: " + m_myFood.getState());
+        //Log.d("EDIT", "Before Loc: " + m_myFood.getLoc());
+        //Log.d("EDIT", "Before State op: " + m_myFood.getState_opened());
+        //Log.d("EDIT", "Before State: " + m_myFood.getState());
         
         if (m_myFood.getPurchaseDate() == null)
         {
@@ -296,7 +296,7 @@ public class EditFoodActivity extends SherlockActivity
 	
 		
 		String loc = mf.getLoc();
-		Log.d("EDIT", "Location: " + loc);
+		//Log.d("EDIT", "Location: " + loc);
 		if (loc.equals(MyFood.LOC_SHELF))
 			conditions_loc_rgroup.check(R.id.edit_loc_shelf);
 		else if (loc.equals(MyFood.LOC_FRIDGE))
@@ -305,7 +305,7 @@ public class EditFoodActivity extends SherlockActivity
 			conditions_loc_rgroup.check(R.id.edit_loc_freezer);
 		
 		String state = mf.getState_opened();
-		Log.d("EDIT", "State: " + state);
+		//Log.d("EDIT", "State: " + state);
 		if (state.equals(MyFood.STATE_OPENED))
 			conditions_opened_rgroup.check(R.id.edit_open_yes);
 		else if (state.equals(MyFood.STATE_UNOPENED))
