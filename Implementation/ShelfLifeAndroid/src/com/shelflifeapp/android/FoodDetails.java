@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
+import com.shelflifeapp.database.DbIcons;
 import com.shelflifeapp.database.MyFoodTable;
 import com.shelflifeapp.models.Category;
 import com.shelflifeapp.models.ExpirationData;
@@ -90,6 +91,9 @@ public class FoodDetails extends SherlockActivity
 	    		tips.setText(m_food.getTips());
 	    	}
 	    }
+	    
+	    iconView = (ImageView) findViewById(R.id.food_details_plate_food);
+	    iconView.setImageResource(m_food.getCategory().getPlateIconId());
 	    
         addButton = (Button) findViewById(R.id.add_food_button);
         addButton.setOnClickListener(new Button.OnClickListener() 

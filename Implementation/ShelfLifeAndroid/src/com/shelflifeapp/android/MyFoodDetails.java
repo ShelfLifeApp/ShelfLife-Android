@@ -153,6 +153,10 @@ public class MyFoodDetails extends SherlockActivity
 	        c.drawCircle(pictureBitmap.getWidth()/2, pictureBitmap.getHeight()/2, pictureBitmap.getWidth()/2, paint);
 	    	picture.setImageBitmap(circleBitmap);
 	    }
+	    else
+	    {
+	    	picture.setImageResource(m_myfood.getCategory().getPlateIconId());
+	    }
     }
     
     @Override
