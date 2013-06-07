@@ -38,8 +38,10 @@
 	       
 	        	<ImageView
 	    	   		android:id="@+id/food_details_plate_food"
-	    	    	android:layout_width="wrap_content"
-	    	    	android:layout_height="wrap_content"
+	    	    	android:layout_width="65dp"
+	    	    	android:layout_height="65dp"
+	    	    	android:maxHeight="65dp"
+	    	    	android:maxWidth="65dp"
 	    	    	android:layout_centerInParent="true"
 	    	    	android:contentDescription="@string/food_picture"
 	    	    	/>

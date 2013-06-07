@@ -84,35 +84,35 @@ public class DbIcons
 		switch (plateIcon)
 		{
 			case PLATE_BABY:
-				return R.drawable.baby;
+				return R.drawable.baby_plate;
 			case PLATE_BAKED_GOODS:
-				return R.drawable.bakedgoods;
+				return R.drawable.bakedgoods_plate;
 			case PLATE_BAKING:
-				return R.drawable.baking;
+				return R.drawable.baking_plate;
 			case PLATE_BEVERAGES:
-				return R.drawable.beverages;
+				return R.drawable.beverages_plate;
 			case PLATE_CANDY:
-				return R.drawable.candy;
+				return R.drawable.candy_plate;
 			case PLATE_CHEESE:
-				return R.drawable.cheese;
+				return R.drawable.cheese_plate;
 			case PLATE_CONDIMENTS:
-				return R.drawable.condiments;
+				return R.drawable.condiments_plate;
 			case PLATE_DAIRY:
-				return R.drawable.dairy;
+				return R.drawable.dairy_plate;
 			case PLATE_FRUIT:
-				return R.drawable.fruit;
+				return R.drawable.fruit_plate;
 			case PLATE_GRAINS:
-				return R.drawable.grains;
+				return R.drawable.grains_plate;
 			case PLATE_PASTA:
-				return R.drawable.pasta;
+				return R.drawable.pasta_plate;
 			case PLATE_SNACK:
-				return R.drawable.snacks;
+				return R.drawable.snacks_plate;
 			case PLATE_SOUP:
-				return R.drawable.soup;
+				return R.drawable.soup_plate;
 			case PLATE_SPICES:
-				return R.drawable.spices;
+				return R.drawable.spices_plate;
 			case PLATE_VEGGIES:
-				return R.drawable.veggies;
+				return R.drawable.veggies_plate;
 		}
 		
 		return R.drawable.international;
