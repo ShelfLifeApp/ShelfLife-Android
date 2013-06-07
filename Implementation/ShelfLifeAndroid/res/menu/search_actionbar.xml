@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+	<item android:id="@+id/menu_search_ab_search"
+	    android:title="@string/menu_ab_search"
+	    android:icon="@drawable/icon_magnifying_glass"
+	    android:showAsAction="always"
+          android:actionViewClass="com.actionbarsherlock.widget.SearchView"
+	    />
+	<item android:id="@+id/menu_search_ab_barcode"
+	    android:title="@string/menu_ab_scanner"
+	    android:icon="@drawable/icon_ab_barcode"
+	    android:showAsAction="always"/>
+	
+</menu>

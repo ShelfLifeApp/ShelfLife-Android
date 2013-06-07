@@ -2,6 +2,7 @@ package com.shelflifeapp.android;
 
 import java.io.IOException;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -24,6 +25,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.widget.SearchView;
+import com.shelflifeapp.android.R.menu;
 import com.shelflifeapp.database.CategoryTable;
 import com.shelflifeapp.database.FoodCursorAdapter;
 import com.shelflifeapp.database.FoodDatabaseHelper;
@@ -81,7 +83,7 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
         
 	    setUpDatabase();
 	    
-	    searchForItem();
+	    searchForItem();    
     }
     
     private String formatSearchString(String searchString)
@@ -160,16 +162,18 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
 		MenuInflater inflater = this.getSupportMenuInflater();
-		inflater.inflate(R.menu.menu_actionbar, menu);
+		inflater.inflate(R.menu.search_actionbar, menu);
 	    
 		this.m_vwMenu = menu;
-		this.mSearchView = (SearchView) menu.findItem(R.id.menu_ab_search).getActionView();
+		this.mSearchView = (SearchView) menu.findItem(R.id.menu_search_ab_search).getActionView();
 	    this.mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
 		    @Override
 		    public boolean onQueryTextSubmit(String query) {
 		        // collapse the view ?
-		        menu.findItem(R.id.menu_ab_search).collapseActionView();
+		        menu.findItem(R.id.menu_search_ab_search).collapseActionView();
+		        setUpLoader(query);
+		        fillData();
 		        return true;
 		    }
 	
@@ -195,13 +199,13 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
 	    	case android.R.id.home:
 	    		finish();
 	    		return true;
-	        case R.id.menu_ab_barcode:
+	        case R.id.menu_search_ab_barcode:
 	        	Intent intent = new Intent("com.google.zxing.client.android.SCAN");
 	        	intent.putExtra("com.google.zxing.client.android.SCAN.SCAN_MODE", 
 	        			"QR_CODE_MODE");
 	        	startActivityForResult(intent, SCAN_BARCODE);
 	            return true;
-	        case R.id.menu_ab_search:	        		           
+	        case R.id.menu_search_ab_search:	        		           
 	        	return true;	        
 	        default:
 	            return super.onOptionsItemSelected(item);
@@ -218,7 +222,15 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
 		{
 			case SCAN_BARCODE:
 			{
-				Toast.makeText(mContext, "SCAN_BARCODE", Toast.LENGTH_LONG).show();
+				if (resultCode == Activity.RESULT_OK)
+				{
+					String contents = data.getStringExtra("SCAN_RESULT");
+					if (contents != null)
+					{
+				    	SimpleUpcApi simpleUpcApi = new SimpleUpcApi(this);
+				    	simpleUpcApi.fetchProductByUpc(contents);
+					}
+				}
 			}
 		}
 	}
@@ -274,6 +286,8 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
 		if (response.isSuccess())
 		{
 			setUpLoader(response.getCategory());
+			if (this.m_foodAdapter.getCount() != 0)
+				fillData();
 		}
 		else
 		{
@@ -292,4 +306,9 @@ public class SearchResultsActivity extends SherlockFragmentActivity implements S
 		}
 		
 	}
+	
+	protected void fillData(){
+		SearchResultsActivity.this.getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
+		listView.setAdapter(m_foodAdapter);
+	}	
 }
