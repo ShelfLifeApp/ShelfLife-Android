@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.MenuItem;
 import com.shelflifeapp.database.CategoryCursorAdapter;
 import com.shelflifeapp.database.CategoryTable;

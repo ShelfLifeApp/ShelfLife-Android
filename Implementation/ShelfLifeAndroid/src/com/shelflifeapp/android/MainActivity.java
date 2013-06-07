@@ -54,21 +54,31 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
 	private final int RESULT_SETTINGS = 1;
 	private AlarmBroadcastReceiver alarm;
 
+	private ActionBar actionBar;
+	
+	private Fragment databaseFragment;
+    private Fragment myFoodFragment;
+    private Fragment categoryFragment;
+    
+    private ActionBar.Tab databaseTab;
+    private ActionBar.Tab myFoodTab;
+    
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) 
     {   	
     	super.onCreate(savedInstanceState);
     	setContentView(R.layout.activity_main);
         
-        ActionBar actionBar = getSupportActionBar();
+        actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        ActionBar.Tab databaseTab = actionBar.newTab().setText("All Foods");
-        ActionBar.Tab myFoodTab = actionBar.newTab().setText("My Food");
+        databaseTab = actionBar.newTab().setText("All Foods");
+        myFoodTab = actionBar.newTab().setText("My Food");
               
-        Fragment databaseFragment = new DatabaseFragment();
-        Fragment myFoodFragment = new MyFoodFragment();
-        Fragment categoryFragment = new CategoryFragment();
+        databaseFragment = new DatabaseFragment();
+        myFoodFragment = new MyFoodFragment();
+        categoryFragment = new CategoryFragment();
         
         databaseTab.setTabListener(new DatabaseTabListener(categoryFragment));
         myFoodTab.setTabListener(new MyFoodTabListener(myFoodFragment));
@@ -136,6 +146,17 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
 	        	Intent i = new Intent(MainActivity.this, UserPreferences.class);
 	        	startActivityForResult(i, RESULT_SETTINGS);
 	        	return true;
+	        case android.R.id.home:
+	            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+	            // Replace whatever is in the fragment_container view with this fragment,
+	            // and add the transaction to the back stack so the user can navigate back
+	            transaction.replace(R.id.fragment_container, categoryFragment);
+	            transaction.addToBackStack(null);
+
+	            // Commit the transaction
+	            transaction.commit();
+	            return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
@@ -192,6 +213,7 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
     	@Override
     	public void onTabUnselected(Tab tab, FragmentTransaction ft) 
     	{
+    		
     		ft.remove(fragment);
     	}  	 
     }    
@@ -213,12 +235,25 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
     	@Override
     	public void onTabSelected(Tab tab, FragmentTransaction ft) 
     	{
+    		if (tab == databaseTab)
+    		{
+    			actionBar.setHomeButtonEnabled(false);
+    		}
+    		else
+    		{
+    			actionBar.setHomeButtonEnabled(true);	
+    		}
     		ft.replace(R.id.fragment_container, fragment);
     	}
     	 
     	@Override
     	public void onTabUnselected(Tab tab, FragmentTransaction ft) 
     	{
+    		if (tab == databaseTab)
+    		{
+    			actionBar.setHomeButtonEnabled(false);
+    		}
+   
     		ft.remove(fragment);
     	}  	 
     }
@@ -226,6 +261,7 @@ public class MainActivity extends SherlockFragmentActivity implements CategoryFr
 	@Override
 	public void onCategorySelected(int category) 
 	{
+		actionBar.setDisplayHomeAsUpEnabled(true);
 		Log.d("SPOCK", "onCategorySelected: " + category);
         DatabaseFragment dbFrag = new DatabaseFragment();
         Bundle args = new Bundle();
