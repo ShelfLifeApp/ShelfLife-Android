@@ -6,7 +6,7 @@
      >
     
     <RelativeLayout
-        android:layout_weight="9"
+        android:layout_weight="4"
         android:id="@+id/warning_thing"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -54,15 +54,16 @@
 	<LinearLayout
 	    android:id="@+id/warning_buttons"
 	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
+	    android:layout_height="75dp"
+	    android:layout_weight="1"
 	    android:orientation="horizontal"
 	    android:gravity="bottom"
 	    >
 	    
 	    <Button 
 	        android:id="@+id/warning_button_disagree"
-	        android:layout_height="wrap_content"
-	        android:layout_width="fill_parent"
+	        android:layout_height="match_parent"
+	        android:layout_width="match_parent"
 	        android:layout_weight="1"
 	        android:background="@drawable/warning_button_disagree_background"
 	        android:textColor="@color/warning_text_color"
@@ -72,8 +73,8 @@
 	   
 	    <Button
 	        android:id="@+id/warning_button_agree"
-	        android:layout_height="wrap_content"
-	        android:layout_width="fill_parent"
+	        android:layout_height="match_parent"
+	        android:layout_width="match_parent"
 	        android:layout_weight="1"
 	        android:background="@drawable/warning_button_agree_background"
 	        android:textStyle="bold"
