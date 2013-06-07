@@ -397,7 +397,9 @@ public class EditFoodActivity extends SherlockActivity
     	}
 
     	Intent i = new Intent(this, MyFoodDetails.class);
+    	i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 		i.putExtra("myfood", m_myfood);
+		finish();
 		startActivity(i);
 	}
 }

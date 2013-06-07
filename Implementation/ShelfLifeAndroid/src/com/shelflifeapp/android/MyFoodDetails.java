@@ -180,7 +180,11 @@ public class MyFoodDetails extends SherlockActivity
 	            return true;	
 	        
 	    	case android.R.id.home:
+	        	Intent h = new Intent(this, MainActivity.class);
+	        	h.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 	    		finish();
+	    		startActivity(h);
+
 	    		return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
