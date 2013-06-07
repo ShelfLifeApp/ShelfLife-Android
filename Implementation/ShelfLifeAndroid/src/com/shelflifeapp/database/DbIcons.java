@@ -13,14 +13,14 @@ public class DbIcons
 	private final static int CAT_CHEESE = 6;
 	private final static int CAT_CONDIMENTS = 7;
 	private final static int CAT_DAIRY = 8;
-	private final static int CAT_FRUIT = 10;
-	private final static int CAT_GRAINS = 11;
-	private final static int CAT_PASTA = 12;
-	private final static int CAT_POULTRY = 13;
-	private final static int CAT_SNACK = 14;
-	private final static int CAT_SOUP = 15;
-	private final static int CAT_SPICES = 16;
-	private final static int CAT_VEGGIES = 17;
+	private final static int CAT_FRUIT = 9;
+	private final static int CAT_GRAINS = 10;
+	private final static int CAT_PASTA = 11;
+	private final static int CAT_POULTRY = 12;
+	private final static int CAT_SNACK = 13;
+	private final static int CAT_SOUP = 14;
+	private final static int CAT_SPICES = 15;
+	private final static int CAT_VEGGIES = 16;
 
 	/* Plate Ids */
 	private final static int PLATE_BABY = 1;
@@ -31,14 +31,14 @@ public class DbIcons
 	private final static int PLATE_CHEESE = 6;
 	private final static int PLATE_CONDIMENTS = 7;
 	private final static int PLATE_DAIRY = 8;
-	private final static int PLATE_FRUIT = 10;
-	private final static int PLATE_GRAINS = 11;
-	private final static int PLATE_PASTA = 12;
-	private final static int PLATE_POULTRY = 13;
-	private final static int PLATE_SNACK = 14;
-	private final static int PLATE_SOUP = 15;
-	private final static int PLATE_SPICES = 16;
-	private final static int PLATE_VEGGIES = 17;
+	private final static int PLATE_FRUIT = 9;
+	private final static int PLATE_GRAINS = 10;
+	private final static int PLATE_PASTA = 11;
+	private final static int PLATE_POULTRY = 12;
+	private final static int PLATE_SNACK = 13;
+	private final static int PLATE_SOUP = 14;
+	private final static int PLATE_SPICES = 15;
+	private final static int PLATE_VEGGIES = 16;
 
 	public static int getIcon(int cat)
 	{
