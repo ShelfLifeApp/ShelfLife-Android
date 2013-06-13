@@ -44,7 +44,7 @@ public class FoodTable {
 			DATABASE_TABLE_FOOD + " (" + 
 			FOOD_KEY_ID + " integer primary key autoincrement, " + 
 			FOOD_KEY_NAME	+ " integer not null, " +
-			FOOD_KEY_CATEGORY + " numeric, " + 
+			FOOD_KEY_CATEGORY + " integer, " + 
 			FOOD_KEY_SHELF_U + " integer, " +
 			FOOD_KEY_SHELF_O + " integer, " +
 			FOOD_KEY_FRIDGE_U + " integer, " +

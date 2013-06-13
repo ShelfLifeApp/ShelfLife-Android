@@ -32,7 +32,7 @@ public class AlarmBroadcastReceiver extends BroadcastReceiver {
 	 @Override
 	 public void onReceive(Context context, Intent intent) {
 	         showNotification(context);
-	         Log.d("mgrap", "alarm");
+	         //Log.d("mgrap", "alarm");
 	 }
 	 
 	 public void SetAlarm(Context context)
