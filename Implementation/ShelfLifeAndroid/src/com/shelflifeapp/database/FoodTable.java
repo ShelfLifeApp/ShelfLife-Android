@@ -43,7 +43,7 @@ public class FoodTable {
 	public static final String DATABASE_CREATE = "create table " + 
 			DATABASE_TABLE_FOOD + " (" + 
 			FOOD_KEY_ID + " integer primary key autoincrement, " + 
-			FOOD_KEY_NAME	+ " integer not null, " +
+			FOOD_KEY_NAME	+ " text, " +
 			FOOD_KEY_CATEGORY + " integer, " + 
 			FOOD_KEY_SHELF_U + " integer, " +
 			FOOD_KEY_SHELF_O + " integer, " +
